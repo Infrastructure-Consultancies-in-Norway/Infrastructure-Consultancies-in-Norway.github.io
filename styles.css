@@ -1,0 +1,16 @@
+body {
+    background-color: #f4f4f4;
+}
+
+.list-group-item {
+    transition: all 0.3s ease;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+    transform: scale(1.02);
+}
+
+.badge {
+    font-size: 0.8em;
+}

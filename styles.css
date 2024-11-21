@@ -28,3 +28,25 @@ body {
 .accordion-button:focus {
     box-shadow: none;
 }
+
+.logos-container .logo {
+    margin: 0 40px; /* Adjust the value to increase or decrease spacing */
+}
+
+.logo a {
+    text-decoration: none;
+    color: inherit;
+}
+.logo img {
+    display: inline-block;
+    vertical-align: middle;
+}
+.ml-2 {
+    margin-left: 8px; /* Adjust the value to increase or decrease spacing between image and text */
+}
+
+.fixed-size-logo {
+    width: 30px; /*Adjust the width as needed */
+    height: 30px; /*Maintain aspect ratio */
+    object-fit: contain; /*Maintain aspect ratio */
+  }

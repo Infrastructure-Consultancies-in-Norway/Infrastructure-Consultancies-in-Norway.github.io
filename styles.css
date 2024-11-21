@@ -14,3 +14,17 @@ body {
 .badge {
     font-size: 0.8em;
 }
+
+.accordion-button {
+    background-color: #e9ecef;
+    color: #212529;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #e9ecef;
+    color: #212529;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+}

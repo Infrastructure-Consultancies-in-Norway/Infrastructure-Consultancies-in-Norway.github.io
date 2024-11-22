@@ -62,7 +62,7 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card mb-4">
                     <div class="card-header bg-dark text-white">
                         <h2 class="mb-0">Nedlastbare Filer</h2>
                     </div>
@@ -71,18 +71,18 @@
                         <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" 
                            onclick="downloadFileGitHub('https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/master/Files/EgenskapsstrukturV09.xlsx')">
                             Regneark med egenskaper
-                            <span class="badge bg-primary">xlsx</span>
+                            <span class="badge bg-secondary">xlsx</span>
                         </a>
                         <!-- Repeat for other files with their respective GitHub URLs -->
                         <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" 
                            onclick="downloadFileGitHub('https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/master/Files/SNACks.pptx')">
                             Powerpoint-presentasjon av arbeidet
-                            <span class="badge bg-primary">pptx</span>
+                            <span class="badge bg-secondary">pptx</span>
                         </a>
                         <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" 
                         onclick="downloadFileGitHub('https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/master/Files/SNACks - Informasjonsstruktur - Følgeskriv.docx')">
                         SNACks - Informasjonsstruktur - Følgeskriv
-                         <span class="badge bg-primary">docx</span>
+                         <span class="badge bg-secondary">docx</span>
 
                          <!-- Move the logo vertically some pixels -->
 
@@ -90,50 +90,62 @@
                         <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" 
                         onclick="downloadFileGitHub('https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/master/Files/Eksempelmodell_SNACks.ifc')">
                         Ifc-fil utarbeidet med SNACks-oppsettet
-                       <span class="badge bg-primary">ifc</span>
+                       <span class="badge bg-secondary">ifc</span>
                   </a>
 
 
                     </div>
                     </div>
                 </div>
-            </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-dark text-white">
+                        <h2 class="mb-0">Presentasjon BA-Nettverket</h2>
+                    </div>
+                    <div class="card-body">
+                        <!-- Embed a youtube video -->
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/PLPpRe9ESuQ" title="YouTube video" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+
+            </div>   
         </div>
     </div>
 
-<!-- Create a footer to display "Et samarbeid mellom: " and then the logos for each of the companies located int the logos folder -->
-<footer class="bg-dark text-white text-center p-4 mt-5">
-  <h5>Et samarbeid mellom:</h5>
-<!-- Add logos beside each other with a little space and center them. Wrap them inside a div container -->
-<div class="d-flex justify-content-center logos-container">
-  <span class="logo">
-    <a href="https://www.sweco.no/en/" class="d-flex align-items-center">
-      <img src="https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/master/Logos/sweco_logo_sym.png?raw=true" alt="Sweco" width="26">
-      <span class="ml-2">Sweco</span>
-    </a>
-  </span>
-  <span class="logo">
-    <a href="https://norconsult.no/" class="d-flex align-items-center">
-      <img src="https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/master/Logos/norconsult_logo_sym.png?raw=true" alt="Norconsult" width="32">
-      <span class="ml-2">Norconsult</span>
-    </a>
-  </span>
-  <span class="logo">
-    <a href="https://www.aas-jakobsen.no/" class="d-flex align-items-center">
-      <img src="https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/master/Logos/aaj_logo_sym.png?raw=true" alt="Aas-Jakobsen" class="fixed-size-logo" width="200">
-      <span class="ml-2">Aas-Jakobsen</span>
-    </a>
-  </span>
-  <span class="logo">
-    <a href="https://www.cowi.com" class="d-flex align-items-center">
-      <img src="https://raw.githubusercontent.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/d4fd067d51ec2dbf353c62025f2853410e951f22/Logos/cowi_logo.svg" alt="Cowi" width="60">
-      <span class="ml-2">Cowi</span>
-    </a>
-  </span>
-</div>
-
-
-</footer>
+    <footer class="bg-dark text-white text-center p-4 mt-5">
+        <!-- Create a div to set the max width on large screens -->
+        <div class="container">
+        <h5>Et samarbeid mellom:</h5>
+        <div class="row justify-content-center ">
+            <div class="col-6 col-md-2 text-center logo">
+              <a href="https://www.sweco.no/en/">
+                  <img src="https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/master/Logos/sweco_logo_sym.png?raw=true" alt="Sweco" width="40">
+                  <span>Sweco</span>
+              </a>
+            </div>
+            <div class="col-6 col-md-3 text-center logo">
+              <a href="https://norconsult.no/">
+                  <img src="https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/master/Logos/norconsult_logo_sym.png?raw=true" alt="Norconsult" width="50">
+                  <span>Norconsult</span>
+              </a>
+            </div>
+            <div class="col-6 col-md-3 text-center logo">
+              <a href="https://www.aas-jakobsen.no/">
+                  <img src="https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/master/Logos/aaj_logo_sym.png?raw=true" alt="Aas-Jakobsen" width="50">
+                  <span>Aas-Jakobsen</span>
+              </a>
+            </div>
+                <div class="col-6 col-md-3 text-center logo">
+                <a href="https://www.cowi.com">
+                  <img src="https://raw.githubusercontent.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/d4fd067d51ec2dbf353c62025f2853410e951f22/Logos/cowi_logo.svg" alt="Cowi" width="120">
+                  <span>COWI</span>
+                </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -29,8 +29,9 @@ body {
     box-shadow: none;
 }
 
-.logos-container .logo {
-    margin: 0 40px; /* Adjust the value to increase or decrease spacing */
+
+.logo {
+    margin: 10px 0; /* Set desired margin; top and bottom for spacing */
 }
 
 .logo a {
@@ -41,6 +42,8 @@ body {
     display: inline-block;
     vertical-align: middle;
 }
+
+
 .ml-2 {
     margin-left: 8px; /* Adjust the value to increase or decrease spacing between image and text */
 }
@@ -49,4 +52,4 @@ body {
     width: 30px; /*Adjust the width as needed */
     height: 30px; /*Maintain aspect ratio */
     object-fit: contain; /*Maintain aspect ratio */
-  }
+}

@@ -30,3 +30,4 @@ function downloadFileGitHub(fileUrl) {
         })
         .catch(error => console.error('Download error:', error));
 }
+

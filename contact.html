@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact</title>
+    <style>
+        .person {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .person:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        .person img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin: 0 20px;
+        }
+        .info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .email {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .email-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        @media screen and (max-width: 600px) {
+            .person {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .person:nth-child(even) {
+                flex-direction: column;
+            }
+            .person img {
+                margin: 0 0 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="person">
+        <img src="person1.jpg" alt="Person 1">
+        <div class="info">
+            <h2>Person 1</h2>
+            <div class="email">
+                <img src="email-icon.png" alt="Email Icon" class="email-icon">
+                <a href="mailto:person1@example.com">person1@example.com</a>
+            </div>
+        </div>
+    </div>
+    <div class="person">
+        <img src="person2.jpg" alt="Person 2">
+        <div class="info">
+            <h2>Person 2</h2>
+            <div class="email">
+                <img src="email-icon.png" alt="Email Icon" class="email-icon">
+                <a href="mailto:person2@example.com">person2@example.com</a>
+            </div>
+        </div>
+    </div>
+    <!-- Add more people as needed -->
+</body>
+</html>

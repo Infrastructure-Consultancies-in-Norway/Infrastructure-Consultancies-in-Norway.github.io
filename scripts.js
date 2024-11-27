@@ -31,10 +31,20 @@ function downloadFileGitHub(fileUrl) {
         .catch(error => console.error('Download error:', error));
 }
 
-$(function(){
-    $("#nav-placeholder").load("nav.html");
-  });
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('nav.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('nav-placeholder').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading nav:', error));
 
-$(function(){
-    $("#footer-placeholder").load("footer.html");
-  });
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-placeholder').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading footer:', error));
+});
+
+// No additional code needed - footer loading is already handled in the DOMContentLoaded event listener above

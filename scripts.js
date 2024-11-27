@@ -36,6 +36,38 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.text())
         .then(data => {
             document.getElementById('nav-placeholder').innerHTML = data;
+
+            // Add event listeners for nav items after content is loaded
+            let snacksLink = document.getElementById('snacks-link');
+            if (snacksLink) {
+                let clickTimeout = null;
+
+                snacksLink.addEventListener('click', function(event) {
+                    console.log('Single click detected');
+                    event.preventDefault();
+
+                    if (clickTimeout) {
+                        clearTimeout(clickTimeout);
+                        clickTimeout = null;
+                    }
+
+                    clickTimeout = setTimeout(function() {
+                        console.log('Single click processed and prevented default');
+                    }, 300); // 300ms delay to detect double click
+                });
+
+                snacksLink.addEventListener('dblclick', function(event) {
+                    console.log('Double click detected');
+                    clearTimeout(clickTimeout);
+                    clickTimeout = null;
+
+                    event.preventDefault(); // Prevent the default anchor behavior
+                    alert("You've unlocked an easter egg!");
+                    window.location.href = 'easter_egg.html';
+                });
+            } else {
+                console.log('snacks-link element not found');
+            }
         })
         .catch(error => console.error('Error loading nav:', error));
 

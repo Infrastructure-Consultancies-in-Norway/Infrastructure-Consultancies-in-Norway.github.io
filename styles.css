@@ -54,3 +54,77 @@ body {
     object-fit: contain; /*Maintain aspect ratio */
 }
 
+
+.person {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.person:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.person img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    object-position: center center;
+    margin: 0 20px;
+    border-radius: 50%;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.email {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin: 10px;
+}
+
+.email-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    font-size: larger;
+}
+
+.email a {
+    color: grey; /* Change the color to a nicer one, e.g., tomato */
+    text-decoration: none; /* Remove underline */
+    font-size: larger;
+}
+
+.email a:hover {
+    color: #ff4500; /* Change color on hover, e.g., orange red */
+}
+
+@media screen and (max-width: 770px) {
+    .person {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    .person:nth-child(even) {
+        flex-direction: column;
+    }
+    .person img {
+        margin: 0 0 10px 0;
+    }
+}
+
+@media screen and (min-width: 771px) {
+    .person {
+        margin-bottom: 0px; /* Adjust this value to control the overlap */
+    }
+    .person:nth-child(even) {
+        margin-bottom: 0px; /* Adjust this value to control the overlap */
+    }
+}

@@ -31,3 +31,10 @@ function downloadFileGitHub(fileUrl) {
         .catch(error => console.error('Download error:', error));
 }
 
+$(function(){
+    $("#nav-placeholder").load("nav.html");
+  });
+
+$(function(){
+    $("#footer-placeholder").load("footer.html");
+  });

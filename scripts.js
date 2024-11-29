@@ -79,4 +79,17 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error loading footer:', error));
 });
 
+
+function acceptCookies() {
+    document.getElementById('cookie-disclaimer').style.display = 'none';
+    // Set a cookie to remember user's choice
+    document.cookie = "cookiesAccepted=true; max-age=" + 60*60*24*30 + "; path=/";
+}
+
+window.onload = function() {
+    if (document.cookie.indexOf('cookiesAccepted=true') !== -1) {
+        document.getElementById('cookie-disclaimer').style.display = 'none';
+    }
+};
+
 // No additional code needed - footer loading is already handled in the DOMContentLoaded event listener above

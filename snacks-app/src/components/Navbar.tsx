@@ -54,21 +54,21 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul className="navbar-nav">
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link className="nav-link" to="/">
                 Hjem
               </Link>
-            </li>
+            </li> */}
             <li className="nav-item">
               <Link className="nav-link" to="/properties">
                 Egenskapssett
               </Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link className="nav-link" to="/contact">
                 Kontakt
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

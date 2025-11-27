@@ -36,12 +36,12 @@ const Begrepsforklaring: React.FC = () => {
 
       <div className="mb-5">
         <h3>Egenskap vs Attributt</h3>
-        <p>
+        <p className="large-text">
           I IFC-sammenheng brukes begrepene «egenskap» (engelsk: property) og «attributt» (engelsk: attribute) ofte om hverandre. 
           Både egenskaper og attributter knyttes til en IFC-entitet og gir spesifikk informasjon om entiteten. 
           Attributter er dog forhåndsdefinert i IFC-standarden, mens egenskaper opprettes av den som produserer modellen.
         </p>
-        <p>
+        <p className="large-text">
           Et eksempel på et attributt er 'IfcElement.Length'. Dette attributtet kan brukes for å angi lengden til et objekt, for eksempel en del av en bru. 
           Et eksempel på en egenskap er «MMI». Denne egenskapen sier noe om modenheten til et objekt.
         </p>

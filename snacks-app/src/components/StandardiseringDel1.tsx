@@ -3,9 +3,13 @@ import React from 'react';
 const StandardiseringDel1: React.FC = () => {
   return (
     <div id="standardisering-del-1" className="slide-component container my-5">
-      <h2>Standardisering, Del 1:</h2>
-      <p className="lead">SNACKS - Strukturen</p>
-      <p>
+      <h2>
+        <span className="text-light-green">Standardisering, Del 1:</span><br />
+      </h2>
+      <h3>
+        <span className="text-dark-green">SNACKS - Strukturen</span>
+      </h3>
+      <p className="large-text">
         SNACKS-strukturen beskriver hvordan informasjon i IFC-modeller av bruer og andre samferdselskonstruksjoner skal struktureres. De viktigste definisjonene er:
       </p>
       <ul>

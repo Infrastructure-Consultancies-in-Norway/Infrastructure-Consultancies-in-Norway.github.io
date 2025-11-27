@@ -42,7 +42,7 @@ const OnePage: React.FC = () => {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-12 col-md-8 col-lg-9 col-xl-10">
+        <div className="col-12 col-lg-9 col-xl-10">
           <SnacksMain />
           <StandardiseringDel1 />
           <SnacksStrukturen />
@@ -52,7 +52,7 @@ const OnePage: React.FC = () => {
           <Begrepsforklaring />
           <Kontakt />
         </div>
-        <div className="col-12 col-md-4 col-lg-3 col-xl-2 d-none d-md-block">
+        <div className="col-12 col-lg-3 col-xl-2 d-none d-lg-block">
           <SideNavigation scrollToSection={scrollToSection} />
         </div>
       </div>

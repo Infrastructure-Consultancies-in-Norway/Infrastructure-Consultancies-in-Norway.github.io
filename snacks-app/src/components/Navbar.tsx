@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { sectionNavItems } from './SideNavigation'
 
 const Navbar = () => {
   const navigate = useNavigate()
@@ -13,6 +14,13 @@ const Navbar = () => {
       setClickCount(0)
     }
   }, [clickCount, navigate])
+
+  const closeNavbar = () => {
+    const navbarElement = document.getElementById('navbarNav')
+    if (navbarElement?.classList.contains('show')) {
+      navbarElement.classList.remove('show')
+    }
+  }
 
   const handleSnacksClick = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -29,6 +37,11 @@ const Navbar = () => {
       }
       setClickCount(0)
     }, 300)
+  }
+
+  const handleSectionNavigate = (id: string) => {
+    navigate('/', { state: { scrollTarget: id } })
+    closeNavbar()
   }
 
   return (
@@ -69,6 +82,17 @@ const Navbar = () => {
                 Kontakt
               </Link>
             </li> */}
+            {sectionNavItems.map(item => (
+              <li className="nav-item d-lg-none" key={`mobile-${item.id}`}>
+                <button
+                  type="button"
+                  className="nav-link text-start text-white bg-transparent border-0 w-100"
+                  onClick={() => handleSectionNavigate(item.id)}
+                >
+                  {item.label}
+                </button>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

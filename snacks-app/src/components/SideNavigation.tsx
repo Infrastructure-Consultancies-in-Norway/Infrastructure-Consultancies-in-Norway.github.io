@@ -4,7 +4,7 @@ type SideNavigationProps = {
   scrollToSection: (id: string) => void;
 };
 
-const navItems = [
+export const sectionNavItems = [
   { id: 'snacks-main', label: 'Hjem' },
   { id: 'standardisering-del-1', label: 'Standardisering 1' },
   { id: 'snacks-strukturen', label: 'Strukturen' },
@@ -19,7 +19,7 @@ const SideNavigation: React.FC<SideNavigationProps> = ({ scrollToSection }) => {
   return (
     <nav className="side-navigation sticky-top top-50 translate-middle-y">
       <ul className="nav flex-column">
-        {navItems.map((item) => (
+        {sectionNavItems.map((item) => (
           <li className="nav-item" key={item.id}>
             <button
               type="button"

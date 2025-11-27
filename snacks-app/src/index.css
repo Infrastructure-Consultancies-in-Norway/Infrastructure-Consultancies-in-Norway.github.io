@@ -156,3 +156,28 @@ h1, h2, h3, h4, h5, h6 {
 .text-dark-green {
     color: var(--snacks-dark-green);
 }
+
+.side-navigation .nav {
+    gap: 0.5rem;
+}
+
+.side-nav-link {
+    border: none;
+    background: transparent;
+    padding: 0.25rem 0;
+    width: 100%;
+    text-align: left;
+    color: var(--snacks-dark-green);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.side-nav-link:hover,
+.side-nav-link:focus {
+    text-decoration: underline;
+    color: var(--snacks-dark-green);
+}
+
+.side-nav-link:focus {
+    outline: none;
+}

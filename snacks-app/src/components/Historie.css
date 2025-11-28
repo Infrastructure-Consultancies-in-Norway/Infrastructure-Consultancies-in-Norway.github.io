@@ -1,0 +1,38 @@
+.historie-section {
+    position: relative;
+}
+
+.historie-visual {
+    position: relative;
+    width: 100%;
+}
+
+.historie-visual img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.historie-overlay {
+    position: absolute;
+    top: 42%;
+    left: 2%;
+    max-width: 200px;
+    color: #0b1f2a;
+}
+
+@media (min-width: 768px) and (max-width: 1199.98px) {
+    .historie-overlay {
+        top: 42%;
+        left: 4%;
+        max-width: 100px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .historie-overlay {
+        top: 42%;
+        left: 4%;
+        max-width: 100px;
+    }
+}

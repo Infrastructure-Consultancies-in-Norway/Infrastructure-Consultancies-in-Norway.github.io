@@ -9,22 +9,17 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-left: auto;
     max-width: 400px;
-    margin-top: -120px;
+    margin-top: -30px;
+    margin-bottom: 40px;
 }
 
 .connector-container {
     position: absolute;
-    top: -40px;
-    left: 40%;
-    right: 0;
+    top: 50px;
+    left: 20%;
+    right: 50px;
     height: 3px;
     z-index: 1;
-}
-
-@media (min-width: 768px) {
-    .connector-container {
-        left: -20%;
-    }
 }
 
 .connector-vertical {
@@ -32,7 +27,7 @@
     left: 0;
     bottom: 0;
     width: 3px;
-    height: 120px;
+    height: 200px;
     background-color: #2E5C9A;
 }
 
@@ -40,4 +35,19 @@
     width: 100%;
     height: 100%;
     background-color: #2E5C9A;
+}
+
+@media (min-width: 768px) {
+    .bordered-text-box-connector {
+        margin-top: -120px;
+    }
+
+    .connector-container {
+        top: -80px;
+        left: -20%;
+    }
+
+    .connector-vertical {
+        height: 160px;
+    }
 }

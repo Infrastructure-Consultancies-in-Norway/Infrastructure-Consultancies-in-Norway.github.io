@@ -9,38 +9,56 @@ const SnacksStrukturen: React.FC = () => {
         <h3>
           <span className="text-dark-green">IFC Spatial Breakdown System</span>
         </h3>
-        <div className="row">
-            <div className="col-md-6">
+        <div className="row position-relative">
                 <img src="/Spatial_Breakdown_System_01.png" alt="Spatial Breakdown System 1" className="img-fluid mb-3" />
-            </div>
-            <div className="col-md-6">
+            <div className="col-md-6 position-relative">
                 <img src="/Bru01.png" alt="Bru 1" className="img-fluid mb-3" />
             </div>
+            <div className="col-md-6 position-relative">
+                <div className="bordered-text-box">
+                  <p className="large-text mb-0">
+                    IFC Spatial Breakdown System er en funksjonalitet i IFC-formatet som definerer flere nivåer av informasjon, også kalt et informasjonshierarki.
+                  </p>
+                  <p className="large-text mb-0 mt-3">
+                    Egenskaper som plasseres høyt i hierarkiet arves av objekter lenger ned i hierarkiet. Dette gjør at egenskaper som beskriver generell informasjon kan samles på en plass i stedet for å måtte knyttes til hvert enkelt objekt.
+                  </p>
+                </div>
+            </div>
         </div>
-        <p className="large-text">
-          IFC Spatial Breakdown System er en funksjonalitet i IFC-formatet som definerer flere nivåer av informasjon, også kalt et informasjonshierarki. 
-          Egenskaper som plasseres høyt i hierarkiet arves av objekter lenger ned i hierarkiet. 
-          Dette gjør at egenskaper som beskriver generell informasjon kan samles på en plass i stedet for å måtte knyttes til hvert enkelt objekt.
-        </p>
       </div>
 
       <div className="mb-5">
         <h3>
           <span className="text-dark-green">Egenskaper på modellnivå</span>
         </h3>
-        <div className="row">
-            <div className="col-md-6">
+        <div className="row position-relative">
                 <img src="/Spatial_Breakdown_System_02.png" alt="Spatial Breakdown System 2" className="img-fluid mb-3" />
-            </div>
-            <div className="col-md-6">
+                     <div className="bordered-text-box">
+                  <p className="large-text mb-0">
+                    Egenskapssett på modellnivå
+                  </p>
+                  <p><em>* Egenskapssett skal alltid inkluderes</em></p>
+                </div>
+        </div>
+
+
+        <div className="row position-relative">
+
+            <div className="col-md-6 position-relative">
                 <img src="/Bru02.png" alt="Bru 2" className="img-fluid mb-3" />
             </div>
+
+            <div className="col-md-6 position-relative">
+                <div className="bordered-text-box">
+                  <p className="large-text mb-0">
+                    I SNACKS-strukturen er overordnede egenskaper plassert på «konstruksjonsnivå» og samlet i egenskapssettet «BIM_Modellinfo». 
+                    Koordinatsystem er et eksempel på en egenskap som knyttes til modellen på «konstruksjonsnivå».
+                  </p>
+                </div>
+            </div>
         </div>
-        <p className="large-text">
-          I SNACKS-strukturen er overordnede egenskaper plassert på «konstruksjonsnivå» og samlet i egenskapssettet «BIM_Modellinfo». 
-          Koordinatsystem er et eksempel på en egenskap som knyttes til modellen på «konstruksjonsnivå».
-        </p>
-        <p><em>* Egenskapssett skal alltid inkluderes</em></p>
+        
+
       </div>
 
       <div className="mb-5">

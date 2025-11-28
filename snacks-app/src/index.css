@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: #f4f4f4;
+    background-color: white;
     margin: 0;
     padding: 0;
     color: var(--snacks-dark-green);
@@ -15,6 +15,14 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     color: var(--snacks-light-green);
+}
+
+.navbar-snacks {
+    background-color: var(--snacks-dark-green);
+}
+
+.footer-snacks {
+    background-color: var(--snacks-dark-green);
 }
 
 .list-group-item {
@@ -181,3 +189,15 @@ h1, h2, h3, h4, h5, h6 {
 .side-nav-link:focus {
     outline: none;
 }
+
+.bordered-text-box {
+    position: relative;
+    width: 100%;
+    background-color: white;
+    border: 3px solid var(--snacks-dark-green);
+    border-radius: 12px;
+    padding: 20px;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+

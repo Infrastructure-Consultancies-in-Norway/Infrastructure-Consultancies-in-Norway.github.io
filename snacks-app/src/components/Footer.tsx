@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="bg-dark text-white text-center p-4 mt-5">
+    <footer className="footer-snacks text-white text-center p-4 mt-5">
       <div className="container">
         <h5>Et samarbeid mellom:</h5>
         <div className="row justify-content-center">

@@ -90,7 +90,7 @@ const SnacksStrukturen: React.FC = () => {
                     <div className="connector-line-horizontal"></div>
                 </div>
             </div>
-            <div className="col-md-6 offset-md-6 position-relative">
+            <div className="col-md-9 offset-md-3 position-relative">
                 <div className="bordered-text-box-connector">
                   <p className="large-text mb-3">
                     Egenskapssett på objektnivå

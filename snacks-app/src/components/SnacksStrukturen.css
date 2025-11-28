@@ -8,9 +8,21 @@
     z-index: 10;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-left: auto;
-    max-width: 400px;
+    max-width: 520px;
     margin-top: -30px;
     margin-bottom: 40px;
+}
+
+@media (min-width: 768px) and (max-width: 1199.98px) {
+    .bordered-text-box-connector {
+        max-width: 840px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .bordered-text-box-connector {
+        max-width: 920px;
+    }
 }
 
 .image-connector {
@@ -67,6 +79,7 @@
     font-weight: bold;
     font-size: 0.8rem;
     text-align: left;
+    white-space: nowrap;
 }
 
 .bim-objektinfo-badge-1 {
@@ -80,6 +93,7 @@
     font-weight: bold;
     font-size: 0.8rem;
     text-align: left;
+    white-space: nowrap;
 }
 
 .bim-objektinfo-badge-2 {
@@ -93,4 +107,5 @@
     font-weight: bold;
     font-size: 0.8rem;
     text-align: left;
+    white-space: nowrap;
 }

@@ -2,7 +2,7 @@
     position: relative;
     width: 100%;
     background-color: white;
-    border: 3px solid #2E5C9A;
+    border: 3px solid #074BD8;
     border-radius: 12px;
     padding: 20px;
     z-index: 10;
@@ -28,7 +28,7 @@
     top: 0;
     left: 0;
     width: 3px;
-    background-color: #2E5C9A;
+    background-color: #074BD8;
     height: 75%;
 }
 
@@ -36,7 +36,7 @@
     display: none;
     position: absolute;
     height: 3px;
-    background-color: #2E5C9A;
+    background-color: #074BD8;
 }
 
 @media (min-width: 768px) {

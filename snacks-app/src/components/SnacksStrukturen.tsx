@@ -45,6 +45,9 @@ const SnacksStrukturen: React.FC = () => {
                   <p className="large-text mb-0">
                     Egenskapssett på modellnivå
                   </p>
+                  <div className=''>
+                  <p>BIM_Modellinfo *</p>
+                  </div>
                   <p><em>* Egenskapssett skal alltid inkluderes</em></p>
                 </div>
             </div>

@@ -92,22 +92,35 @@ const SnacksStrukturen: React.FC = () => {
             </div>
             <div className="col-md-6 offset-md-6 position-relative">
                 <div className="bordered-text-box-connector">
-                  <p className="large-text mb-0">
-                    Egenskapssett på objektvinivå
+                  <p className="large-text mb-3">
+                    Egenskapssett på objektnivå
                   </p>
-                  <div className='bim-modellinfo-badge'>
-                      <p className='mb-0'>BIM_Beskrivelse</p>
+                  
+                  <div className="row">
+                    <div className="col-6">
+                      {['BIM_Beskrivelse *', 'BIM_FDV *', 'BIM_Tverrfaglig *', 'KON_Felles *'].map(item => (
+                        <div key={item} className='bim-objektinfo-badge-1' style={{fontSize: '0.8rem'}}>
+                          <p className='mb-0'>{item}</p>
+                        </div>
+                      ))}
+                      <br />
+                      <br />
+                      <br />
+                      <br />
+                      <br />
+                      <br />
+                      <p className="mt-3 small"><em>Inkluderes for alle objekttyper (*)</em></p>
+                      <p className="mt-3 small"><em>Inkluderes kun for relevante objekttyper (**)</em></p>
+                    </div>
+                    
+                    <div className="col-6">
+                      {['KON_Fuger **', 'KON_Geometri **', 'KON_Peler **', 'KON_Stål **', 'KON_Sveis **', 'KON_Festemidler **', 'KON_Tre **', 'KON_Armering **', 'KON_Betong **', 'KON_Spennarmering **', 'KON_Lager **'].map(item => (
+                        <div key={item} className='bim-objektinfo-badge-2 w-100'>
+                          <p className='mb-0'>{item}</p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <div className='bim-modellinfo-badge'>
-
-                      <p className='mb-0'>BIM_Beskrivelse</p>
-                  </div>
-                  <div className='bim-modellinfo-badge'>
-                      
-                      <p className='mb-0'>KON_Geometri</p>
-                      <p className='mb-0'>KON_Stål</p>
-                  </div>
-                  <p><em>* Egenskapssett skal alltid inkluderes</em></p>
                 </div>
             </div>
         </div>

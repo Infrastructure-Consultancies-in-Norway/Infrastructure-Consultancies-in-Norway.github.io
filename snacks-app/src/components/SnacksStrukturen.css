@@ -60,9 +60,37 @@
     background: linear-gradient(to right, #074BD8, #1a3660);
     border: 2px solid black;
     border-radius: 10px;
-    padding: 10px 20px;
+    padding: 5px 50px 5px 10px;
     color: white;
     display: inline-block;
     margin: 10px 0;
     font-weight: bold;
+    font-size: 0.8rem;
+    text-align: left;
+}
+
+.bim-objektinfo-badge-1 {
+    background: linear-gradient(to right, #074BD8, #1a3660);
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 5px 10px;
+    color: white;
+    display: block;
+    margin: 5px 0;
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-align: left;
+}
+
+.bim-objektinfo-badge-2 {
+    background: linear-gradient(to right, #4A90E2, #074BD8);
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 5px 10px;
+    color: white;
+    display: block;
+    margin: 5px 0;
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-align: left;
 }

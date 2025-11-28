@@ -143,49 +143,27 @@ const SnacksStrukturen: React.FC = () => {
             </div>
         </div>
 
-        
-        <div className="row mt-4">
-          <div className="col-md-6">
-            <h5>Inkluderes for alle objekttyper (*)</h5>
-            <ul>
-              <li>BIM_Beskrivelse</li>
-              <li>BIM_FDV</li>
-              <li>BIM_Tverrfaglig</li>
-              <li>KON_Felles</li>
-              <li>KON_Fuger</li>
-              <li>KON_Geometri</li>
-              <li>KON_Peler</li>
-              <li>KON_Stål</li>
-              <li>KON_Sveis</li>
-            </ul>
-          </div>
-          <div className="col-md-6">
-            <h5>Inkluderes kun for relevante objekttyper (**)</h5>
-            <ul>
-              <li>KON_Festemidler</li>
-              <li>KON_Tre</li>
-              <li>KON_Armering</li>
-              <li>KON_Betong</li>
-              <li>KON_Spennarmering</li>
-              <li>KON_Lager</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
       <div className="mb-5">
-        <h3>Avvik fra Ifc skjemaet</h3>
+        <h3>
+          <span className="text-dark-green">Avvik fra Ifc skjemaet</span>
+        </h3>
+        <div className="row position-relative">
+                <img src="/Spatial_Breakdown_System_01.png" alt="Spatial Breakdown System 1" className="img-fluid mb-3" />
+                      <div className="mb-5">
         <p className="large-text">SNACKS-strukturen avviker fra Ifc-skjema på følgende punkter:</p>
         <ol>
             <li>Navn på egenskaper er egendefinerte og avviker fra standard navngivning i Ifc-skjemaet.</li>
+            <br />
+            <p className="large-text"> ÅRSAK: Tekst</p>
             <li>SNACKS-strukturen tillater ikke objekt-egenskaper på «sammensatt objekt-nivå» i Ifc-skjemaet.</li>
+            <br />
+            <p className="large-text"> ÅRSAK: Tekst</p>
         </ol>
       </div>
 
-      <div className="mb-5">
-        <h3>Egenskapssett</h3>
-        <p>Egenskapssett inkluderes for alle objekttyper.</p>
-        <p>Egenskapssett inkluderes kun for relevante objekttyper.</p>
+        </div>
+      </div>
+
       </div>
     </div>
   );

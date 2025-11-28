@@ -1,0 +1,60 @@
+.download-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.download-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    background-color: #fff;
+    transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.download-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.download-card-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.download-card-body {
+    padding: 0.75rem 1rem 1rem;
+    text-align: center;
+    color: #0b1f2a;
+}
+
+.download-card-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.download-card-subtitle {
+    font-size: 0.8rem;
+    color: #657280;
+}
+
+@media (max-width: 767.98px) {
+    .download-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 1rem;
+    }
+
+    .download-card-title {
+        font-size: 0.85rem;
+    }
+
+    .download-card-subtitle {
+        font-size: 0.75rem;
+    }
+}

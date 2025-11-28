@@ -85,9 +85,8 @@ const SnacksStrukturen: React.FC = () => {
         <div className="row position-relative">
             <div className="col-12 position-relative p-0">
                 <img src="/Spatial_Breakdown_System_03.png" alt="Spatial Breakdown System 3" className="img-fluid w-100 mb-3" />
-                <div className="image-connector">
+                <div className="image-connector image-connector-object">
                     <div className="connector-line-vertical"></div>
-                    <div className="connector-line-horizontal"></div>
                 </div>
             </div>
             <div className="col-md-9 offset-md-3 position-relative">

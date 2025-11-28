@@ -15,9 +15,9 @@
 
 .connector-container {
     position: absolute;
-    top: 50px;
-    left: 20%;
-    right: 50px;
+    top: 0;
+    left: 37.5%;
+    right: 0;
     height: 3px;
     z-index: 1;
 }
@@ -27,11 +27,12 @@
     left: 0;
     bottom: 0;
     width: 3px;
-    height: 200px;
+    height: 60px;
     background-color: #2E5C9A;
 }
 
 .connector-horizontal {
+    display: none;
     width: 100%;
     height: 100%;
     background-color: #2E5C9A;
@@ -43,11 +44,16 @@
     }
 
     .connector-container {
-        top: -80px;
-        left: -20%;
+        top: -60px;
+        left: -25%;
+        right: 50px;
     }
 
     .connector-vertical {
-        height: 160px;
+        height: 100px;
+    }
+
+    .connector-horizontal {
+        display: block;
     }
 }

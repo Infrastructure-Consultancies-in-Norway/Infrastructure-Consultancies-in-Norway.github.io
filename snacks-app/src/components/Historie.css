@@ -27,6 +27,10 @@
         left: 4%;
         max-width: 100px;
     }
+
+    .historie-overlay .large-text {
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 767.98px) {
@@ -34,5 +38,9 @@
         top: 42%;
         left: 4%;
         max-width: 100px;
+    }
+
+    .historie-overlay .large-text {
+        font-size: 0.95rem;
     }
 }

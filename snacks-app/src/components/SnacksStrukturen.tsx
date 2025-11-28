@@ -32,13 +32,19 @@ const SnacksStrukturen: React.FC = () => {
           <span className="text-dark-green">Egenskaper på modellnivå</span>
         </h3>
         <div className="row position-relative">
-                <img src="/Spatial_Breakdown_System_02.png" alt="Spatial Breakdown System 2" className="img-fluid mb-3" />
-                     <div className="bordered-text-box">
+            <img src="/Spatial_Breakdown_System_02.png" alt="Spatial Breakdown System 2" className="img-fluid mb-3" />
+            <div className="col-md-6 offset-md-6 position-relative">
+                <div className="connector-container">
+                    <div className="connector-vertical"></div>
+                    <div className="connector-horizontal"></div>
+                </div>
+                <div className="bordered-text-box-connector">
                   <p className="large-text mb-0">
                     Egenskapssett på modellnivå
                   </p>
                   <p><em>* Egenskapssett skal alltid inkluderes</em></p>
                 </div>
+            </div>
         </div>
 
 

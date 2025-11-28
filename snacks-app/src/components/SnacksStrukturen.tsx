@@ -1,4 +1,5 @@
 import React from 'react';
+import './SnacksStrukturen.css';
 
 const SnacksStrukturen: React.FC = () => {
   return (

@@ -1,15 +1,17 @@
+import React from 'react';
+
 interface PersonCardProps {
-  name: string
-  title: string
-  email: string
-  imageSrc: string
-  offsetTop?: boolean
+  name: string;
+  title: string;
+  email: string;
+  imageSrc: string;
+  offsetTop?: boolean;
 }
 
-const PersonCard = ({ name, title, email, imageSrc, offsetTop = false }: PersonCardProps) => {
+const PersonCard: React.FC<PersonCardProps> = ({ name, title, email, imageSrc, offsetTop = false }) => {
   return (
     <div className="col-md-6 mb-5">
-      <div className="person" style={offsetTop ? { marginTop: '50px' } : {}}>
+      <div className={`person ${offsetTop ? 'person-offset' : ''}`}>
         <img src={imageSrc} alt={name} />
         <div className="info">
           <h2>{name}</h2>
@@ -21,7 +23,7 @@ const PersonCard = ({ name, title, email, imageSrc, offsetTop = false }: PersonC
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PersonCard
+export default PersonCard;

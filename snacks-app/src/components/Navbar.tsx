@@ -52,7 +52,7 @@ const Navbar = () => {
           href="/" 
           onClick={handleSnacksClick}
         >
-          SNACks
+          SNACKS
         </a>
         <button
           className="navbar-toggler"

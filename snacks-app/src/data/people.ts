@@ -14,13 +14,13 @@ export const people: Person[] = [
   },
   {
     name: 'Øystein Ulvestad',
-    title: 'USIKKER',
-    email: 'torhild.ersland@sweco.no',
+    title: 'Sivilingeniør NTNU 2000',
+    email: 'oystein.ulvestad@sweco.no',
     imageSrc: '/Images/oystein.jpg',
   },
   {
     name: 'Andreas Bratlie',
-    title: 'USIKKER',
+    title: 'Sivilingeniør NTNU 2012',
     email: 'andreas.bratlie@norconsult.com',
     imageSrc: '/Images/andreas.jpg',
   },
@@ -30,9 +30,9 @@ export const people: Person[] = [
     email: 'thomas.ostgulen@norconsult.com',
     imageSrc: '/Images/thomas.jpg',
   },
-    {
+  {
     name: 'Terje Fjellby',
-    title: 'USIKKER',
+    title: 'Jernbinder 2005',
     email: 'terje.fjellby@norconsult.com',
     imageSrc: '/Images/terje.jpg',
   },

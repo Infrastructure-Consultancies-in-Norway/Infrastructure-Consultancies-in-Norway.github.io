@@ -108,8 +108,9 @@ const SnacksStrukturen: React.FC = () => {
                       <br />
                       <br />
                       <br />
-                      <p className="mt-3 small"><em>Inkluderes for alle objekttyper (*)</em></p>
-                      <p className="mt-3 small"><em>Inkluderes kun for relevante objekttyper (**)</em></p>
+                      <br />
+                      <p className="mt-3 small"><em>* Inkluderes for alle objekttyper</em></p>
+                      <p className="mt-3 small"><em>** Inkluderes kun for relevante objekttyper</em></p>
                     </div>
                     
                     <div className="col-6">

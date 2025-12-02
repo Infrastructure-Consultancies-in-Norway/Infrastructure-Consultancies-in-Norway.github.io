@@ -33,7 +33,7 @@ export const people: Person[] = [
     {
     name: 'Terje Fjellby',
     title: 'USIKKER',
-    email: 'thomas.ostgulen@norconsult.com',
+    email: 'terje.fjellby@norconsult.com',
     imageSrc: '/Images/terje.jpg',
   },
   {
@@ -52,7 +52,7 @@ export const people: Person[] = [
     name: 'Petter Kay Steinbo',
     title: 'Sivilingeniør NTNU 2020',
     email: 'pest@cowi.com',
-    imageSrc: '/Images/petter.png',
+    imageSrc: '/Images/petter.jpg',
   },
   {
     name: 'Fredrik Sommer-Jacobsen',

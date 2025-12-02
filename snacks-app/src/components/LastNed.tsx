@@ -67,7 +67,9 @@ const LastNed: React.FC = () => {
       <div className="download-grid">
         {downloadItems.map(item => (
           <a key={item.id} href={item.href} className="download-card" aria-label={`Last ned ${item.title}`}>
-            <img src={item.image} alt={item.title} className="download-card-image" />
+            <div className="download-card-image-wrapper">
+              <img src={item.image} alt={item.title} className="download-card-image" />
+            </div>
             <div className="download-card-body">
               <p className="download-card-title mb-1">{item.title}</p>
               <p className="download-card-subtitle mb-0">{item.subtitle}</p>

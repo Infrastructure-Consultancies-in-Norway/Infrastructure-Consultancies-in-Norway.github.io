@@ -81,6 +81,7 @@ h1, h2, h3, h4, h5, h6 {
     flex-wrap: wrap;
     margin-bottom: 20px;
     position: relative;
+    container-type: inline-size;
 }
 
 .person:nth-child(even) {
@@ -95,32 +96,48 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 20px;
     border-radius: 50%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    flex-shrink: 0;
 }
 
 .info {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    min-width: 0;
+    flex: 1;
+}
+
+.info h2 {
+    font-size: clamp(1.1rem, 6cqi, 1.75rem);
+    margin-bottom: 0.25rem;
+}
+
+.info h5 {
+    font-size: clamp(0.9rem, 4cqi, 1.1rem);
+    margin-bottom: 0.5rem;
 }
 
 .email {
     display: flex;
     align-items: center;
-    margin-top: 10px;
-    margin: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    flex-wrap: wrap;
 }
 
 .email-icon {
     width: 20px;
     height: 20px;
     margin-right: 10px;
-    font-size: larger;
+    font-size: clamp(0.9rem, 4cqi, 1.1rem);
+    flex-shrink: 0;
 }
 
 .email a {
     color: grey;
     text-decoration: none;
-    font-size: larger;
+    font-size: clamp(0.8rem, 3.5cqi, 1rem);
+    word-break: break-word;
 }
 
 .email a:hover {
@@ -142,9 +159,10 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-@media screen and (min-width: 771px) {
+@media screen and (min-width: 768px) {
     .person {
         margin-bottom: 0px;
+        flex-wrap: nowrap;
     }
     .person:nth-child(even) {
         margin-bottom: 0px;

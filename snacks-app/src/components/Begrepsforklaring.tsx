@@ -49,7 +49,12 @@ const Begrepsforklaring: React.FC = () => {
                       rel={rel}
                     >
                       <span>{term.label}</span>
-                      <span className="glossary-link-chevron" aria-hidden="true" />
+                      <span
+                        className={`glossary-link-chevron ${
+                          openInNewTab ? 'bi bi-arrow-up-right' : 'bi bi-chevron-right'
+                        }`}
+                        aria-hidden="true"
+                      />
                     </Link>
                   </li>
                 );

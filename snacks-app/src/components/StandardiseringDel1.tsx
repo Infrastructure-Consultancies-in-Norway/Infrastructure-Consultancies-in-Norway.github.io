@@ -7,12 +7,12 @@ const StandardiseringDel1: React.FC = () => {
         <span className="text-light-green">Standardisering, Del 1:</span><br />
       </h2>
       <h3>
-        <span className="text-dark-green">SNACKS - Strukturen</span>
+        <span className="text-dark-green">SNACKS-strukturen</span>
       </h3>
       <p className="large-text">
         SNACKS-strukturen beskriver hvordan informasjon i IFC-modeller av bruer og andre samferdselskonstruksjoner skal struktureres. De viktigste definisjonene er:
       </p>
-      <ul>
+      <ul className='large-text'>
         <li>Navn på egenskaper og egenskapssett</li>
         <li>Oppdeling av egenskaper i egenskapssett</li>
         <li>Tillate egenskapsverdier der dette er relevant</li>

@@ -4,14 +4,12 @@ import './SnacksStrukturen.css';
 const SnacksStrukturen: React.FC = () => {
   return (
     <div id="snacks-strukturen" className="slide-component container my-5 pt-5">
-      <h2>SNACKS - Strukturen</h2>
-      
       <div className="mb-5">
         <h3>
           <span className="text-dark-green">IFC Spatial Breakdown System</span>
         </h3>
         <div className="row position-relative">
-                <img src="/Spatial_Breakdown_System_01.png" alt="Spatial Breakdown System 1" className="img-fluid mb-3" />
+                <img src="/Spatial_Breakdown_System_01.png" alt="Spatial Breakdown System 1" className="img-fluid mb-3 snacks-image-shadow" />
             <div className="col-md-6 position-relative">
                 <img src="/Bru01.png" alt="Bru 1" className="img-fluid mb-3" />
             </div>
@@ -146,11 +144,11 @@ const SnacksStrukturen: React.FC = () => {
 
       <div className="mb-5 pt-5">
         <h3>
-          <span className="text-dark-green">Avvik fra Ifc skjemaet</span>
+          <span className="text-dark-green">Avvik fra Ifc-skjemaet</span>
         </h3>
         <div className="row position-relative">
-                <img src="/Spatial_Breakdown_System_01.png" alt="Spatial Breakdown System 1" className="img-fluid mb-3" />
-                      <div className="mb-5">
+                <img src="/Spatial_Breakdown_System_01.png" alt="Spatial Breakdown System 1" className="img-fluid mb-3 snacks-image-shadow" />
+        <div className="mb-5">
         <p className="large-text">SNACKS-strukturen avviker fra Ifc-skjema på følgende punkter:</p>
         <ol>
             <li>Navn på egenskaper er egendefinerte og avviker fra standard navngivning i Ifc-skjemaet.</li>

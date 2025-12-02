@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import SnacksMain from '../components/SnacksMain';
 import StandardiseringDel1 from '../components/StandardiseringDel1';
@@ -12,30 +12,51 @@ import SideNavigation from '../components/SideNavigation';
 
 type ScrollState = {
   scrollTarget?: string;
+  behavior?: ScrollBehavior;
 };
 
 const OnePage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const scrollToSection = useCallback((id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, []);
+  const scrollToSection = useCallback(
+    (id: string, behavior: ScrollBehavior = 'smooth', retries = 5) => {
+      const element = document.getElementById(id);
+      if (element) {
+        if (behavior === 'auto') {
+          const originalScrollBehavior = document.documentElement.style.scrollBehavior;
+          document.documentElement.style.scrollBehavior = 'auto';
+          const top = element.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({ top, behavior: 'auto' });
+          setTimeout(() => {
+            document.documentElement.style.scrollBehavior = originalScrollBehavior;
+          }, 0);
+        } else {
+          element.scrollIntoView({ behavior, block: 'start' });
+        }
+        return;
+      }
 
-  useEffect(() => {
-    const scrollTarget = (location.state as ScrollState | null)?.scrollTarget;
+      if (retries > 0) {
+        setTimeout(() => scrollToSection(id, behavior, retries - 1), 60);
+      }
+    },
+    []
+  );
+
+  useLayoutEffect(() => {
+    const state = location.state as ScrollState | null;
+    const scrollTarget = state?.scrollTarget;
+    const behavior = state?.behavior ?? 'smooth';
     if (scrollTarget) {
-      scrollToSection(scrollTarget);
+      scrollToSection(scrollTarget, behavior);
       navigate(location.pathname, { replace: true, state: null });
     }
   }, [location.pathname, location.state, navigate, scrollToSection]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (location.hash) {
-      scrollToSection(location.hash.replace('#', ''));
+      scrollToSection(location.hash.replace('#', ''), 'auto');
     }
   }, [location.hash, scrollToSection]);
 

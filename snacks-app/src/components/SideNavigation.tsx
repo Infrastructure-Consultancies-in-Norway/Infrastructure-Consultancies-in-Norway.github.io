@@ -1,7 +1,7 @@
 import React from 'react';
 
 type SideNavigationProps = {
-  scrollToSection: (id: string) => void;
+  scrollToSection: (id: string, behavior?: ScrollBehavior) => void;
 };
 
 export const sectionNavItems = [

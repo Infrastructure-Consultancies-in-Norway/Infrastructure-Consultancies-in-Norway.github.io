@@ -27,7 +27,7 @@ const Begrepsforklaring: React.FC = () => {
   }, []);
 
   return (
-    <div id="begrepsforklaring" className="slide-component container my-5">
+    <div id="begrepsforklaring" className="slide-component container my-5 pt-5">
       <h2>Begrepsforklaring</h2>
       <p className="glossary-intro">
         Velg et begrep for å lese hele forklaringen. På større skjermer åpnes forklaringen i en ny fane.

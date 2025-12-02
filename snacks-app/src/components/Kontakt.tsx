@@ -5,8 +5,8 @@ import { people } from '../data/people';
 const Kontakt: React.FC = () => {
   return (
     <div id="kontakt" className="slide-component container my-5">
-      <h2 style={{marginBottom: '30px'}}>Kontakt</h2>
-      <div className="row">
+      <h2>Kontakt</h2>
+      <div className="row mt-5">
         {people.map((person, index) => (
           <PersonCard
             key={person.email}

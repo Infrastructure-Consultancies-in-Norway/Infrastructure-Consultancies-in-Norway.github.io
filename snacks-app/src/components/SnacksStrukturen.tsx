@@ -3,7 +3,7 @@ import './SnacksStrukturen.css';
 
 const SnacksStrukturen: React.FC = () => {
   return (
-    <div id="snacks-strukturen" className="slide-component container my-5">
+    <div id="snacks-strukturen" className="slide-component container my-5 pt-5">
       <h2>SNACKS - Strukturen</h2>
       
       <div className="mb-5">
@@ -28,7 +28,7 @@ const SnacksStrukturen: React.FC = () => {
         </div>
       </div>
 
-      <div className="mb-5">
+      <div className="mb-5 pt-5">
 {/* Egenskaper på modellnivå */}
         <h3>
           <span className="text-dark-green">Egenskaper på modellnivå</span>
@@ -76,7 +76,7 @@ const SnacksStrukturen: React.FC = () => {
 
       </div>
 
-      <div className="mb-5">
+      <div className="mb-5 pt-5">
 
         {/* Egenskaper på objektnivå */}
         <h3>
@@ -144,7 +144,7 @@ const SnacksStrukturen: React.FC = () => {
             </div>
         </div>
 
-      <div className="mb-5">
+      <div className="mb-5 pt-5">
         <h3>
           <span className="text-dark-green">Avvik fra Ifc skjemaet</span>
         </h3>

@@ -24,7 +24,7 @@ const SnacksMain: React.FC = () => {
       </div>
 
 
-      <h2>Formål</h2>
+      <h2 className="mt-5">Formål</h2>
       <p className="large-text">
         Formålet med SNACKS-strukturen er å effektivisere modellproduksjon, redusere usikkerhet i kontrollprosesser og å forenkle bruk av IFC-modeller i bygging og forvaltning av konstruksjoner innen samferdsel.
         Konsistent bruk av SNACKS-strukturen vil også gjøre det enklere for bransjen å utvikle og drifte gjenbrukbare systemer og arbeidsmetodikk.

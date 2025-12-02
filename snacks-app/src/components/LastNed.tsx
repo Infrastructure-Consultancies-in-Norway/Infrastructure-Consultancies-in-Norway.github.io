@@ -62,7 +62,7 @@ const downloadItems = [
 
 const LastNed: React.FC = () => {
   return (
-    <div id="last-ned" className="slide-component container my-5">
+    <div id="last-ned" className="slide-component container my-5 pt-5">
       <h2>Last ned</h2>
       <div className="download-grid">
         {downloadItems.map(item => (

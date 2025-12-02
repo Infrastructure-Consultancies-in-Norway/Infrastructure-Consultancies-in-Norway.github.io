@@ -2,7 +2,7 @@ import React from 'react';
 
 const StandardiseringDel2: React.FC = () => {
   return (
-    <div id="standardisering-del-2" className="slide-component container my-5">
+    <div id="standardisering-del-2" className="slide-component container my-5 pt-5">
       <h2>
         <span className="text-light-green">Standardisering, Del 2:</span><br />
         <span className="text-dark-green">Objektnavn</span>

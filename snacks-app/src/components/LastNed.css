@@ -6,8 +6,7 @@
 }
 
 .download-card {
-    display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     text-decoration: none;
     border-radius: 8px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
@@ -25,7 +24,6 @@
 .download-card-image {
     width: 100%;
     height: auto;
-    display: block;
 }
 
 .download-card-body {

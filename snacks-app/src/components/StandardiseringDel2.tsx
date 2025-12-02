@@ -8,7 +8,7 @@ const StandardiseringDel2: React.FC = () => {
         <span className="text-dark-green">Objekt - navn</span>
       </h2>
       <div className="text-center">
-        <img src="/Objekt-navn01.png" alt="Objekt navn" className="img-fluid" />
+        <img src="/Objekt-navn01.png" alt="Objekt navn" className="img-fluid" style={{ scale: '75%' }} />
       </div>
     </div>
   );

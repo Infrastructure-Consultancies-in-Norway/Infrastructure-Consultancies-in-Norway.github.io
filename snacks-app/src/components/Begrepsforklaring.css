@@ -1,0 +1,154 @@
+.glossary-intro {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  color: #657280;
+}
+
+.glossary-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.glossary-item {
+  width: 100%;
+}
+
+.glossary-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.85rem 1.25rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  text-decoration: none;
+  color: #0b1f2a;
+  font-weight: 600;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.glossary-link:hover,
+.glossary-link:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--snacks-light-green);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  outline: none;
+}
+
+.glossary-link-chevron {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background-color: rgba(175, 195, 161, 0.2);
+  color: var(--snacks-dark-green);
+  font-size: 1.1rem;
+  transition: transform 0.15s ease;
+}
+
+.glossary-link:hover .glossary-link-chevron,
+.glossary-link:focus-visible .glossary-link-chevron {
+  transform: translateX(2px);
+}
+
+.glossary-link-chevron::after {
+  content: '›';
+}
+
+.glossary-link--new-tab .glossary-link-chevron::after {
+  content: '↗';
+}
+
+.glossary-term-page {
+  max-width: 960px;
+}
+
+.glossary-back-link {
+  display: inline-flex;
+  gap: 0.35rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  text-decoration: none;
+  color: var(--snacks-dark-green);
+  font-weight: 600;
+}
+
+.glossary-back-link:hover {
+  text-decoration: underline;
+}
+
+.glossary-term-summary {
+  font-size: 1.2rem;
+  color: #0b1f2a;
+  margin-bottom: 1.5rem;
+}
+
+.glossary-term-image-wrapper {
+  margin: 2rem 0;
+}
+
+.glossary-term-image {
+  border-radius: 16px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.15);
+}
+
+.glossary-term-image-caption {
+  font-size: 0.9rem;
+  color: #657280;
+  margin-top: 0.5rem;
+}
+
+.glossary-term-paragraph {
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
+}
+
+.glossary-related {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.glossary-related-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 1rem 0 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.glossary-related-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--snacks-light-green);
+  text-decoration: none;
+  color: var(--snacks-dark-green);
+  font-weight: 500;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.glossary-related-link:hover,
+.glossary-related-link:focus-visible {
+  background-color: var(--snacks-light-green);
+  color: #fff;
+}
+
+@media (max-width: 767.98px) {
+  .glossary-link {
+    padding: 0.75rem 1rem;
+  }
+
+  .glossary-term-summary {
+    font-size: 1.05rem;
+  }
+}

@@ -1,54 +1,62 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { glossaryItems } from '../data/glossary';
+import './Begrepsforklaring.css';
+
+const DESKTOP_BREAKPOINT = 992;
 
 const Begrepsforklaring: React.FC = () => {
+  const [openInNewTab, setOpenInNewTab] = useState(false);
+
+  useEffect(() => {
+    const updatePreference = () => {
+      setOpenInNewTab(window.innerWidth >= DESKTOP_BREAKPOINT);
+    };
+
+    updatePreference();
+    window.addEventListener('resize', updatePreference);
+
+    return () => {
+      window.removeEventListener('resize', updatePreference);
+    };
+  }, []);
+
+  const columns = useMemo(() => {
+    const midpoint = Math.ceil(glossaryItems.length / 2);
+    return [glossaryItems.slice(0, midpoint), glossaryItems.slice(midpoint)];
+  }, []);
+
   return (
     <div id="begrepsforklaring" className="slide-component container my-5">
       <h2>Begrepsforklaring</h2>
-      
-      <div className="row mb-5">
-        <div className="col-md-6">
-          <ul>
-            <li>Attributt</li>
-            <li>IFC-skjema</li>
-            <li>BIM tittelfelt</li>
-            <li>IFC Spatial breakdown system</li>
-            <li>BSDD (BuildingSMART Data Dictionary)</li>
-            <li>IFC-entitet</li>
-            <li>Datastruktur</li>
-            <li>Informasjonsobjekt</li>
-            <li>IDS (Information Delivery Specification)</li>
-          </ul>
-        </div>
-        <div className="col-md-6">
-          <ul>
-            <li>Egenskap (Engelsk: Property)</li>
-            <li>IFC (Industry Foundation Classes)</li>
-            <li>Egenskapssett (Engelsk: Pset / PropertySet)</li>
-            <li>IFC Bridge</li>
-            <li>Modell</li>
-            <li>IFC2x3</li>
-            <li>Objekt</li>
-            <li>IFC4.3</li>
-            <li>Objektinformasjon</li>
-          </ul>
-        </div>
-      </div>
+      <p className="glossary-intro">
+        Velg et begrep for å lese hele forklaringen. På større skjermer åpnes forklaringen i en ny fane.
+      </p>
+      <div className="row">
+        {columns.map((items, columnIndex) => (
+          <div className="col-md-6" key={`glossary-column-${columnIndex}`}>
+            <ul className="glossary-list">
+              {items.map(term => {
+                const target = openInNewTab ? '_blank' : undefined;
+                const rel = openInNewTab ? 'noopener noreferrer' : undefined;
 
-      <div className="mb-5">
-        <h3>Egenskap vs Attributt</h3>
-        <p className="large-text">
-          I IFC-sammenheng brukes begrepene «egenskap» (engelsk: property) og «attributt» (engelsk: attribute) ofte om hverandre. 
-          Både egenskaper og attributter knyttes til en IFC-entitet og gir spesifikk informasjon om entiteten. 
-          Attributter er dog forhåndsdefinert i IFC-standarden, mens egenskaper opprettes av den som produserer modellen.
-        </p>
-        <p className="large-text">
-          Et eksempel på et attributt er 'IfcElement.Length'. Dette attributtet kan brukes for å angi lengden til et objekt, for eksempel en del av en bru. 
-          Et eksempel på en egenskap er «MMI». Denne egenskapen sier noe om modenheten til et objekt.
-        </p>
-      </div>
-
-      <div className="text-center">
-        <img src="/Egenskapssett01.png" alt="Egenskapssett" className="img-fluid" />
+                return (
+                  <li key={term.id} className="glossary-item">
+                    <Link
+                      to={`/begrep/${term.slug}`}
+                      className={`glossary-link${openInNewTab ? ' glossary-link--new-tab' : ''}`}
+                      target={target}
+                      rel={rel}
+                    >
+                      <span>{term.label}</span>
+                      <span className="glossary-link-chevron" aria-hidden="true" />
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ))}
       </div>
     </div>
   );

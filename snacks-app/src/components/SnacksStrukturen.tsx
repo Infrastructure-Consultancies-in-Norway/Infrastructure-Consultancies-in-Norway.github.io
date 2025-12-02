@@ -1,7 +1,35 @@
 import React from 'react';
 import './SnacksStrukturen.css';
 
+const useScrollFade = (threshold = 0.5) => {
+  const ref = React.useRef<HTMLDivElement | null>(null);
+  const [isVisible, setIsVisible] = React.useState(false);
+
+  React.useEffect(() => {
+    const element = ref.current;
+    if (!element) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsVisible(entry.isIntersecting);
+    }, { threshold });
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [threshold]);
+
+  return { ref, isVisible };
+};
+
 const SnacksStrukturen: React.FC = () => {
+  const bruSpatialImage = useScrollFade();
+  const bruModelImage = useScrollFade();
+  const bruObjectImage = useScrollFade();
+
   return (
     <div id="snacks-strukturen" className="slide-component container my-5 pt-5">
       <div className="mb-5">
@@ -11,7 +39,12 @@ const SnacksStrukturen: React.FC = () => {
         <div className="row position-relative">
                 <img src="/Spatial_Breakdown_System_01.png" alt="Spatial Breakdown System 1" className="img-fluid mb-3 snacks-image-shadow" />
             <div className="col-md-6 position-relative">
-                <img src="/Bru01.png" alt="Bru 1" className="img-fluid mb-3" />
+                <div
+                  ref={bruSpatialImage.ref}
+                  className={`scroll-fade-image ${bruSpatialImage.isVisible ? 'is-visible' : ''}`}
+                >
+                  <img src="/Bru01.png" alt="Bru 1" className="img-fluid mb-3" />
+                </div>
             </div>
             <div className="col-md-6 position-relative">
                 <div className="bordered-text-box">
@@ -56,7 +89,12 @@ const SnacksStrukturen: React.FC = () => {
         <div className="row position-relative">
 
             <div className="col-md-6 position-relative">
-                <img src="/Bru02.png" alt="Bru 2" className="img-fluid mb-3" />
+                <div
+                  ref={bruModelImage.ref}
+                  className={`scroll-fade-image ${bruModelImage.isVisible ? 'is-visible' : ''}`}
+                >
+                  <img src="/Bru02.png" alt="Bru 2" className="img-fluid mb-3" />
+                </div>
             </div>
 
             <div className="col-md-6 position-relative">
@@ -126,7 +164,12 @@ const SnacksStrukturen: React.FC = () => {
         <div className="row position-relative">
 
             <div className="col-md-6 position-relative">
-                <img src="/Bru03.png" alt="Bru 3" className="img-fluid mb-3" />
+                <div
+                  ref={bruObjectImage.ref}
+                  className={`scroll-fade-image ${bruObjectImage.isVisible ? 'is-visible' : ''}`}
+                >
+                  <img src="/Bru03.png" alt="Bru 3" className="img-fluid mb-3" />
+                </div>
             </div>
 
             <div className="col-md-6 position-relative">

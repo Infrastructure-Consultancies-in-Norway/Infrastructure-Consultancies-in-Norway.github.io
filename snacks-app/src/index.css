@@ -186,6 +186,24 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--snacks-dark-green);
 }
 
+.side-navigation-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding-top: 0.5rem;
+}
+
+.side-navigation-wrapper.sticky-top {
+    top: 1rem;
+}
+
+.side-nav-line {
+    width: 2px;
+    background-color: var(--snacks-light-green);
+    border-radius: 1px;
+    align-self: stretch;
+}
+
 .side-navigation .nav {
     gap: 0.5rem;
 }

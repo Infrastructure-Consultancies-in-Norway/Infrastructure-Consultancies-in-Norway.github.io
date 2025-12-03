@@ -104,14 +104,20 @@ const downloadItems: DownloadItem[] = [
 const LastNed: React.FC = () => {
   const handleCardClick = (
     event: React.MouseEvent<HTMLAnchorElement>,
-    fileUrl?: string
+    item: DownloadItem
   ) => {
-    if (!fileUrl) {
+    if (item.fileUrl) {
+      event.preventDefault();
+      downloadGitHubFile(item.fileUrl);
       return;
     }
 
-    event.preventDefault();
-    downloadGitHubFile(fileUrl);
+    const isPlaceholderLink = !item.href || item.href === '#';
+
+    if (isPlaceholderLink) {
+      event.preventDefault();
+      window.alert('Denne nedlastingen er ikke tilgjengelig enda, vennligst prøv igjen senere.');
+    }
   };
 
   return (
@@ -124,7 +130,7 @@ const LastNed: React.FC = () => {
             href={item.fileUrl ?? item.href ?? '#'}
             className="download-card"
             aria-label={`Last ned ${item.title}`}
-            onClick={event => handleCardClick(event, item.fileUrl)}
+            onClick={event => handleCardClick(event, item)}
           >
             <div className="download-card-image-wrapper">
               <img src={item.image} alt={item.title} className="download-card-image" />

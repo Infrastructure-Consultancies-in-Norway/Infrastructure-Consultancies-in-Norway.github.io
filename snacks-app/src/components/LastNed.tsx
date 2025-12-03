@@ -6,7 +6,6 @@ type DownloadItem = {
   title: string;
   subtitle: string;
   image: string;
-  href?: string;
   fileUrl?: string;
 };
 
@@ -43,36 +42,31 @@ const downloadItems: DownloadItem[] = [
     id: 1,
     title: 'Rapport: Behovsanalyse (PDF)',
     subtitle: 'Del 1: Behovsanalyse',
-    image: '/dl1.png',
-    href: '#'
+    image: '/dl1.png'
   },
   {
     id: 2,
     title: 'Rapport: Sluttrapport (PDF)',
     subtitle: 'Del 2: Sluttrapport',
-    image: '/dl2.png',
-    href: '#'
+    image: '/dl2.png'
   },
   {
     id: 3,
     title: 'Rapport: XXX (PDF)',
     subtitle: 'Del 3: Egenskaper',
-    image: '/dl3.png',
-    href: '#'
+    image: '/dl3.png'
   },
   {
     id: 4,
     title: 'Rapport: XXX (PDF)',
     subtitle: 'Del 4: Egenskapsskjema og verdier',
-    image: '/dl4.png',
-    href: '#'
+    image: '/dl4.png'
   },
   {
     id: 5,
     title: 'SNACKS egenskaper (Excel)',
     subtitle: 'Excel-mal',
     image: '/dl5.png',
-    href: '#',
     fileUrl:
       'https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/master/Files/EgenskapsstrukturV09.xlsx'
   },
@@ -81,7 +75,6 @@ const downloadItems: DownloadItem[] = [
     title: 'Eksempelmodell (IFC)',
     subtitle: 'IFC-eksempel',
     image: '/dl6.png',
-    href: '#',
     fileUrl:
       'https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/master/Files/Eksempelmodell_SNACks.ifc'
   },
@@ -89,15 +82,13 @@ const downloadItems: DownloadItem[] = [
     id: 7,
     title: 'Rapport: XXX (PDF)',
     subtitle: 'Tilgjengelig snart',
-    image: '/dl7.png',
-    href: '#'
+    image: '/dl7.png'
   },
   {
     id: 8,
     title: 'Rapport: XXX (PDF)',
     subtitle: 'Tilgjengelig snart',
-    image: '/dl8.png',
-    href: '#'
+    image: '/dl8.png'
   }
 ];
 
@@ -112,12 +103,8 @@ const LastNed: React.FC = () => {
       return;
     }
 
-    const isPlaceholderLink = !item.href || item.href === '#';
-
-    if (isPlaceholderLink) {
-      event.preventDefault();
-      window.alert('Denne nedlastingen er ikke tilgjengelig enda, vennligst prøv igjen senere.');
-    }
+    event.preventDefault();
+    window.alert('Denne nedlastingen er ikke tilgjengelig enda, vennligst prøv igjen senere.');
   };
 
   return (
@@ -127,7 +114,7 @@ const LastNed: React.FC = () => {
         {downloadItems.map(item => (
           <a
             key={item.id}
-            href={item.fileUrl ?? item.href ?? '#'}
+            href={item.fileUrl ?? '#'}
             className="download-card"
             aria-label={`Last ned ${item.title}`}
             onClick={event => handleCardClick(event, item)}

@@ -7,6 +7,7 @@ import Contact from './pages/Contact'
 import Properties from './pages/Properties'
 import EasterEgg from './pages/EasterEgg'
 import GlossaryTerm from './pages/GlossaryTerm'
+import NotFound from './pages/NotFound'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/properties" element={<Properties />} />
         <Route path="/easter-egg" element={<EasterEgg />} />
         <Route path="/begrep/:slug" element={<GlossaryTerm />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>

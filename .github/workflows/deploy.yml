@@ -15,6 +15,10 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+defaults:
+  run:
+    working-directory: snacks-app
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,6 +31,7 @@ jobs:
         with:
           node-version: "20"
           cache: "npm"
+          cache-dependency-path: snacks-app/package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -37,7 +42,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: snacks-app/dist
 
   deploy:
     environment:

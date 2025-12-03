@@ -1,7 +1,44 @@
 import React from 'react';
 import './LastNed.css';
 
-const downloadItems = [
+type DownloadItem = {
+  id: number;
+  title: string;
+  subtitle: string;
+  image: string;
+  href?: string;
+  fileUrl?: string;
+};
+
+const convertToRawGitHubUrl = (url: string) =>
+  url.includes('github.com') && url.includes('/blob/')
+    ? url.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/')
+    : url;
+
+const downloadGitHubFile = async (fileUrl: string) => {
+  try {
+    const rawUrl = convertToRawGitHubUrl(fileUrl);
+    const response = await fetch(rawUrl);
+
+    if (!response.ok) {
+      throw new Error(`Failed to download file: ${response.status}`);
+    }
+
+    const blob = await response.blob();
+    const downloadUrl = window.URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = downloadUrl;
+    anchor.download = rawUrl.split('/').pop() || 'download';
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+    window.URL.revokeObjectURL(downloadUrl);
+  } catch (error) {
+    console.error('Download error:', error);
+  }
+};
+
+const downloadItems: DownloadItem[] = [
   {
     id: 1,
     title: 'Rapport: Behovsanalyse (PDF)',
@@ -35,14 +72,18 @@ const downloadItems = [
     title: 'SNACKS egenskaper (Excel)',
     subtitle: 'Excel-mal',
     image: '/dl5.png',
-    href: '#'
+    href: '#',
+    fileUrl:
+      'https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/master/Files/EgenskapsstrukturV09.xlsx'
   },
   {
     id: 6,
     title: 'Eksempelmodell (IFC)',
     subtitle: 'IFC-eksempel',
     image: '/dl6.png',
-    href: '#'
+    href: '#',
+    fileUrl:
+      'https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/master/Files/Eksempelmodell_SNACks.ifc'
   },
   {
     id: 7,
@@ -61,12 +102,30 @@ const downloadItems = [
 ];
 
 const LastNed: React.FC = () => {
+  const handleCardClick = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    fileUrl?: string
+  ) => {
+    if (!fileUrl) {
+      return;
+    }
+
+    event.preventDefault();
+    downloadGitHubFile(fileUrl);
+  };
+
   return (
     <div id="last-ned" className="slide-component container my-5 pt-5">
       <h2>Last ned</h2>
       <div className="download-grid">
         {downloadItems.map(item => (
-          <a key={item.id} href={item.href} className="download-card" aria-label={`Last ned ${item.title}`}>
+          <a
+            key={item.id}
+            href={item.fileUrl ?? item.href ?? '#'}
+            className="download-card"
+            aria-label={`Last ned ${item.title}`}
+            onClick={event => handleCardClick(event, item.fileUrl)}
+          >
             <div className="download-card-image-wrapper">
               <img src={item.image} alt={item.title} className="download-card-image" />
             </div>

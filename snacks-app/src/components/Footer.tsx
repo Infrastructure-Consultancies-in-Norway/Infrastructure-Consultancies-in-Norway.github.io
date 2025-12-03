@@ -42,8 +42,6 @@ const partners: Partner[] = [
 ];
 
 const Footer: React.FC = () => {
-  const version = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '1.0.0';
-
   return (
     <footer className="footer-snacks text-white text-center p-4 mt-5">
       <div className="container">
@@ -61,7 +59,7 @@ const Footer: React.FC = () => {
           ))}
         </div>
         <hr className="my-2" />
-        <p className="small mb-0">v{version}</p>
+        <p className="small mb-0">v{__APP_VERSION__}</p>
       </div>
     </footer>
   );

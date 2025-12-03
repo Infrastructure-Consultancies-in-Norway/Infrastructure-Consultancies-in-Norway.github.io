@@ -77,6 +77,16 @@ const LastNed: React.FC = () => {
           </a>
         ))}
       </div>
+      <div className="download-github-link">
+        <a
+          href="https://github.com/Infrastructure-Consultancies-in-Norway/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span>Utforsk prosjektet på GitHub</span>
+          <span aria-hidden="true" className="download-github-link-icon bi bi-arrow-up-right" />
+        </a>
+      </div>
     </div>
   );
 };

@@ -60,6 +60,34 @@
     color: #657280;
 }
 
+.download-github-link {
+    margin-top: 2.75rem;
+    text-align: center;
+}
+
+.download-github-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.85rem 1.75rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--snacks-dark-green), var(--snacks-light-green));
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 12px 24px rgba(92, 116, 74, 0.35);
+    transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.download-github-link a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 32px rgba(175, 195, 161, 0.45);
+}
+
+.download-github-link-icon {
+    font-size: 1.05rem;
+}
+
 @media (max-width: 767.98px) {
     .download-grid {
         grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));

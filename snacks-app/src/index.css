@@ -61,20 +61,30 @@ h1, h2, h3, h4, h5, h6 {
     color: inherit;
 }
 
-.logo img {
+.logo-container {
     display: inline-block;
-    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
 }
+
+.logo-container img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+}
+
 
 .ml-2 {
     margin-left: 8px;
 }
 
+/* 
 .fixed-size-logo {
     width: 30px;
     height: 30px;
     object-fit: contain;
-}
+} */
 
 .person {
     display: flex;

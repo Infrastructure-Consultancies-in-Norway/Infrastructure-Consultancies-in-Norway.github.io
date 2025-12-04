@@ -18,7 +18,7 @@ const SnacksMain: React.FC = () => {
           </p>
           <p className="lead">
             <span className="text-light-green fw-bold">Standardisering, Del 2:</span><br />
-            <span className="text-dark-green fw-bold">Objektnavn</span>
+            <span className="text-dark-green fw-bold">Elementnavn</span>
           </p>
         </div>
       </div>

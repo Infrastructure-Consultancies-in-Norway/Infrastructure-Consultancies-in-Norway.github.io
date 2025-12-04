@@ -5,7 +5,7 @@ const StandardiseringDel2: React.FC = () => {
     <div id="standardisering-del-2" className="slide-component container my-5 pt-5">
       <h2>
         <span className="text-light-green">Standardisering, Del 2:</span><br />
-        <span className="text-dark-green">Objektnavn</span>
+        <span className="text-dark-green">Elementnavn</span>
       </h2>
       <div className="text-center">
         <img src="/Objekt-navn01.png" alt="Objekt navn" className="img-fluid" style={{ scale: '75%' }} />

@@ -52,7 +52,7 @@ const SnacksStrukturen: React.FC = () => {
                     IFC Spatial Breakdown System er en funksjonalitet i IFC-formatet som definerer flere nivåer av informasjon, også kalt et informasjonshierarki.
                   </p>
                   <p className="large-text mb-0 mt-3">
-                    Egenskaper som plasseres høyt i hierarkiet arves av objekter lenger ned i hierarkiet. Dette gjør at egenskaper som beskriver generell informasjon kan samles på en plass i stedet for å måtte knyttes til hvert enkelt objekt.
+                    Egenskaper som plasseres høyt i hierarkiet arves av elementer lenger ned i hierarkiet. Dette gjør at egenskaper som beskriver generell informasjon kan samles på en plass i stedet for å måtte knyttes til hvert enkelt element.
                   </p>
                 </div>
             </div>
@@ -114,9 +114,9 @@ const SnacksStrukturen: React.FC = () => {
 
       <div className="mb-5 pt-5">
 
-        {/* Egenskaper på objektnivå */}
+        {/* Egenskaper på elementnivå */}
         <h3>
-          <span className="text-dark-green">Egenskaper på objektnivå</span>
+          <span className="text-dark-green">Egenskaper på elementnivå</span>
         </h3>
         <div className="row position-relative">
             <div className="col-12 position-relative p-0">
@@ -128,7 +128,7 @@ const SnacksStrukturen: React.FC = () => {
             <div className="col-md-9 offset-md-3 position-relative">
                 <div className="bordered-text-box-connector">
                   <p className="large-text mb-3">
-                    Egenskapssett på objektnivå
+                    Egenskapssett på elementnivå
                   </p>
                   
                   <div className="row">
@@ -145,8 +145,8 @@ const SnacksStrukturen: React.FC = () => {
                       <br />
                       <br />
                       <br />
-                      <p className="mt-3 small"><em>* Inkluderes for alle objekttyper</em></p>
-                      <p className="mt-3 small"><em>** Inkluderes kun for relevante objekttyper</em></p>
+                      <p className="mt-3 small"><em>* Inkluderes for alle elementtyper</em></p>
+                      <p className="mt-3 small"><em>** Inkluderes kun for relevante elementtyper</em></p>
                     </div>
                     
                     <div className="col-6">
@@ -175,10 +175,10 @@ const SnacksStrukturen: React.FC = () => {
             <div className="col-md-6 position-relative">
                 <div className="bordered-text-box">
                   <p className="large-text mb-0">
-                    I SNACKS strukturen legges egenskaper knyttet til Egenskapssett på objekter på «objektnivå». 
-                    Det er i SNACKS strukturen kun mulig å knytte egenskaper til objekter på «objektnivå».
+                    I SNACKS strukturen legges egenskaper knyttet til egenskapssett på elementer på «elementnivå». 
+                    Det er i SNACKS strukturen kun mulig å knytte egenskaper til elementer på «elementnivå».
                     <br /><br />
-                    Det er ikke mulig å knytte egenskaper til objekter på «sammensatt objektnivå». 
+                    Det er ikke mulig å knytte egenskaper til elementer på «sammensatt elementnivå». 
                     {/* Bruk av «aggregerte objekter» tillates med andre ord ikke. */}
                   </p>
                 </div>
@@ -197,7 +197,7 @@ const SnacksStrukturen: React.FC = () => {
             <li>Navn på egenskaper er egendefinerte og avviker fra standard navngivning i Ifc-skjemaet.</li>
             <br />
             <p className="large-text"> ÅRSAK: Tekst</p>
-            <li>SNACKS-strukturen tillater ikke objekt-egenskaper på «sammensatt objekt-nivå» i Ifc-skjemaet.</li>
+            <li>SNACKS-strukturen tillater ikke elementegenskaper på «sammensatt elementnivå» i Ifc-skjemaet.</li>
             <br />
             <p className="large-text"> ÅRSAK: Tekst</p>
         </ol>

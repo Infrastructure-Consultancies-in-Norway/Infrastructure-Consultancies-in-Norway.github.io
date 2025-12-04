@@ -30,7 +30,7 @@ export const glossaryItems: GlossaryTerm[] = [
     image: {
       src: '/Egenskapssett01.png',
       alt: 'Illustrasjon av egenskaper og attributter i en modell',
-      caption: 'Egenskaper og attributter kan kobles til samme IFC-entitet for å beskrive objektet mer presist.'
+      caption: 'Egenskaper og attributter kan kobles til samme IFC-entitet for å beskrive elementet mer presist.'
     },
     related: ['egenskap-property', 'egenskapssett', 'ifc-entitet']
   },
@@ -58,7 +58,7 @@ export const glossaryItems: GlossaryTerm[] = [
       'Et godt strukturert tittelfelt gir tydelig informasjon om prosjekt, revisjon, ansvarlig fag og koordinatsystem slik at mottakeren kan plassere dokumentet riktig i dokumenthåndteringssystemet.',
       'Når tittelfeltet følger en fast mal kan informasjonen hentes ut automatisk og kontrolleres mot leveransekrav uten at noen må lese PDF-filer manuelt.'
     ],
-    related: ['modell', 'objektinformasjon']
+    related: ['modell', 'elementinformasjon']
   },
   {
     id: 'ifc-spatial-breakdown-system',
@@ -66,7 +66,7 @@ export const glossaryItems: GlossaryTerm[] = [
     label: 'IFC Spatial breakdown system',
     title: 'IFC Spatial breakdown system',
     summary:
-      'Hierarkiet som forteller hvordan et prosjekt brytes ned i områder, bygningsdeler og objekter i en IFC-modell.',
+      'Hierarkiet som forteller hvordan et prosjekt brytes ned i områder, bygningsdeler og elementer i en IFC-modell.',
     details: [
       'Spatial breakdown system beskriver sammenhengen fra IfcProject via IfcSite, IfcFacility og IfcFacilityPart helt ned til de enkelte IfcElement-instansene.',
       'Ved å modellere denne strukturen kan du filtrere modeller pr. etappe, beregne mengder per område og gjenbruke samme oppsett i flere prosjekter.'
@@ -76,7 +76,7 @@ export const glossaryItems: GlossaryTerm[] = [
       alt: 'Eksempel på spatial strukturering i IFC',
       caption: 'Spatial breakdown system gjør det mulig å navigere komplekse modeller ved hjelp av et tydelig hierarki.'
     },
-    related: ['ifc', 'objekt', 'informasjonsobjekt']
+    related: ['ifc', 'element', 'informasjonsobjekt' ]
   },
   {
     id: 'bsdd',
@@ -222,15 +222,15 @@ export const glossaryItems: GlossaryTerm[] = [
     related: ['ifc', 'ifc-skjema']
   },
   {
-    id: 'objekt',
-    slug: 'objekt',
-    label: 'Objekt',
-    title: 'Objekt',
+    id: 'element',
+    slug: 'element',
+    label: 'Element',
+    title: 'Element',
     summary:
       'Et fysisk eller logisk element i modellen, som en bjelke, et rom eller en teknisk installasjon.',
     details: [
-      'Objekter identifiseres gjerne med GUID og kan ha både geometri, egenskaper og tilknyttede dokumenter.',
-      'Når objekter navngis og struktureres konsekvent kan de spores gjennom prosessen og kobles til kontrakter, kostnader og vedlikehold.'
+      'Elementer identifiseres gjerne med GUID og kan ha både geometri, egenskaper og tilknyttede dokumenter.',
+      'Når elementer navngis og struktureres konsekvent kan de spores gjennom prosessen og kobles til kontrakter, kostnader og vedlikehold.'
     ],
     related: ['informasjonsobjekt', 'objektinformasjon', 'ifc-entitet']
   },

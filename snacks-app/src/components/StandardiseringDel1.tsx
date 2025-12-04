@@ -15,7 +15,7 @@ const StandardiseringDel1: React.FC = () => {
       <ul className='large-text'>
         <li>Navn på egenskaper og egenskapssett</li>
         <li>Oppdeling av egenskaper i egenskapssett</li>
-        <li>Tillate egenskapsverdier der dette er relevant</li>
+        <li>Tillatte egenskapsverdier der dette er relevant</li>
         <li>Hvor i IFC Spatial Breakdown System egenskaper plasseres</li>
       </ul>
       <div className="text-center my-4">

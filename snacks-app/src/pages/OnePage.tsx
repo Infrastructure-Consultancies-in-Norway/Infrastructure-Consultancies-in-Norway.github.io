@@ -65,7 +65,7 @@ const OnePage: React.FC = () => {
     <div className="container">
       <div className="row">
         <div className="col-12 col-lg-9 col-xl-9">
-          <SnacksMain />
+          <SnacksMain scrollToSection={scrollToSection} />
           <StandardiseringDel1 />
           <SnacksStrukturen />
           <StandardiseringDel2 />

@@ -1,6 +1,10 @@
 import React from 'react';
 
-const SnacksMain: React.FC = () => {
+type SnacksMainProps = {
+  scrollToSection: (id: string, behavior?: ScrollBehavior) => void;
+};
+
+const SnacksMain: React.FC<SnacksMainProps> = ({ scrollToSection }) => {
   return (
     <div id="snacks-main" className="slide-component container my-5">
       <h1>SNACKS</h1>
@@ -13,11 +17,11 @@ const SnacksMain: React.FC = () => {
         </div>
         <div className="col-md-6">
           <p className="lead">
-            <span className="text-light-green fw-bold">Standardisering del 1:</span><br />
+            <span className="text-light-green fw-bold" onClick={() => scrollToSection('standardisering-del-1')} style={{ cursor: 'pointer' }}>Standardisering del 1:</span><br />
             <span className="text-dark-green fw-bold">SNACKS-strukturen</span>
           </p>
           <p className="lead">
-            <span className="text-light-green fw-bold">Standardisering del 2:</span><br />
+            <span className="text-light-green fw-bold" onClick={() => scrollToSection('standardisering-del-2')} style={{ cursor: 'pointer' }}>Standardisering del 2:</span><br />
             <span className="text-dark-green fw-bold">Elementnavn</span>
           </p>
         </div>

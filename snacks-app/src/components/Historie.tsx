@@ -11,14 +11,6 @@ const Historie: React.FC = () => {
           <p className="large-text mb-0">Vegdirektoratet åpner opp for modellbaserte leveranser.</p>
         </div>
       </div>
-      <div className="historie-video mt-4">
-        <div className="historie-video-header">
-          <h3>Presentasjon BA-Nettverket</h3>
-        </div>
-        <div className="ratio ratio-16x9">
-          <iframe src="https://www.youtube.com/embed/PLPpRe9ESuQ" title="YouTube video" allowFullScreen></iframe>
-        </div>
-      </div>
     </div>
   );
 };

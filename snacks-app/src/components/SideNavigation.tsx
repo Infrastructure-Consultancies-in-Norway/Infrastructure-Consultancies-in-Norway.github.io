@@ -6,12 +6,13 @@ type SideNavigationProps = {
 
 export const sectionNavItems = [
   { id: 'snacks-main', label: 'Hjem' },
-  { id: 'standardisering-del-1', label: 'Standardisering 1' },
+  { id: 'standardisering-del-1', label: 'Standardisering del 1' },
   // { id: 'snacks-strukturen', label: 'Strukturen' },
-  { id: 'standardisering-del-2', label: 'Standardisering 2' },
+  { id: 'standardisering-del-2', label: 'Standardisering del 2' },
   { id: 'historie', label: 'Historie' },
   { id: 'last-ned', label: 'Last ned' },
   { id: 'begrepsforklaring', label: 'Begrepsforklaring' },
+  { id: 'tilleggsinformasjon', label: 'Tilleggsinformasjon' },
   { id: 'kontakt', label: 'Kontakt' },
 ];
 

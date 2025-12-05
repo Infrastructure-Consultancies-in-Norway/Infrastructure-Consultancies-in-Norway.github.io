@@ -134,11 +134,10 @@ const SnacksStrukturen: React.FC = () => {
                   <div className="row">
                     <div className="col-6">
                       {['BIM_Beskrivelse *', 'BIM_FDV *', 'BIM_Tverrfaglig *', 'KON_Felles *'].map(item => (
-                        <div key={item} className='bim-objektinfo-badge-1' style={{fontSize: '0.8rem'}}>
+                        <div key={item} className='bim-objektinfo-badge-1'>
                           <p className='mb-0'>{item}</p>
                         </div>
                       ))}
-                      <br />
                       <br />
                       <br />
                       <br />

@@ -101,9 +101,21 @@
     display: block;
     margin: 5px 0;
     font-weight: bold;
-    font-size: 0.8rem;
+    font-size: 0.55rem;
     text-align: left;
     white-space: nowrap;
+}
+
+@media (min-width: 576px) {
+    .bim-objektinfo-badge-1 {
+        font-size: 0.65rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .bim-objektinfo-badge-1 {
+        font-size: 0.8rem;
+    }
 }
 
 .bim-objektinfo-badge-2 {
@@ -115,9 +127,21 @@
     display: block;
     margin: 5px 0;
     font-weight: bold;
-    font-size: 0.8rem;
+    font-size: 0.55rem;
     text-align: left;
     white-space: nowrap;
+}
+
+@media (min-width: 576px) {
+    .bim-objektinfo-badge-2 {
+        font-size: 0.65rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .bim-objektinfo-badge-2 {
+        font-size: 0.8rem;
+    }
 }
 
 .snacks-image-shadow {

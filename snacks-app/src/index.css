@@ -79,12 +79,6 @@ h1, h2, h3, h4, h5, h6 {
     margin-left: 8px;
 }
 
-/* 
-.fixed-size-logo {
-    width: 30px;
-    height: 30px;
-    object-fit: contain;
-} */
 
 .person {
     display: flex;

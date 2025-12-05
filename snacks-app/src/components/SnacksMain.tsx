@@ -13,11 +13,11 @@ const SnacksMain: React.FC = () => {
         </div>
         <div className="col-md-6">
           <p className="lead">
-            <span className="text-light-green fw-bold">Standardisering, Del 1:</span><br />
+            <span className="text-light-green fw-bold">Standardisering del 1:</span><br />
             <span className="text-dark-green fw-bold">SNACKS-strukturen</span>
           </p>
           <p className="lead">
-            <span className="text-light-green fw-bold">Standardisering, Del 2:</span><br />
+            <span className="text-light-green fw-bold">Standardisering del 2:</span><br />
             <span className="text-dark-green fw-bold">Elementnavn</span>
           </p>
         </div>

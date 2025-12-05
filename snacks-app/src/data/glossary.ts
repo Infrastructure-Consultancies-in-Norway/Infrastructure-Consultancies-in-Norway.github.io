@@ -22,7 +22,7 @@ export const glossaryItems: GlossaryTerm[] = [
     title: 'Attributt',
     heading: 'Egenskap vs Attributt',
     summary:
-      'Et attributt er et forhåndsdefinert felt i IFC-skjemaet som beskriver grunnleggende kjennetegn ved en entitet.',
+      'En attributt er et forhåndsdefinert felt i IFC-skjemaet som beskriver grunnleggende kjennetegn ved en entitet.',
     details: [
       'I IFC-arbeid brukes ordene «egenskap» og «attributt» ofte side om side, men attributter er innebygde felter i selve standarden og følger alle instanser av entiteten de tilhører.',
       'Et konkret eksempel er attributtet IfcElement.Length som kan beskrive lengden på en bjelke eller et bruelement, mens en egenskap som «MMI» opprettes av modellprodusenten for å kommunisere modenhetsnivå.'

@@ -68,7 +68,8 @@
   align-items: center;
   margin-bottom: 1.5rem;
   text-decoration: none;
-  color: var(--snacks-dark-green);
+  /* color: var(--snacks-dark-green); */
+  color: black;
   font-weight: 600;
 }
 
@@ -143,4 +144,9 @@
   .glossary-term-summary {
     font-size: 1.05rem;
   }
+}
+
+.large-text-black-bold {
+    font-size: 1.25rem;
+    font-weight: bold;
 }

@@ -23,8 +23,8 @@ const GlossaryTerm: React.FC = () => {
       <Link to="/#begrepsforklaring" className="glossary-back-link">
         &larr; Tilbake til begrepslisten
       </Link>
-      <h1>{term.heading ?? term.title}</h1>
-      <p className="glossary-term-summary">{term.summary}</p>
+      <h1 className="pt-5">{term.heading ?? term.title}</h1>
+      <p className="glossary-term-summary large-text-black-bold pt-5">{term.summary}</p>
 
       {term.image && (
         <div className="glossary-term-image-wrapper text-center">

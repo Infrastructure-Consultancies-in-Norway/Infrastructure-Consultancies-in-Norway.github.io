@@ -236,7 +236,7 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     width: 100%;
     background-color: white;
-    border: 3px solid var(--snacks-dark-green);
+    border: 3px solid #cccccc;
     border-radius: 12px;
     padding: 20px;
     z-index: 10;

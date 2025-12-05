@@ -79,11 +79,12 @@
 }
 
 .bim-modellinfo-badge {
-    background: linear-gradient(to right, #074BD8, #1a3660);
+    /* background: linear-gradient(to right, #C0D4FD, #C0D4FD); */
+    background-color: #C0D4FD;
     border: 2px solid black;
     border-radius: 10px;
     padding: 5px 50px 5px 10px;
-    color: white;
+    color: black;
     display: inline-block;
     margin: 10px 0;
     font-weight: bold;

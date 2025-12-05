@@ -36,7 +36,7 @@ const SnacksStrukturen: React.FC = () => {
         <h3>
           <span className="text-dark-green">IFC Spatial Breakdown System</span>
         </h3>
-        <div className="row position-relative">
+        <div className="row position-relative my-4">
                 <img src="/Spatial_Breakdown_System_01.png" alt="Spatial Breakdown System 1" className="img-fluid mb-3 snacks-image-shadow" />
             <div className="col-md-6 position-relative">
                 <div
@@ -188,7 +188,7 @@ const SnacksStrukturen: React.FC = () => {
         <h3>
           <span className="text-dark-green">Avvik fra Ifc-skjemaet</span>
         </h3>
-        <div className="row position-relative">
+        <div className="row position-relative my-4">
                 <img src="/Spatial_Breakdown_System_01.png" alt="Spatial Breakdown System 1" className="img-fluid mb-3 snacks-image-shadow" />
         <div className="mb-5">
         <p className="large-text">SNACKS-strukturen avviker fra Ifc-skjema på følgende punkter:</p>

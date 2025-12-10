@@ -189,19 +189,22 @@ const SnacksStrukturen: React.FC = () => {
           <span className="text-dark-green">Avvik fra Ifc-skjemaet</span>
         </h3>
         <div className="row position-relative my-4">
-                <img src="/Spatial_Breakdown_System_01.png" alt="Spatial Breakdown System 1" className="img-fluid mb-3 snacks-image-shadow" />
-        <div className="mb-5">
-        <p className="large-text">SNACKS-strukturen avviker fra Ifc-skjema på følgende punkter:</p>
-        <ol>
-            <li>Navn på egenskaper er egendefinerte og avviker fra standard navngivning i Ifc-skjemaet.</li>
-            <br />
-            <p className="large-text"> ÅRSAK: Tekst</p>
-            <li>SNACKS-strukturen tillater ikke elementegenskaper på «sammensatt elementnivå» i Ifc-skjemaet.</li>
-            <br />
-            <p className="large-text"> ÅRSAK: Tekst</p>
-        </ol>
-      </div>
-
+            <div className="mb-4">
+            <p className="large-text">SNACKS-strukturen avviker fra Ifc-skjema på følgende punkter:</p>
+            <ol className="">
+                <li className="my-4 large-text">Navngivning av egenskaper:</li>
+                <p>Navn på egenskapene i SNACKS-strukturen avviker fra standard navngivning i Ifc-skjemaet.</p>
+                <p><span style={{fontWeight:"bold"}}>Årsak 1:</span>   Standardegenskaper i Ifc-skjemaet har engelske navn. For å lette forståelsen av hva egenskapene beskriver bruker SNACKS-strukturen norske navn på egenskaper.</p>
+                <p><span style={{fontWeight:"bold"}}>Årsak 2:</span>  Standardegenskaper i Ifc-skjemaet har navn som ofte ikke gir en god forståelse av hva egenskapen gir informasjon om. For å lette forståelsen av hva egenskapene beskriver bruker SNACKS-strukturen norske navn på egenskaper.</p>
+                <p><span style={{fontWeight:"bold"}}>Årsak 3:</span>  Standardegenskaper i Ifc-skjemaet har navn uten prefiks. Navn på egenskapene i SNACKS-strukturen har prefiks som gir informasjon om hvilke egenskapssett egenskapen tilhører.</p>
+                
+                <li className="my-4 large-text">Egenskaper kun på elementnivå:</li>
+                <p>SNACKS-strukturen legger ikke opp til egenskaper på «sammensatt elementnivå» i Ifc-skjemaet.</p>
+                <p><span style={{fontWeight:"bold"}}>Årsak 1:</span>  Egenskaper på «sammensatt elementnivå» i Ifc-skjemaet kan være vanskelig å finne i mange visningsverktøy.</p>
+                <p><span style={{fontWeight:"bold"}}>Årsak 2:</span>  Motsigende informasjon på «elementnivå» og «sammensatt elementnivå» i Ifc-skjemaet skaper tvetydighet. Et eksempel er objekter som har en materialkvalitet på «elementnivå» og en annen materialkvalitet på «sammensatt elementnivå».</p>
+            </ol>
+          </div>
+                <img src="/Spatial_Breakdown_System_01.png" alt="Spatial Breakdown System 1" className="img-fluid snacks-image-shadow" />
         </div>
       </div>
 

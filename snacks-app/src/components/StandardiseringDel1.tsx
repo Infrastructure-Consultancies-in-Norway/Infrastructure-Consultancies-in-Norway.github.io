@@ -17,6 +17,7 @@ const StandardiseringDel1: React.FC = () => {
         <li>Oppdeling av egenskaper i egenskapssett</li>
         <li>Tillatte egenskapsverdier der dette er relevant</li>
         <li>Hvor i IFC Spatial Breakdown System egenskaper plasseres</li>
+        <li>SNACKS kan brukes for både Ifc2x3 og Ifc4.3</li>
       </ul>
       <div className="text-center my-4">
         <img src="/Spatial_Breakdown_System_04.png" alt="Spatial Breakdown System" className="img-fluid" />

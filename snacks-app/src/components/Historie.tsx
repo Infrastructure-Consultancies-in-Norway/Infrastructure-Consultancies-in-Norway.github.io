@@ -7,9 +7,9 @@ const Historie: React.FC = () => {
       <h2>Historie</h2>
       <div className="historie-visual">
         <img src="/Historie01.png" alt="Historie" className="img-fluid" />
-        <div className="historie-overlay">
+        {/* <div className="historie-overlay">
           <p className="large-text mb-0">Vegdirektoratet åpner opp for modellbaserte leveranser.</p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

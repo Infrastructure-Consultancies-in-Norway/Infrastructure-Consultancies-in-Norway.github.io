@@ -1,5 +1,6 @@
 import React from 'react';
 import './SnacksValidering.css';
+import { N400_APPROVAL_URL } from '../constants/links';
 
 const SnacksValidering: React.FC = () => {
   return (
@@ -15,7 +16,7 @@ const SnacksValidering: React.FC = () => {
             className="validation-box-logo-n400"
           />
           {/* TODO: Add link to N400 documentation */}
-          <a href="#" className="validation-box-link">
+          <a href={N400_APPROVAL_URL} className="validation-box-link">
             Les mer her
           </a>
         </div>

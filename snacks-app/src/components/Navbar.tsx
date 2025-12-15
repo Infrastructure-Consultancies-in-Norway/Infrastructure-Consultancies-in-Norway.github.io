@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { sectionNavItems } from './SideNavigation'
+import { N400_APPROVAL_URL } from '../constants/links'
 
 const Navbar = () => {
   const navigate = useNavigate()
   const [clickCount, setClickCount] = useState(0)
-  const clickTimeout = useRef<NodeJS.Timeout | null>(null)
+  const clickTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     if (clickCount === 2) {
@@ -93,6 +94,15 @@ const Navbar = () => {
                 </button>
               </li>
             ))}
+            <li className="nav-item d-lg-none">
+              <a
+                className="nav-link text-start text-white"
+                href={N400_APPROVAL_URL}
+                onClick={closeNavbar}
+              >
+                Godkjennelse iht. N400
+              </a>
+            </li>
           </ul>
         </div>
       </div>

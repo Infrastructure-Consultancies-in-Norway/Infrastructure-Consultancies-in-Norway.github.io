@@ -14,6 +14,7 @@ const SnacksValidering: React.FC = () => {
             alt="N400 Logo" 
             className="validation-box-logo-n400"
           />
+          {/* TODO: Add link to N400 documentation */}
           <a href="#" className="validation-box-link">
             Les mer her
           </a>

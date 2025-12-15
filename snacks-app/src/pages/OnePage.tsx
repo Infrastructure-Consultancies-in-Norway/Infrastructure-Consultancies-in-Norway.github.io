@@ -10,6 +10,7 @@ import Begrepsforklaring from '../components/Begrepsforklaring';
 import Kontakt from '../components/Kontakt';
 import SideNavigation from '../components/SideNavigation';
 import Tilleggsinformasjon from '../components/Tilleggsinformasjon';
+import SnacksValidering from '../components/SnacksValidering';
 
 type ScrollState = {
   scrollTarget?: string;
@@ -76,7 +77,8 @@ const OnePage: React.FC = () => {
           <Kontakt />
         </div>
         <div className="col-12 col-lg-3 col-xl-3 d-none d-lg-block">
-          <SideNavigation scrollToSection={scrollToSection} />
+            <SideNavigation scrollToSection={scrollToSection} />
+            <SnacksValidering />
         </div>
       </div>
     </div>

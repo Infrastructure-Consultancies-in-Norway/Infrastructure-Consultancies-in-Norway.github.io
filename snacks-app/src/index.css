@@ -199,10 +199,16 @@ h1, h2, h3, h4, h5, h6 {
     top: 1rem;
 }
 
+.snacks-validering-sticky {
+    position: sticky;
+    top: calc(1rem + 420px);
+    z-index: 99;
+}
+
 .side-nav-line {
-    width: 2px;
-    background-color: var(--snacks-dark-green);
-    border-radius: 1px;
+    width: 10px;
+    background-color: var(--snacks-light-green);
+    border-radius: 10px;
     align-self: stretch;
     flex-shrink: 0;
 }
@@ -242,6 +248,3 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 10;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
-
-

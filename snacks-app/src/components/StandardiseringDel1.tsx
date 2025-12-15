@@ -22,6 +22,12 @@ const StandardiseringDel1: React.FC = () => {
       <div className="text-center my-4">
         <img src="/Spatial_Breakdown_System_04.png" alt="Spatial Breakdown System" className="img-fluid" />
       </div>
+
+      <h2 className="mt-5">Formål</h2>
+      <p className="large-text">
+        Formålet med SNACKS-strukturen er å effektivisere modellproduksjon, redusere usikkerhet i kontrollprosesser og å forenkle bruk av IFC-modeller i bygging og forvaltning av konstruksjoner innen samferdsel.
+        Konsistent bruk av SNACKS-strukturen vil også gjøre det enklere for bransjen å utvikle og drifte gjenbrukbare systemer og arbeidsmetodikk.
+      </p>
     </div>
   );
 };

@@ -35,7 +35,12 @@ const SideNavigation: React.FC<SideNavigationProps> = ({ scrollToSection }) => {
           ))}
         </ul>
       </nav>
+
+
+
+
     </div>
+    
   );
 };
 

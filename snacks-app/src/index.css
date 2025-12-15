@@ -4,6 +4,7 @@
 :root {
     --snacks-light-green: #AFC3A1;
     --snacks-dark-green: #5C744A;
+    --snacks-dark-grey: #919191;
 }
 
 body {
@@ -180,6 +181,12 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--snacks-dark-green);
 }
 
+.large-text-grey {
+    font-size: 1.25rem;
+    font-weight: normal;
+    color: var(--snacks-dark-grey);
+}
+
 .text-light-green {
     color: var(--snacks-light-green);
 }
@@ -223,7 +230,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0.25rem 0;
     width: 100%;
     text-align: left;
-    color: var(--snacks-dark-green);
+    color: var(--snacks-dark-grey);
     text-decoration: none;
     cursor: pointer;
 }

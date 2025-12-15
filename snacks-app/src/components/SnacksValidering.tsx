@@ -1,14 +1,36 @@
 import React from 'react';
-
+import './SnacksValidering.css';
 
 const SnacksValidering: React.FC = () => {
   return (
-    <div id="snacks-validering" className="snacks-validering-sticky my-5 p-3 border rounded bg-light-green">
-        <h3>Validering av SNACKS</h3>
-        <p className="large-text">
-            For å sikre at IFC-modeller følger SNACKS-standarden, er det utviklet et valideringsverktøy som kan brukes til å kontrollere modeller mot SNACKS-kravene. Verktøyet sjekker blant annet at egenskaper er korrekt navngitt, plassert i riktige egenskapssett, og at verdier følger de tillatte formatene.
-        </p>
-</div>
+    <div id="snacks-validering" className="snacks-validering-sticky py-5">
+        {/* First box - N400 with light green border */}
+        <div className="validation-box-green">
+          <p className="validation-box-text">
+            SNACKS-strukturen er godkjent for bruk i modellbaserte leveranser i henhold til N400
+          </p>
+          <img 
+            src="/N400_Figur.png" 
+            alt="N400 Logo" 
+            className="validation-box-logo-n400"
+          />
+          <a href="#" className="validation-box-link">
+            Les mer her
+          </a>
+        </div>
+
+        {/* Second box - Vegvesen with grey border */}
+        <div className="validation-box-grey">
+          <img 
+            src="/vegvesen-logo-farger-pos-rgb.webp" 
+            alt="Statens vegvesen logo" 
+            className="validation-box-logo-svv"
+          />
+          <p className="validation-box-text validation-box-text-color-grey">
+            SNACKS-strukturen er utarbeidet i samarbeid med Statens vegvesen Vegdirektoratet
+          </p>
+        </div>
+    </div>
   );
 }       
 

@@ -26,7 +26,7 @@ const SideNavigation: React.FC<SideNavigationProps> = ({ scrollToSection }) => {
             <li className="nav-item" key={item.id}>
               <button
                 type="button"
-                className="nav-link side-nav-link large-text"
+                className="nav-link side-nav-link large-text-grey"
                 onClick={() => scrollToSection(item.id)}
               >
                 {item.label}

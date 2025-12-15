@@ -133,11 +133,12 @@ const SnacksStrukturen: React.FC = () => {
                   
                   <div className="row">
                     <div className="col-6">
-                      {['BIM_Beskrivelse *', 'BIM_FDV *', 'BIM_Tverrfaglig *', 'KON_Felles *'].map(item => (
+                      {['BIM_Beskrivelse *', 'BIM_FDV *', 'BIM_Tverrfaglig *', 'KON_Felles *'].sort().map(item => (
                         <div key={item} className='bim-objektinfo-badge-1'>
                           <p className='mb-0'>{item}</p>
                         </div>
                       ))}
+                      <br />
                       <br />
                       <br />
                       <br />
@@ -149,7 +150,7 @@ const SnacksStrukturen: React.FC = () => {
                     </div>
                     
                     <div className="col-6">
-                      {['KON_Fuger **', 'KON_Geometri **', 'KON_Peler **', 'KON_Stål **', 'KON_Sveis **', 'KON_Festemidler **', 'KON_Tre **', 'KON_Armering **', 'KON_Betong **', 'KON_Spennarmering **', 'KON_Lager **'].map(item => (
+                      {['KON_Fuger **', 'KON_Geometri **', 'KON_Peler **', 'KON_Stål **', 'KON_Sveis **', 'KON_Festemidler **', 'KON_Tre **', 'KON_Armering **', 'KON_Betong **', 'KON_Spennarmering **', 'KON_Lager **', 'KON_Løsmasser **'].sort().map(item => (
                         <div key={item} className='bim-objektinfo-badge-2 w-100'>
                           <p className='mb-0'>{item}</p>
                         </div>

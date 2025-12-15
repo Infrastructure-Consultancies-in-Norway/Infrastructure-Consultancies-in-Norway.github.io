@@ -67,8 +67,9 @@ const downloadItems: DownloadItem[] = [
     title: 'SNACKS egenskaper (Excel)',
     subtitle: 'Excel-mal',
     image: '/dl5.png',
-    fileUrl:
-      'https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/master/Files/EgenskapsstrukturV09.xlsx'
+    // TODO: Update with the newest snacks excel file link
+    // fileUrl:
+    //   'https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/master/Files/EgenskapsstrukturV09.xlsx'
   },
   {
     id: 6,

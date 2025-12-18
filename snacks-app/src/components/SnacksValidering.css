@@ -1,3 +1,8 @@
+/* Container for validation boxes with fade transition */
+.snacks-validering-sticky {
+    transition: opacity 0.3s ease-out;
+}
+
 /* Base styles for validation boxes */
 .validation-box-green,
 .validation-box-grey {

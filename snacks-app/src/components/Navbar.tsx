@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { sectionNavItems } from './SideNavigation'
-import { N400_APPROVAL_URL } from '../constants/links'
+import ValidationModal from './ValidationModal'
 
 const Navbar = () => {
   const navigate = useNavigate()
   const [clickCount, setClickCount] = useState(0)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const clickTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
@@ -45,68 +46,82 @@ const Navbar = () => {
     closeNavbar()
   }
 
+  const handleOpenModal = () => {
+    setIsModalOpen(true)
+    closeNavbar()
+    document.body.classList.add('modal-open')
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    document.body.classList.remove('modal-open')
+  }
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark navbar-snacks">
-      <div className="container">
-        <a 
-          className="navbar-brand" 
-          href="/" 
-          onClick={handleSnacksClick}
-        >
-          SNACKS
-        </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
-          <ul className="navbar-nav">
-            {/* <li className="nav-item">
-              <Link className="nav-link" to="/">
-                Hjem
-              </Link>
-            </li> */}
-            <li className="nav-item">
-              <Link className="nav-link" to="/properties">
-                Egenskapssett
-              </Link>
-            </li>
-            {/* <li className="nav-item">
-              <Link className="nav-link" to="/contact">
-                Kontakt
-              </Link>
-            </li> */}
-            {sectionNavItems.map(item => (
-              <li className="nav-item d-lg-none" key={`mobile-${item.id}`}>
+    <>
+      <ValidationModal isOpen={isModalOpen} onClose={handleCloseModal} />
+      <nav className="navbar navbar-expand-lg navbar-dark navbar-snacks">
+        <div className="container">
+          <a 
+            className="navbar-brand" 
+            href="/" 
+            onClick={handleSnacksClick}
+          >
+            SNACKS
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul className="navbar-nav">
+              {/* <li className="nav-item">
+                <Link className="nav-link" to="/">
+                  Hjem
+                </Link>
+              </li> */}
+              <li className="nav-item">
+                <Link className="nav-link" to="/properties">
+                  Egenskapssett
+                </Link>
+              </li>
+              {/* <li className="nav-item">
+                <Link className="nav-link" to="/contact">
+                  Kontakt
+                </Link>
+              </li> */}
+              {sectionNavItems.map(item => (
+                <li className="nav-item d-lg-none" key={`mobile-${item.id}`}>
+                  <button
+                    type="button"
+                    className="nav-link text-start text-white bg-transparent border-0 w-100"
+                    onClick={() => handleSectionNavigate(item.id)}
+                  >
+                    {item.label}
+                  </button>
+                </li>
+              ))}
+              <li className="nav-item d-lg-none">
                 <button
                   type="button"
                   className="nav-link text-start text-white bg-transparent border-0 w-100"
-                  onClick={() => handleSectionNavigate(item.id)}
+                  onClick={handleOpenModal}
                 >
-                  {item.label}
+                  Godkjennelse iht. N400
                 </button>
               </li>
-            ))}
-            <li className="nav-item d-lg-none">
-              <a
-                className="nav-link text-start text-white"
-                href={N400_APPROVAL_URL}
-                onClick={closeNavbar}
-              >
-                Godkjennelse iht. N400
-              </a>
-            </li>
-          </ul>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   )
 }
 

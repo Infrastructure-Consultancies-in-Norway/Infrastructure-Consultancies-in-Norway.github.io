@@ -22,8 +22,8 @@ const SnacksMain: React.FC<SnacksMainProps> = ({ scrollToSection }) => {
           </p>
           <p className="lead">
             <span className="text-light-green fw-bold" onClick={() => scrollToSection('standardisering-del-2')} style={{ cursor: 'pointer' }}>Standardisering del 2:</span><br />
-            <span className="text-dark-green fw-bold">Elementnavn</span><br />
-            <span className="text-dark-green">Materialliste</span>
+            <span className="text-dark-green fw-bold">Standardisert Elementnavn</span><br />
+            <span className="text-dark-green">Standardisert Materialliste</span>
           </p>
 
         </div>

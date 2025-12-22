@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { glossaryBySlug } from '../data/glossary';
+import { useLanguage } from '../contexts/LanguageContext';
 import '../components/Begrepsforklaring.css';
 
 const GlossaryTerm: React.FC = () => {
   const { slug = '' } = useParams<{ slug: string }>();
+  const { getImagePath } = useLanguage();
   const term = glossaryBySlug[slug.toLowerCase()] ?? null;
 
   if (!term) {
@@ -28,7 +30,7 @@ const GlossaryTerm: React.FC = () => {
 
       {term.image && (
         <div className="glossary-term-image-wrapper text-center">
-          <img src={term.image.src} alt={term.image.alt} className="img-fluid glossary-term-image" />
+          <img src={getImagePath(`/${term.image.src}`)} alt={term.image.alt} className="img-fluid glossary-term-image" />
           {term.image.caption && (
             <p className="glossary-term-image-caption">{term.image.caption}</p>
           )}

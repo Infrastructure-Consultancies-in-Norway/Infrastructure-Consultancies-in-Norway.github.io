@@ -1,9 +1,11 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../contexts/LanguageContext';
 import { glossaryItems } from '../data/glossary';
 import './Begrepsforklaring.css';
 
 const Begrepsforklaring: React.FC = () => {
+  const { t } = useLanguage();
   const columns = useMemo(() => {
     const midpoint = Math.ceil(glossaryItems.length / 2);
     return [glossaryItems.slice(0, midpoint), glossaryItems.slice(midpoint)];
@@ -11,9 +13,9 @@ const Begrepsforklaring: React.FC = () => {
 
   return (
     <div id="begrepsforklaring" className="slide-component container my-5 pt-5">
-      <h2>Begrepsforklaring</h2>
+      <h2>{t('glossary.title')}</h2>
       <p className="glossary-intro">
-        Velg et begrep for å lese hele forklaringen.
+        {t('glossary.intro')}
       </p>
       <div className="row">
         {columns.map((items, columnIndex) => (

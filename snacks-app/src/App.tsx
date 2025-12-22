@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import { LanguageProvider } from './contexts/LanguageContext'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import CookieBanner from './components/CookieBanner'
@@ -11,7 +12,7 @@ import NotFound from './pages/NotFound'
 
 function App() {
   return (
-    <>
+    <LanguageProvider>
       <CookieBanner />
       <Navbar />
       <Routes>
@@ -23,7 +24,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
-    </>
+    </LanguageProvider>
   )
 }
 

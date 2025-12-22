@@ -14,6 +14,9 @@ export interface GlossaryTerm {
   related?: string[];
 }
 
+// Helper function to get image path based on language (import from context when needed)
+const getGlossaryImageSrc = (src: string) => src;
+
 export const glossaryItems: GlossaryTerm[] = [
   {
     id: 'attributt',
@@ -28,7 +31,7 @@ export const glossaryItems: GlossaryTerm[] = [
       'Et konkret eksempel er attributtet IfcElement.Length som kan beskrive lengden på en bjelke eller et bruelement, mens en egenskap som «MMI» opprettes av modellprodusenten for å kommunisere modenhetsnivå.'
     ],
     image: {
-      src: '/Egenskapssett01.png',
+      src: 'Egenskapssett01.png',
       alt: 'Illustrasjon av egenskaper og attributter i en modell',
       caption: 'Egenskaper og attributter kan kobles til samme IFC-entitet for å beskrive elementet mer presist.'
     },
@@ -72,7 +75,7 @@ export const glossaryItems: GlossaryTerm[] = [
       'Ved å modellere denne strukturen kan du filtrere modeller pr. etappe, beregne mengder per område og gjenbruke samme oppsett i flere prosjekter.'
     ],
     image: {
-      src: '/Spatial_Breakdown_System_01.png',
+      src: 'Spatial_Breakdown_System_01.png',
       alt: 'Eksempel på spatial strukturering i IFC',
       caption: 'Spatial breakdown system gjør det mulig å navigere komplekse modeller ved hjelp av et tydelig hierarki.'
     },

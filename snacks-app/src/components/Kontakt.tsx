@@ -1,15 +1,16 @@
 import React from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 import PersonCard from './PersonCard';
 import { people } from '../data/people';
 
 const Kontakt: React.FC = () => {
+  const { t } = useLanguage();
+  
   return (
     <div id="kontakt" className="slide-component container my-5">
-      <h2>Kontakt</h2>
+      <h2>{t('contact.title')}</h2>
       <p className="lead">
-        Har du spørsmål eller ønsker å komme i kontakt med noen av oss? Her finner du oversikt over teammedlemmer og deres kontaktinformasjon. 
-        Ønsker du å gi tilbakemelding på innholdet i SNACKS, eller har du forslag til forbedringer kan det gjøres direkte i Github, 
-        eller ved å kontakte oss direkte.
+        {t('contact.intro')}
       </p>
 {/* Link to Github project https://github.com/orgs/Infrastructure-Consultancies-in-Norway/projects/1 */}
       <div className="download-github-link">
@@ -18,7 +19,7 @@ const Kontakt: React.FC = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span>Tilbakemelding GitHub</span>
+          <span>{t('contact.github')}</span>
           <span aria-hidden="true" className="download-github-link-icon bi bi-arrow-up-right" />
         </a>
       </div>

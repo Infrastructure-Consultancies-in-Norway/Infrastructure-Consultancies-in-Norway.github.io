@@ -1,10 +1,11 @@
 import React from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 import './LastNed.css';
 
 type DownloadItem = {
   id: number;
-  title: string;
-  subtitle: string;
+  titleKey: string;
+  subtitleKey: string;
   image: string;
   fileUrl?: string;
 };
@@ -40,60 +41,61 @@ const downloadGitHubFile = async (fileUrl: string) => {
 const downloadItems: DownloadItem[] = [
   {
     id: 1,
-    title: 'Rapport: Behovsanalyse (PDF)',
-    subtitle: 'Del 1: Behovsanalyse',
+    titleKey: 'download.item1.title',
+    subtitleKey: 'download.item1.subtitle',
     image: '/dl1.png'
   },
   {
     id: 2,
-    title: 'Rapport: Sluttrapport (PDF)',
-    subtitle: 'Del 2: Sluttrapport',
+    titleKey: 'download.item2.title',
+    subtitleKey: 'download.item2.subtitle',
     image: '/dl2.png'
   },
   {
     id: 3,
-    title: 'Rapport: XXX (PDF)',
-    subtitle: 'Del 3: Egenskaper',
+    titleKey: 'download.item3.title',
+    subtitleKey: 'download.item3.subtitle',
     image: '/dl3.png'
   },
   {
     id: 4,
-    title: 'Rapport: XXX (PDF)',
-    subtitle: 'Del 4: Egenskapsskjema og verdier',
+    titleKey: 'download.item4.title',
+    subtitleKey: 'download.item4.subtitle',
     image: '/dl4.png'
   },
   {
     id: 5,
-    title: 'SNACKS egenskaper (Excel)',
-    subtitle: 'Excel-mal',
+    titleKey: 'download.item5.title',
+    subtitleKey: 'download.item5.subtitle',
     image: '/dl5.png',
-    // TODO: Update with the newest snacks excel file link
-    // fileUrl:
-    //   'https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/master/Files/EgenskapsstrukturV09.xlsx'
+    fileUrl:
+      'https://github.com/Infrastructure-Consultancies-in-Norway/Egenskapssett-BRU/blob/main/Egenskapssett%20-%20Alle%20egenskapssett.xlsx'
   },
   {
     id: 6,
-    title: 'Eksempelmodell (IFC)',
-    subtitle: 'IFC-eksempel',
+    titleKey: 'download.item6.title',
+    subtitleKey: 'download.item6.subtitle',
     image: '/dl6.png',
     fileUrl:
-      'https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/master/Files/Eksempelmodell_SNACks.ifc'
+      'https://github.com/Infrastructure-Consultancies-in-Norway/Element-og-Materialnavn/blob/main/Element-og-materialnavn-tabeller.pdf'
   },
   {
     id: 7,
-    title: 'Rapport: XXX (PDF)',
-    subtitle: 'Tilgjengelig snart',
+    titleKey: 'download.item7.title',
+    subtitleKey: 'download.item7.subtitle',
     image: '/dl7.png'
   },
   {
     id: 8,
-    title: 'Rapport: XXX (PDF)',
-    subtitle: 'Tilgjengelig snart',
+    titleKey: 'download.item8.title',
+    subtitleKey: 'download.item8.subtitle',
     image: '/dl8.png'
   }
 ];
 
 const LastNed: React.FC = () => {
+  const { t } = useLanguage();
+  
   const handleCardClick = (
     event: React.MouseEvent<HTMLAnchorElement>,
     item: DownloadItem
@@ -105,27 +107,27 @@ const LastNed: React.FC = () => {
     }
 
     event.preventDefault();
-    window.alert('Denne nedlastingen er ikke tilgjengelig enda, vennligst prøv igjen senere.');
+    window.alert(t('download.alert'));
   };
 
   return (
     <div id="last-ned" className="slide-component container my-5 pt-5">
-      <h2>Last ned</h2>
+      <h2>{t('download.title')}</h2>
       <div className="download-grid">
         {downloadItems.map(item => (
           <a
             key={item.id}
             href={item.fileUrl ?? '#'}
             className="download-card"
-            aria-label={`Last ned ${item.title}`}
+            aria-label={`${t('download.title')} ${t(item.titleKey)}`}
             onClick={event => handleCardClick(event, item)}
           >
             <div className="download-card-image-wrapper">
-              <img src={item.image} alt={item.title} className="download-card-image" />
+              <img src={item.image} alt={t(item.titleKey)} className="download-card-image" />
             </div>
             <div className="download-card-body">
-              <p className="download-card-title mb-1">{item.title}</p>
-              <p className="download-card-subtitle mb-0">{item.subtitle}</p>
+              <p className="download-card-title mb-1">{t(item.titleKey)}</p>
+              <p className="download-card-subtitle mb-0">{t(item.subtitleKey)}</p>
             </div>
           </a>
         ))}
@@ -136,7 +138,7 @@ const LastNed: React.FC = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span>Utforsk organisasjonen på GitHub</span>
+          <span>{t('download.github')}</span>
           <span aria-hidden="true" className="download-github-link-icon bi bi-arrow-up-right" />
         </a>
       </div>

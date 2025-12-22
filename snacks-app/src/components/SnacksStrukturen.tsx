@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 import './SnacksStrukturen.css';
 
 const useScrollFade = (threshold = 0.5) => {
@@ -26,6 +27,7 @@ const useScrollFade = (threshold = 0.5) => {
 };
 
 const SnacksStrukturen: React.FC = () => {
+  const { t, getImagePath } = useLanguage();
   const bruSpatialImage = useScrollFade();
   const bruModelImage = useScrollFade();
   const bruObjectImage = useScrollFade();
@@ -34,10 +36,10 @@ const SnacksStrukturen: React.FC = () => {
     <div id="snacks-strukturen" className="slide-component container my-5 pt-5">
       <div className="mb-5">
         <h3>
-          <span className="text-dark-green">IFC Spatial Breakdown System</span>
+          <span className="text-dark-green">{t('std1.spatial.title')}</span>
         </h3>
         <div className="row position-relative my-4">
-                <img src="/Spatial_Breakdown_System_01.png" alt="Spatial Breakdown System 1" className="img-fluid mb-3 snacks-image-shadow" />
+                <img src={getImagePath('/Spatial_Breakdown_System_01.png')} alt="Spatial Breakdown System 1" className="img-fluid mb-3 snacks-image-shadow" />
             <div className="col-md-6 position-relative">
                 <div
                   ref={bruSpatialImage.ref}
@@ -49,10 +51,10 @@ const SnacksStrukturen: React.FC = () => {
             <div className="col-md-6 position-relative">
                 <div className="bordered-text-box">
                   <p className="large-text mb-0">
-                    IFC Spatial Breakdown System er en funksjonalitet i IFC-formatet som definerer flere nivåer av informasjon, også kalt et informasjonshierarki.
+                    {t('std1.spatial.text1')}
                   </p>
                   <p className="large-text mb-0 mt-3">
-                    Egenskaper som plasseres høyt i hierarkiet arves av elementer lenger ned i hierarkiet. Dette gjør at egenskaper som beskriver generell informasjon kan samles på en plass i stedet for å måtte knyttes til hvert enkelt element.
+                    {t('std1.spatial.text2')}
                   </p>
                 </div>
             </div>
@@ -62,7 +64,7 @@ const SnacksStrukturen: React.FC = () => {
       <div className="mb-5 pt-5">
 {/* Egenskaper på modellnivå */}
         <h3>
-          <span className="text-dark-green">Egenskaper på modellnivå</span>
+          <span className="text-dark-green">{t('std1.facility.title')}</span>
         </h3>
         <div className="row position-relative">
             <div className="col-12 position-relative p-0">
@@ -75,12 +77,12 @@ const SnacksStrukturen: React.FC = () => {
             <div className="col-md-6 offset-md-6 position-relative">
                 <div className="bordered-text-box-connector">
                   <p className="large-text mb-0">
-                    Egenskapssett på modellnivå
+                    {t('std1.facility.subtitle')}
                   </p>
                   <div className='bim-modellinfo-badge'>
-                  <p className="mb-0">BIM_Modellinfo *</p>
+                  <p className="mb-0">{t('std1.facility.modelinfo')}</p>
                   </div>
-                  <p><em>* Egenskapssett skal alltid inkluderes</em></p>
+                  <p><em>{t('std1.facility.note')}</em></p>
                 </div>
             </div>
         </div>
@@ -100,10 +102,10 @@ const SnacksStrukturen: React.FC = () => {
             <div className="col-md-6 position-relative">
                 <div className="bordered-text-box">
                   <p className="large-text mb-0">
-                    I SNACKS-strukturen er overordnede egenskaper plassert på «konstruksjonsnivå» og samlet i egenskapssettet «BIM_Modellinfo».
+                    {t('std1.facility.text')}
                     <br />
                     <br />
-                    Koordinatsystem er et eksempel på en egenskap som knyttes til modellen på «konstruksjonsnivå».
+                    {t('std1.facility.example')}
                   </p>
                 </div>
             </div>
@@ -116,7 +118,7 @@ const SnacksStrukturen: React.FC = () => {
 
         {/* Egenskaper på elementnivå */}
         <h3>
-          <span className="text-dark-green">Egenskaper på elementnivå</span>
+          <span className="text-dark-green">{t('std1.element.title')}</span>
         </h3>
         <div className="row position-relative">
             <div className="col-12 position-relative p-0">
@@ -128,14 +130,19 @@ const SnacksStrukturen: React.FC = () => {
             <div className="col-md-9 offset-md-3 position-relative">
                 <div className="bordered-text-box-connector">
                   <p className="large-text mb-3">
-                    Egenskapssett på elementnivå
+                    {t('std1.element.subtitle')}
                   </p>
                   
                   <div className="row">
                     <div className="col-6">
-                      {['BIM_Beskrivelse *', 'BIM_FDV *', 'BIM_Tverrfaglig *', 'KON_Felles *'].sort().map(item => (
-                        <div key={item} className='bim-objektinfo-badge-1'>
-                          <p className='mb-0'>{item}</p>
+                      {[
+                        { key: 'BIM_Beskrivelse', suffix: ' *' },
+                        { key: 'BIM_FDV', suffix: ' *' },
+                        { key: 'BIM_Tverrfaglig', suffix: ' *' },
+                        { key: 'KON_Felles', suffix: ' *' }
+                      ].sort((a, b) => t(`propset.${a.key}`).localeCompare(t(`propset.${b.key}`))).map(item => (
+                        <div key={item.key} className='bim-objektinfo-badge-1'>
+                          <p className='mb-0'>{t(`propset.${item.key}`)}{item.suffix}</p>
                         </div>
                       ))}
                       <br />
@@ -145,14 +152,27 @@ const SnacksStrukturen: React.FC = () => {
                       <br />
                       <br />
                       <br />
-                      <p className="mt-3 small"><em>* Inkluderes for alle elementtyper</em></p>
-                      <p className="mt-3 small"><em>** Inkluderes kun for relevante elementtyper</em></p>
+                      <p className="mt-3 small"><em>{t('std1.element.note1')}</em></p>
+                      <p className="mt-3 small"><em>{t('std1.element.note2')}</em></p>
                     </div>
                     
                     <div className="col-6">
-                      {['KON_Fuger **', 'KON_Geometri **', 'KON_Peler **', 'KON_Stål **', 'KON_Sveis **', 'KON_Festemidler **', 'KON_Tre **', 'KON_Armering **', 'KON_Betong **', 'KON_Spennarmering **', 'KON_Lager **', 'KON_Løsmasser **'].sort().map(item => (
-                        <div key={item} className='bim-objektinfo-badge-2 w-100'>
-                          <p className='mb-0'>{item}</p>
+                      {[
+                        { key: 'KON_Fuger', suffix: ' **' },
+                        { key: 'KON_Geometri', suffix: ' **' },
+                        { key: 'KON_Peler', suffix: ' **' },
+                        { key: 'KON_Stål', suffix: ' **' },
+                        { key: 'KON_Sveis', suffix: ' **' },
+                        { key: 'KON_Festemidler', suffix: ' **' },
+                        { key: 'KON_Tre', suffix: ' **' },
+                        { key: 'KON_Armering', suffix: ' **' },
+                        { key: 'KON_Betong', suffix: ' **' },
+                        { key: 'KON_Spennarmering', suffix: ' **' },
+                        { key: 'KON_Lager', suffix: ' **' },
+                        { key: 'KON_Løsmasser', suffix: ' **' }
+                      ].sort((a, b) => t(`propset.${a.key}`).localeCompare(t(`propset.${b.key}`))).map(item => (
+                        <div key={item.key} className='bim-objektinfo-badge-2 w-100'>
+                          <p className='mb-0'>{t(`propset.${item.key}`)}{item.suffix}</p>
                         </div>
                       ))}
                     </div>
@@ -175,11 +195,9 @@ const SnacksStrukturen: React.FC = () => {
             <div className="col-md-6 position-relative">
                 <div className="bordered-text-box">
                   <p className="large-text mb-0">
-                    I SNACKS strukturen legges egenskaper knyttet til egenskapssett på elementer på «elementnivå». 
-                    Det er i SNACKS strukturen kun mulig å knytte egenskaper til elementer på «elementnivå».
+                    {t('std1.element.text')}
                     <br /><br />
-                    Det er ikke mulig å knytte egenskaper til elementer på «sammensatt elementnivå». 
-                    {/* Bruk av «aggregerte objekter» tillates med andre ord ikke. */}
+                    {t('std1.element.text2')}
                   </p>
                 </div>
             </div>
@@ -187,25 +205,25 @@ const SnacksStrukturen: React.FC = () => {
 
       <div className="mb-5 pt-5">
         <h3>
-          <span className="text-dark-green">Avvik fra Ifc-skjemaet</span>
+          <span className="text-dark-green">{t('std1.deviations.title')}</span>
         </h3>
         <div className="row position-relative my-4">
             <div className="mb-4">
-            <p className="large-text">SNACKS-strukturen avviker fra Ifc-skjema på følgende punkter:</p>
+            <p className="large-text">{t('std1.deviations.intro')}</p>
             <ol className="">
-                <li className="my-4 large-text">Navngivning av egenskaper:</li>
-                <p>Navn på egenskapene i SNACKS-strukturen avviker fra standard navngivning i Ifc-skjemaet.</p>
-                <p><span style={{fontWeight:"bold"}}>Årsak 1:</span>   Standardegenskaper i Ifc-skjemaet har engelske navn. For å lette forståelsen av hva egenskapene beskriver bruker SNACKS-strukturen norske navn på egenskaper.</p>
-                <p><span style={{fontWeight:"bold"}}>Årsak 2:</span>  Standardegenskaper i Ifc-skjemaet har navn som ofte ikke gir en god forståelse av hva egenskapen gir informasjon om. For å lette forståelsen av hva egenskapene beskriver bruker SNACKS-strukturen norske navn på egenskaper.</p>
-                <p><span style={{fontWeight:"bold"}}>Årsak 3:</span>  Standardegenskaper i Ifc-skjemaet har navn uten prefiks. Navn på egenskapene i SNACKS-strukturen har prefiks som gir informasjon om hvilke egenskapssett egenskapen tilhører.</p>
+                <li className="my-4 large-text">{t('std1.deviations.naming.title')}</li>
+                <p>{t('std1.deviations.naming.text')}</p>
+                <p><span style={{fontWeight:"bold"}}>{t('std1.deviations.reason1.title')}</span> {t('std1.deviations.reason1.text')}</p>
+                <p><span style={{fontWeight:"bold"}}>{t('std1.deviations.reason2.title')}</span> {t('std1.deviations.reason2.text')}</p>
+                <p><span style={{fontWeight:"bold"}}>{t('std1.deviations.reason3.title')}</span> {t('std1.deviations.reason3.text')}</p>
                 
-                <li className="my-4 large-text">Egenskaper kun på elementnivå:</li>
-                <p>SNACKS-strukturen legger ikke opp til egenskaper på «sammensatt elementnivå» i Ifc-skjemaet.</p>
-                <p><span style={{fontWeight:"bold"}}>Årsak 1:</span>  Egenskaper på «sammensatt elementnivå» i Ifc-skjemaet kan være vanskelig å finne i mange visningsverktøy.</p>
-                <p><span style={{fontWeight:"bold"}}>Årsak 2:</span>  Motsigende informasjon på «elementnivå» og «sammensatt elementnivå» i Ifc-skjemaet skaper tvetydighet. Et eksempel er objekter som har en materialkvalitet på «elementnivå» og en annen materialkvalitet på «sammensatt elementnivå».</p>
+                <li className="my-4 large-text">{t('std1.deviations.assembly.title')}</li>
+                <p>{t('std1.deviations.assembly.text')}</p>
+                <p><span style={{fontWeight:"bold"}}>{t('std1.deviations.assembly.reason1.title')}</span> {t('std1.deviations.assembly.reason1.text')}</p>
+                <p><span style={{fontWeight:"bold"}}>{t('std1.deviations.assembly.reason2.title')}</span> {t('std1.deviations.assembly.reason2.text')}</p>
             </ol>
           </div>
-                <img src="/Spatial_Breakdown_System_01.png" alt="Spatial Breakdown System 1" className="img-fluid snacks-image-shadow" />
+                <img src={getImagePath('/Spatial_Breakdown_System_01.png')} alt="Spatial Breakdown System 1" className="img-fluid snacks-image-shadow" />
         </div>
       </div>
 

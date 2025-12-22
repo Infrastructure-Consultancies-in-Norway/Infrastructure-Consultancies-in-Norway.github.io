@@ -2,9 +2,11 @@ import { useState, useRef, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { sectionNavItems } from './SideNavigation'
 import ValidationModal from './ValidationModal'
+import { useLanguage } from '../contexts/LanguageContext'
 
 const Navbar = () => {
   const navigate = useNavigate()
+  const { language, setLanguage, t } = useLanguage()
   const [clickCount, setClickCount] = useState(0)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const clickTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -57,6 +59,11 @@ const Navbar = () => {
     document.body.classList.remove('modal-open')
   }
 
+  const toggleLanguage = () => {
+    setLanguage(language === 'no' ? 'en' : 'no')
+    closeNavbar()
+  }
+
   return (
     <>
       <ValidationModal isOpen={isModalOpen} onClose={handleCloseModal} />
@@ -84,17 +91,17 @@ const Navbar = () => {
             <ul className="navbar-nav">
               {/* <li className="nav-item">
                 <Link className="nav-link" to="/">
-                  Hjem
+                  {t('nav.home')}
                 </Link>
               </li> */}
               <li className="nav-item">
                 <Link className="nav-link" to="/properties">
-                  Egenskapssett
+                  {t('nav.properties')}
                 </Link>
               </li>
               {/* <li className="nav-item">
                 <Link className="nav-link" to="/contact">
-                  Kontakt
+                  {t('nav.contact')}
                 </Link>
               </li> */}
               {sectionNavItems.map(item => (
@@ -104,7 +111,7 @@ const Navbar = () => {
                     className="nav-link text-start text-white bg-transparent border-0 w-100"
                     onClick={() => handleSectionNavigate(item.id)}
                   >
-                    {item.label}
+                    {t(item.translationKey)}
                   </button>
                 </li>
               ))}
@@ -114,7 +121,21 @@ const Navbar = () => {
                   className="nav-link text-start text-white bg-transparent border-0 w-100"
                   onClick={handleOpenModal}
                 >
-                  Godkjennelse iht. N400
+                  {t('nav.approval')}
+                </button>
+              </li>
+              <li className="nav-item">
+                <button
+                  type="button"
+                  className="nav-link bg-transparent border-0"
+                  onClick={toggleLanguage}
+                  style={{ cursor: 'pointer' }}
+                >
+                  {language === 'no' ? (
+                    <span>EN | <strong>NO</strong></span>
+                  ) : (
+                    <span><strong>EN</strong> | NO</span>
+                  )}
                 </button>
               </li>
             </ul>

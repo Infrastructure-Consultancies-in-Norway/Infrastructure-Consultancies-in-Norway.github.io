@@ -82,6 +82,12 @@ export const translations = {
     'propset.KON_Sveis': 'KON_Sveis',
     'propset.KON_Tre': 'KON_Tre',
 
+    // Validation / N400
+    'validation.n400.text': 'SNACKS-strukturen er godkjent for bruk i modellbaserte leveranser i henhold til N400',
+    'validation.n400.link': 'Les mer her',
+    'validation.svv.text': 'SNACKS-strukturen er utarbeidet i samarbeid med Statens vegvesen Vegdirektoratet',
+    'validation.modal.close': 'Lukk',
+
     // Standardization Part 2
     'std2.title': 'Standardisering del 2: Standardisert Elementnavn og Materialliste',
 
@@ -121,6 +127,9 @@ export const translations = {
     'contact.title': 'Kontakt',
     'contact.intro': 'Har du spørsmål eller ønsker å komme i kontakt med noen av oss? Her finner du oversikt over teammedlemmer og deres kontaktinformasjon. Ønsker du å gi tilbakemelding på innholdet i SNACKS, eller har du forslag til forbedringer kan det gjøres direkte i Github, eller ved å kontakte oss direkte.',
     'contact.github': 'Tilbakemelding GitHub',
+
+    // Footer
+    'footer.collaboration': 'Et samarbeid mellom:',
   },
   en: {
     // Navbar
@@ -205,6 +214,12 @@ export const translations = {
     'propset.KON_Sveis': 'KON_Welding',
     'propset.KON_Tre': 'KON_Timber',
 
+    // Validation / N400
+    'validation.n400.text': 'The SNACKS Ifc Structure is approved for use in model-based deliveries in accordance with N400',
+    'validation.n400.link': 'Read more here',
+    'validation.svv.text': 'The SNACKS Ifc Structure was developed in collaboration with the Norwegian Public Roads Administration',
+    'validation.modal.close': 'Close',
+
     // Standardization Part 2
     'std2.title': 'Standardization part 2: Standardization of element names and material lists',
 
@@ -244,6 +259,9 @@ export const translations = {
     'contact.title': 'Contact',
     'contact.intro': 'Do you have questions or wish to get in touch with any of us? Here you will find an overview of team members and their contact information. If you wish to provide feedback on the content of SNACKS, or have suggestions for improvements, this can be done directly in Github, or by contacting us directly.',
     'contact.github': 'Feedback GitHub',
+
+    // Footer
+    'footer.collaboration': 'A collaboration between:',
   }
 };
 

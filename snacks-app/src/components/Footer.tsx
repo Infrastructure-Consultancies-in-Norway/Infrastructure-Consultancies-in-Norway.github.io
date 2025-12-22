@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 type Partner = {
   name: string;
@@ -42,10 +43,12 @@ const partners: Partner[] = [
 ];
 
 const Footer: React.FC = () => {
+  const { t } = useLanguage();
+  
   return (
     <footer className="footer-snacks text-white text-center p-4 mt-5">
       <div className="container">
-        <h5>Et samarbeid mellom:</h5>
+        <h5>{t('footer.collaboration')}</h5>
         <div className="row justify-content-center">
           {partners.map(({ name, href, logoSrc, logoHeight = 50, colClass = 'col-6 col-md-3', labelClass }) => (
             <div className={`${colClass} text-center logo`} key={name}>

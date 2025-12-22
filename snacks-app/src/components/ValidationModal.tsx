@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 import { N400_APPROVAL_URL } from '../constants/links';
 import './ValidationModal.css';
 
@@ -8,6 +9,8 @@ interface ValidationModalProps {
 }
 
 const ValidationModal: React.FC<ValidationModalProps> = ({ isOpen, onClose }) => {
+  const { t } = useLanguage();
+  
   if (!isOpen) return null;
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -22,13 +25,13 @@ const ValidationModal: React.FC<ValidationModalProps> = ({ isOpen, onClose }) =>
         <button 
           className="validation-modal-close" 
           onClick={onClose}
-          aria-label="Lukk"
+          aria-label={t('validation.modal.close')}
         >
           ×
         </button>
         <div className="validation-box-green">
           <p className="validation-box-text">
-            SNACKS-strukturen er godkjent for bruk i modellbaserte leveranser i henhold til N400
+            {t('validation.n400.text')}
           </p>
           <img 
             src="/N400_Figur.png" 
@@ -36,7 +39,7 @@ const ValidationModal: React.FC<ValidationModalProps> = ({ isOpen, onClose }) =>
             className="validation-box-logo-n400"
           />
           <a href={N400_APPROVAL_URL} className="validation-box-link">
-            Les mer her
+            {t('validation.n400.link')}
           </a>
         </div>
       </div>

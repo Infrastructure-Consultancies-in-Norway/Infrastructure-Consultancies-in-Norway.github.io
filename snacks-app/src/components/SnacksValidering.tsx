@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 import './SnacksValidering.css';
 import { N400_APPROVAL_URL } from '../constants/links';
 
 const SnacksValidering: React.FC = () => {
+  const { t } = useLanguage();
   const [opacity, setOpacity] = useState(1);
 
   useEffect(() => {
@@ -53,16 +55,15 @@ const SnacksValidering: React.FC = () => {
         {/* First box - N400 with light green border */}
         <div className="validation-box-green">
           <p className="validation-box-text">
-            SNACKS-strukturen er godkjent for bruk i modellbaserte leveranser i henhold til N400
+            {t('validation.n400.text')}
           </p>
           <img 
             src="/N400_Figur.png" 
             alt="N400 Logo" 
             className="validation-box-logo-n400"
           />
-          {/* TODO: Add link to N400 documentation */}
           <a href={N400_APPROVAL_URL} className="validation-box-link">
-            Les mer her
+            {t('validation.n400.link')}
           </a>
         </div>
 
@@ -74,7 +75,7 @@ const SnacksValidering: React.FC = () => {
             className="validation-box-logo-svv"
           />
           <p className="validation-box-text validation-box-text-color-grey">
-            SNACKS-strukturen er utarbeidet i samarbeid med Statens vegvesen Vegdirektoratet
+            {t('validation.svv.text')}
           </p>
         </div>
     </div>

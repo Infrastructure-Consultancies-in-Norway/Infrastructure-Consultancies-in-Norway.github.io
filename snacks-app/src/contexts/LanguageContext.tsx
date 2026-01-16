@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { getTranslation } from '../translations/translations';
 
 type Language = 'no' | 'en';
@@ -25,14 +26,39 @@ interface LanguageProviderProps {
 }
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>(() => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [language, setLanguageState] = useState<Language>(() => {
+    // First, check URL parameter
+    const params = new URLSearchParams(location.search);
+    const urlLang = params.get('lang');
+    if (urlLang === 'en' || urlLang === 'no') {
+      return urlLang;
+    }
+    // Fallback to localStorage
     const saved = localStorage.getItem('snacks-language');
     return (saved === 'en' ? 'en' : 'no') as Language;
   });
 
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+    // Update URL with language parameter
+    const params = new URLSearchParams(location.search);
+    params.set('lang', lang);
+    navigate(`${location.pathname}?${params.toString()}`, { replace: true });
+  };
+
   useEffect(() => {
     localStorage.setItem('snacks-language', language);
-  }, [language]);
+    // Sync URL with current language if not already set
+    const params = new URLSearchParams(location.search);
+    const urlLang = params.get('lang');
+    if (urlLang !== language) {
+      params.set('lang', language);
+      navigate(`${location.pathname}?${params.toString()}`, { replace: true });
+    }
+  }, [language, location.pathname, location.search, navigate]);
 
   const t = (key: string): string => {
     return getTranslation(language, key);

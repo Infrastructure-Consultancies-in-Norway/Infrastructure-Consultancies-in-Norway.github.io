@@ -26,7 +26,7 @@ const SnacksMain: React.FC<SnacksMainProps> = ({ scrollToSection }) => {
           <p className="lead">
             <span className="text-light-green fw-bold" onClick={() => scrollToSection('standardisering-del-2')} style={{ cursor: 'pointer' }}>{t('main.std2')}</span><br />
             <span className="text-dark-green fw-bold">{t('main.std2.subtitle1')}</span><br />
-            <span className="text-dark-green">{t('main.std2.subtitle2')}</span>
+            <span className="text-dark-green fw-bold">{t('main.std2.subtitle2')}</span>
           </p>
 
         </div>

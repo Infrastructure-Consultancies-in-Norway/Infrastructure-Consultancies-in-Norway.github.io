@@ -9,7 +9,7 @@ const StandardiseringDel2: React.FC = () => {
       <h2>
         <span className="text-light-green">{t('main.std2')}</span><br />
         <span className="text-dark-green">{t('main.std2.subtitle1')}</span><br />
-        <span className="large-text">{t('main.std2.subtitle2')}</span>
+        <span className="text-dark-green">{t('main.std2.subtitle2')}</span>
       </h2>
       <div className="text-center">
         <img src={getImagePath('/Objekt-navn01.png')} alt="Objekt navn" className="img-fluid" style={{ scale: '75%' }} />

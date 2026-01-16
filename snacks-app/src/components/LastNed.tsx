@@ -127,7 +127,7 @@ const LastNed: React.FC = () => {
             </div>
             <div className="download-card-body">
               <p className="download-card-title mb-1">{t(item.titleKey)}</p>
-              <p className="download-card-subtitle mb-0">{t(item.subtitleKey)}</p>
+              {/* <p className="download-card-subtitle mb-0">{t(item.subtitleKey)}</p> */}
             </div>
           </a>
         ))}

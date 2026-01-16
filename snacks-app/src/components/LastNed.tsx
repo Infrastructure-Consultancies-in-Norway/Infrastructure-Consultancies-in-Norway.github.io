@@ -46,6 +46,10 @@ const downloadItems: DownloadItem[] = [
     titleKey: 'download.item1.title',
     subtitleKey: 'download.item1.subtitle',
     image: '/dl1.png',
+    fileUrl:
+      'https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/main/Files/Norsk/Standardisering%20av%20modellbaserte%20leveranser%20(BIM)%20-%20Behovsanalyse.pdf',
+    fileUrlEn:
+      'https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/main/Files/English/Standardization%20of%20Model-Based%20Deliveries%20in%20Norwegian%20Infrastructure%20Projects%20-%20Needs%20Analysis.pdf',
     availableIn: ['no', 'en']
   },
   {
@@ -53,6 +57,10 @@ const downloadItems: DownloadItem[] = [
     titleKey: 'download.item2.title',
     subtitleKey: 'download.item2.subtitle',
     image: '/dl2.png',
+    fileUrl:
+      'https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/main/Files/Norsk/Standardisering%20av%20modellbaserte%20leveranser%20(BIM)%20-%20Sluttrapport.pdf',
+    fileUrlEn:
+      'https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/main/Files/English/Standardization%20of%20Model-Based%20Deliveries%20in%20Norwegian%20Infrastructure%20Projects%20-%20Final%20report.pdf',
     availableIn: ['no', 'en']
   },
   {
@@ -60,6 +68,8 @@ const downloadItems: DownloadItem[] = [
     titleKey: 'download.item3.title',
     subtitleKey: 'download.item3.subtitle',
     image: '/dl3.png',
+    fileUrl:
+      'https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/main/Files/Norsk/Standardisering%20av%20modellbaserte%20leveranser%20(BIM)%20-%20Del3%20-%20%20Egenskaper.pdf',
     availableIn: ['no']
   },
   {
@@ -67,6 +77,8 @@ const downloadItems: DownloadItem[] = [
     titleKey: 'download.item4.title',
     subtitleKey: 'download.item4.subtitle',
     image: '/dl4.png',
+    fileUrl:
+      'https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/main/Files/Norsk/Standardisering%20av%20modellbaserte%20leveranser%20(BIM)%20-%20Del4%20-%20Sluttrapport.pdf',
     availableIn: ['no']
   },
   {

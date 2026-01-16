@@ -8,6 +8,8 @@ type DownloadItem = {
   subtitleKey: string;
   image: string;
   fileUrl?: string;
+  fileUrlEn?: string;
+  availableIn: ('no' | 'en')[];
 };
 
 const convertToRawGitHubUrl = (url: string) =>
@@ -43,25 +45,29 @@ const downloadItems: DownloadItem[] = [
     id: 1,
     titleKey: 'download.item1.title',
     subtitleKey: 'download.item1.subtitle',
-    image: '/dl1.png'
+    image: '/dl1.png',
+    availableIn: ['no']
   },
   {
     id: 2,
     titleKey: 'download.item2.title',
     subtitleKey: 'download.item2.subtitle',
-    image: '/dl2.png'
+    image: '/dl2.png',
+    availableIn: ['no']
   },
   {
     id: 3,
     titleKey: 'download.item3.title',
     subtitleKey: 'download.item3.subtitle',
-    image: '/dl3.png'
+    image: '/dl3.png',
+    availableIn: ['no']
   },
   {
     id: 4,
     titleKey: 'download.item4.title',
     subtitleKey: 'download.item4.subtitle',
-    image: '/dl4.png'
+    image: '/dl4.png',
+    availableIn: ['no']
   },
   {
     id: 5,
@@ -69,7 +75,8 @@ const downloadItems: DownloadItem[] = [
     subtitleKey: 'download.item5.subtitle',
     image: '/dl5.png',
     fileUrl:
-      'https://github.com/Infrastructure-Consultancies-in-Norway/Egenskapssett-BRU/blob/main/Egenskapssett%20-%20Alle%20egenskapssett.xlsx'
+      'https://github.com/Infrastructure-Consultancies-in-Norway/Egenskapssett-BRU/blob/main/Egenskapssett%20-%20Alle%20egenskapssett.xlsx',
+    availableIn: ['no', 'en']
   },
   {
     id: 6,
@@ -77,32 +84,39 @@ const downloadItems: DownloadItem[] = [
     subtitleKey: 'download.item6.subtitle',
     image: '/dl6.png',
     fileUrl:
-      'https://github.com/Infrastructure-Consultancies-in-Norway/Element-og-Materialnavn/blob/main/Element-og-materialnavn-tabeller.pdf'
+      'https://github.com/Infrastructure-Consultancies-in-Norway/Element-og-Materialnavn/blob/main/Element-og-materialnavn-tabeller.pdf',
+    availableIn: ['no']
   },
   {
     id: 7,
     titleKey: 'download.item7.title',
     subtitleKey: 'download.item7.subtitle',
-    image: '/dl7.png'
+    image: '/dl7.png',
+    availableIn: ['no']
   },
   {
     id: 8,
     titleKey: 'download.item8.title',
     subtitleKey: 'download.item8.subtitle',
-    image: '/dl8.png'
+    image: '/dl8.png',
+    availableIn: ['no']
   }
 ];
 
 const LastNed: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  
+  const availableItems = downloadItems.filter(item => item.availableIn.includes(language));
   
   const handleCardClick = (
     event: React.MouseEvent<HTMLAnchorElement>,
     item: DownloadItem
   ) => {
-    if (item.fileUrl) {
+    const fileUrl = language === 'en' && item.fileUrlEn ? item.fileUrlEn : item.fileUrl;
+    
+    if (fileUrl) {
       event.preventDefault();
-      downloadGitHubFile(item.fileUrl);
+      downloadGitHubFile(fileUrl);
       return;
     }
 
@@ -114,23 +128,27 @@ const LastNed: React.FC = () => {
     <div id="last-ned" className="slide-component container my-5 pt-5">
       <h2>{t('download.title')}</h2>
       <div className="download-grid">
-        {downloadItems.map(item => (
-          <a
-            key={item.id}
-            href={item.fileUrl ?? '#'}
-            className="download-card"
-            aria-label={`${t('download.title')} ${t(item.titleKey)}`}
-            onClick={event => handleCardClick(event, item)}
-          >
-            <div className="download-card-image-wrapper">
-              <img src={item.image} alt={t(item.titleKey)} className="download-card-image" />
-            </div>
-            <div className="download-card-body">
-              <p className="download-card-title mb-1">{t(item.titleKey)}</p>
-              {/* <p className="download-card-subtitle mb-0">{t(item.subtitleKey)}</p> */}
-            </div>
-          </a>
-        ))}
+        {availableItems.map(item => {
+          const fileUrl = language === 'en' && item.fileUrlEn ? item.fileUrlEn : item.fileUrl;
+          
+          return (
+            <a
+              key={item.id}
+              href={fileUrl ?? '#'}
+              className="download-card"
+              aria-label={`${t('download.title')} ${t(item.titleKey)}`}
+              onClick={event => handleCardClick(event, item)}
+            >
+              <div className="download-card-image-wrapper">
+                <img src={item.image} alt={t(item.titleKey)} className="download-card-image" />
+              </div>
+              <div className="download-card-body">
+                <p className="download-card-title mb-1">{t(item.titleKey)}</p>
+                {/* <p className="download-card-subtitle mb-0">{t(item.subtitleKey)}</p> */}
+              </div>
+            </a>
+          );
+        })}
       </div>
       <div className="download-github-link">
         <a

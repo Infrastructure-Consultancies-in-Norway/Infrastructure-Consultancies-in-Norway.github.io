@@ -46,14 +46,14 @@ const downloadItems: DownloadItem[] = [
     titleKey: 'download.item1.title',
     subtitleKey: 'download.item1.subtitle',
     image: '/dl1.png',
-    availableIn: ['no']
+    availableIn: ['no', 'en']
   },
   {
     id: 2,
     titleKey: 'download.item2.title',
     subtitleKey: 'download.item2.subtitle',
     image: '/dl2.png',
-    availableIn: ['no']
+    availableIn: ['no', 'en']
   },
   {
     id: 3,
@@ -77,29 +77,6 @@ const downloadItems: DownloadItem[] = [
     fileUrl:
       'https://github.com/Infrastructure-Consultancies-in-Norway/Egenskapssett-BRU/blob/main/Egenskapssett%20-%20Alle%20egenskapssett.xlsx',
     availableIn: ['no', 'en']
-  },
-  {
-    id: 6,
-    titleKey: 'download.item6.title',
-    subtitleKey: 'download.item6.subtitle',
-    image: '/dl6.png',
-    fileUrl:
-      'https://github.com/Infrastructure-Consultancies-in-Norway/Element-og-Materialnavn/blob/main/Element-og-materialnavn-tabeller.pdf',
-    availableIn: ['no']
-  },
-  {
-    id: 7,
-    titleKey: 'download.item7.title',
-    subtitleKey: 'download.item7.subtitle',
-    image: '/dl7.png',
-    availableIn: ['no']
-  },
-  {
-    id: 8,
-    titleKey: 'download.item8.title',
-    subtitleKey: 'download.item8.subtitle',
-    image: '/dl8.png',
-    availableIn: ['no']
   }
 ];
 

@@ -5,7 +5,7 @@ import { glossaryItems } from '../data/glossary';
 import './Begrepsforklaring.css';
 
 const Begrepsforklaring: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const columns = useMemo(() => {
     const midpoint = Math.ceil(glossaryItems.length / 2);
     return [glossaryItems.slice(0, midpoint), glossaryItems.slice(midpoint)];
@@ -28,7 +28,7 @@ const Begrepsforklaring: React.FC = () => {
                       to={`/begrep/${term.slug}`}
                       className="glossary-link"
                     >
-                      <span>{term.label}</span>
+                      <span>{term.label[language]}</span>
                       <span
                         className="glossary-link-chevron bi bi-chevron-right"
                         aria-hidden="true"

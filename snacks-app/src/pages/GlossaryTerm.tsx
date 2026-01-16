@@ -6,15 +6,15 @@ import '../components/Begrepsforklaring.css';
 
 const GlossaryTerm: React.FC = () => {
   const { slug = '' } = useParams<{ slug: string }>();
-  const { getImagePath } = useLanguage();
+  const { getImagePath, language, t } = useLanguage();
   const term = glossaryBySlug[slug.toLowerCase()] ?? null;
 
   if (!term) {
     return (
       <div className="container my-5 glossary-term-page">
-        <p className="glossary-term-summary">Vi fant ikke begrepet du lette etter.</p>
+        <p className="glossary-term-summary">{t('glossary.notFound')}</p>
         <Link to="/#begrepsforklaring" className="glossary-back-link">
-          &larr; Tilbake til begrepslisten
+          &larr; {t('glossary.backToList')}
         </Link>
       </div>
     );
@@ -23,21 +23,21 @@ const GlossaryTerm: React.FC = () => {
   return (
     <div className="container my-5 glossary-term-page">
       <Link to="/#begrepsforklaring" className="glossary-back-link">
-        &larr; Tilbake til begrepslisten
+        &larr; {t('glossary.backToList')}
       </Link>
-      <h1 className="pt-5">{term.heading ?? term.title}</h1>
-      <p className="glossary-term-summary large-text-black-bold pt-5">{term.summary}</p>
+      <h1 className="pt-5">{term.heading ? term.heading[language] : term.title[language]}</h1>
+      <p className="glossary-term-summary large-text-black-bold pt-5">{term.summary[language]}</p>
 
       {term.image && (
         <div className="glossary-term-image-wrapper text-center">
-          <img src={getImagePath(`/${term.image.src}`)} alt={term.image.alt} className="img-fluid glossary-term-image" />
+          <img src={getImagePath(`/${term.image.src}`)} alt={term.image.alt[language]} className="img-fluid glossary-term-image" />
           {term.image.caption && (
-            <p className="glossary-term-image-caption">{term.image.caption}</p>
+            <p className="glossary-term-image-caption">{term.image.caption[language]}</p>
           )}
         </div>
       )}
 
-      {term.details.map((paragraph, index) => (
+      {term.details[language].map((paragraph, index) => (
         <p key={`${term.slug}-paragraph-${index}`} className="large-text glossary-term-paragraph">
           {paragraph}
         </p>
@@ -45,7 +45,7 @@ const GlossaryTerm: React.FC = () => {
 
       {term.related && term.related.length > 0 && (
         <div className="glossary-related">
-          <h2>Se også</h2>
+          <h2>{t('glossary.seeAlso')}</h2>
           <ul className="glossary-related-list">
             {term.related.map(relatedSlug => {
               const relatedTerm = glossaryBySlug[relatedSlug];
@@ -57,7 +57,7 @@ const GlossaryTerm: React.FC = () => {
               return (
                 <li key={`${term.slug}-related-${relatedSlug}`}>
                   <Link to={`/begrep/${relatedTerm.slug}`} className="glossary-related-link">
-                    {relatedTerm.title}
+                    {relatedTerm.title[language]}
                   </Link>
                 </li>
               );

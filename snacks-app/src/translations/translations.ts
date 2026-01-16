@@ -118,6 +118,9 @@ export const translations = {
     // Glossary
     'glossary.title': 'Begrepsforklaring',
     'glossary.intro': 'Velg et begrep for å lese hele forklaringen.',
+    'glossary.seeAlso': 'Se også',
+    'glossary.backToList': 'Tilbake til begrepslisten',
+    'glossary.notFound': 'Vi fant ikke begrepet du lette etter.',
 
     // Additional Info
     'additional.title': 'Tilleggsinformasjon',
@@ -250,6 +253,9 @@ export const translations = {
     // Glossary
     'glossary.title': 'Glossary',
     'glossary.intro': 'Select a term to read the full explanation.',
+    'glossary.seeAlso': 'See also',
+    'glossary.backToList': 'Back to glossary list',
+    'glossary.notFound': 'We could not find the term you were looking for.',
 
     // Additional Info
     'additional.title': 'Additional Information',

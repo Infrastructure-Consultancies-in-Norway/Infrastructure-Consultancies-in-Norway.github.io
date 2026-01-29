@@ -83,7 +83,7 @@ export const translations = {
     'propset.KON_Tre': 'KON_Tre',
 
     // Validation / N400
-    'validation.n400.text': 'SNACKS-strukturen er godkjent for bruk i modellbaserte leveranser i henhold til N400',
+    'validation.n400.text': 'SNACKS-strukturen ivaretar krav til elementinformasjon i henhold til N400',
     'validation.n400.link': 'Les mer her',
     'validation.svv.text': 'SNACKS-strukturen er utarbeidet i samarbeid med Statens vegvesen Vegdirektoratet',
     'validation.modal.close': 'Lukk',
@@ -218,7 +218,7 @@ export const translations = {
     'propset.KON_Tre': 'KON_Timber',
 
     // Validation / N400
-    'validation.n400.text': 'The SNACKS Ifc Structure is approved for use in model-based deliveries in accordance with N400',
+    'validation.n400.text': 'The SNACKS structure meets requirements for object information in accordance with N400',
     'validation.n400.link': 'Read more here',
     'validation.svv.text': 'The SNACKS Ifc Structure was developed in collaboration with the Norwegian Public Roads Administration',
     'validation.modal.close': 'Close',

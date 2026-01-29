@@ -50,7 +50,7 @@ const Properties = () => {
         }}
       >
         <iframe
-          src="https://docs.google.com/spreadsheets/d/1OIcjns6syG8J46Bz-4GK4lV2gzTOQuBNXTzi2KF78xU/edit?usp=sharing"
+          src="https://docs.google.com/spreadsheets/d/15hSF6y0FEG7EfxGPN8YaM3yOWnKbNkvk/edit?usp=sharing&ouid=118123504268154946771&rtpof=true&sd=true"
           frameBorder="0"
           style={{ width: '100%', height: '100%' }}
           title="Properties Spreadsheet"

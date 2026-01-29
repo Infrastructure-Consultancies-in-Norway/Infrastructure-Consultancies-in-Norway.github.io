@@ -87,7 +87,7 @@ const downloadItems: DownloadItem[] = [
     subtitleKey: 'download.item5.subtitle',
     image: '/dl5.png',
     fileUrl:
-      'https://github.com/Infrastructure-Consultancies-in-Norway/Egenskapssett-BRU/blob/main/Egenskapssett%20-%20Alle%20egenskapssett.xlsx',
+      'https://github.com/Infrastructure-Consultancies-in-Norway/Infrastructure-Consultancies-in-Norway.github.io/blob/master/Files/Egenskapsstruktur.xlsx',
     availableIn: ['no', 'en']
   }
 ];

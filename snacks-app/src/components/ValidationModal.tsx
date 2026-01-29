@@ -19,6 +19,8 @@ const ValidationModal: React.FC<ValidationModalProps> = ({ isOpen, onClose }) =>
     }
   };
 
+  
+
   return (
     <div className="validation-modal-backdrop" onClick={handleBackdropClick}>
       <div className="validation-modal-content">
@@ -38,7 +40,7 @@ const ValidationModal: React.FC<ValidationModalProps> = ({ isOpen, onClose }) =>
             alt="N400 Logo" 
             className="validation-box-logo-n400"
           />
-          <a href={N400_APPROVAL_URL} className="validation-box-link">
+          <a href={N400_APPROVAL_URL} className="validation-box-link" target="_blank" rel="noopener noreferrer">
             {t('validation.n400.link')}
           </a>
         </div>

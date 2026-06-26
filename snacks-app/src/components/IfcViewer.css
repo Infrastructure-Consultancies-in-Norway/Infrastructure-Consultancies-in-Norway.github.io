@@ -5,6 +5,23 @@
   min-height: var(--ifc-viewer-height, 560px);
 }
 
+.ifc-viewer-credit {
+  color: var(--snacks-dark-grey);
+  font-size: 0.95rem;
+  margin-top: -0.35rem;
+}
+
+.ifc-viewer-credit a {
+  color: var(--snacks-dark-green);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.ifc-viewer-credit a:hover {
+  color: #3f4a38;
+}
+
 .ifc-viewer-panel,
 .ifc-viewer-canvas-panel {
   border: 1px solid #d7ded2;

@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { IFC_LITE_URL, IFC_SAMPLE_MODEL_GITHUB_URL, IFC_SAMPLE_MODEL_URL } from '../constants/links';
 import { useLanguage } from '../contexts/LanguageContext';
 import './IfcViewer.css';
 
-const IFC_MODEL_URL = '/Files/Eksempelmodell_SNACks.ifc';
 // const IFC_MODEL_URL = '/Files/f_bru_34-0147_Osa_bru.ifc';
 const IFC_LITE_WASM_URL = '/wasm/ifc-lite_bg.wasm';
 
@@ -282,7 +282,7 @@ const IfcViewer: React.FC = () => {
         await initIfcLiteWasm({ module_or_path: IFC_LITE_WASM_URL });
         resizeRenderer();
 
-        const response = await fetch(IFC_MODEL_URL);
+        const response = await fetch(IFC_SAMPLE_MODEL_URL);
 
         if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -517,6 +517,16 @@ const IfcViewer: React.FC = () => {
     <div id="ifc-viewer" className="slide-component container my-5 pt-5">
       <h2>{t('ifcViewer.title')}</h2>
       <p className="lead">{t('ifcViewer.intro')}</p>
+      <p className="ifc-viewer-credit">
+        {t('ifcViewer.creditPrefix')}{' '}
+        <a href={IFC_LITE_URL} target="_blank" rel="noreferrer">
+          ifcLite
+        </a>
+        {' | '}
+        <a href={IFC_SAMPLE_MODEL_GITHUB_URL} target="_blank" rel="noreferrer">
+          {t('ifcViewer.sampleModelLink')}
+        </a>
+      </p>
       <div ref={shellRef} className="ifc-viewer-shell" aria-label={t('ifcViewer.title')}>
         <aside className="ifc-viewer-panel ifc-viewer-hierarchy">
           <div className="ifc-viewer-panel-header">

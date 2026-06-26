@@ -131,7 +131,7 @@ export const translations = {
     'ifcViewer.title': 'IFC-visning',
     'ifcViewer.intro': 'Utforsk en liten IFC-eksempelmodell direkte i nettleseren.',
     'ifcViewer.open': 'Åpne IFC-visning',
-    'ifcViewer.openWindow': 'Åpne i nytt vindu',
+    'ifcViewer.openWindow': 'Åpne i ny fane',
     'ifcViewer.hierarchy': 'Hierarki',
     'ifcViewer.hierarchyPlaceholder': 'Modellhierarki vises her når IFC-leseren er koblet til.',
     'ifcViewer.searchPlaceholder': 'Søk etter objekt, type eller ID',

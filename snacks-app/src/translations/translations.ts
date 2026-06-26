@@ -9,6 +9,7 @@ export const translations = {
     'nav.download': 'Last ned',
     'nav.glossary': 'Begrepsforklaring',
     'nav.additional': 'Tilleggsinformasjon',
+    'nav.ifcViewer': 'IFC-visning',
     'nav.contact': 'Kontakt',
     'nav.approval': 'Godkjennelse iht. N400',
 
@@ -126,6 +127,30 @@ export const translations = {
     'additional.title': 'Tilleggsinformasjon',
     'additional.video.title': 'Presentasjon BA-Nettverket',
 
+    // IFC Viewer
+    'ifcViewer.title': 'IFC-visning',
+    'ifcViewer.intro': 'Utforsk en liten IFC-eksempelmodell direkte i nettleseren.',
+    'ifcViewer.open': 'Åpne IFC-visning',
+    'ifcViewer.openWindow': 'Åpne i nytt vindu',
+    'ifcViewer.hierarchy': 'Hierarki',
+    'ifcViewer.hierarchyPlaceholder': 'Modellhierarki vises her når IFC-leseren er koblet til.',
+    'ifcViewer.searchPlaceholder': 'Søk etter objekt, type eller ID',
+    'ifcViewer.canvasLabel': 'IFC-modellvisning',
+    'ifcViewer.loadingPlaceholder': 'IFC-leseren klargjores.',
+    'ifcViewer.fetching': 'Laster IFC-modell...',
+    'ifcViewer.parsing': 'Leser IFC-data...',
+    'ifcViewer.processingGeometry': 'Bygger geometri...',
+    'ifcViewer.loadingGeometry': 'Laster objekter...',
+    'ifcViewer.ready': 'Klar.',
+    'ifcViewer.objectsLoaded': 'objekter tilgjengelig.',
+    'ifcViewer.failed': 'IFC-visningen kunne ikke startes.',
+    'ifcViewer.noGeometry': 'Modellen inneholder ingen visbar geometri.',
+    'ifcViewer.webgpuUnsupported': 'Denne nettleseren støtter ikke WebGPU.',
+    'ifcViewer.webgpuUnsupportedHint': 'Åpne siden i en oppdatert Chrome eller Edge for å bruke IFC-visningen.',
+    'ifcViewer.properties': 'Egenskaper',
+    'ifcViewer.propertiesPlaceholder': 'Velg et objekt for å se egenskapssett og mengder.',
+    'ifcViewer.noProperties': 'Ingen egenskapssett eller mengder ble funnet for objektet.',
+
     // Contact
     'contact.title': 'Kontakt',
     'contact.intro': 'Har du spørsmål eller ønsker å komme i kontakt med noen av oss? Her finner du oversikt over teammedlemmer og deres kontaktinformasjon. Ønsker du å gi tilbakemelding på innholdet i SNACKS, eller har du forslag til forbedringer kan det gjøres direkte i Github, eller ved å kontakte oss direkte.',
@@ -144,6 +169,7 @@ export const translations = {
     'nav.download': 'Download',
     'nav.glossary': 'Glossary',
     'nav.additional': 'Additional Information',
+    'nav.ifcViewer': 'IFC Viewer',
     'nav.contact': 'Contact',
     'nav.approval': 'Approval acc. to N400',
 
@@ -260,6 +286,30 @@ export const translations = {
     // Additional Info
     'additional.title': 'Additional Information',
     'additional.video.title': 'Presentation BA Network',
+
+    // IFC Viewer
+    'ifcViewer.title': 'IFC Viewer',
+    'ifcViewer.intro': 'Explore a small IFC sample model directly in the browser.',
+    'ifcViewer.open': 'Open IFC viewer',
+    'ifcViewer.openWindow': 'Open in new window',
+    'ifcViewer.hierarchy': 'Hierarchy',
+    'ifcViewer.hierarchyPlaceholder': 'The model hierarchy will appear here when the IFC reader is connected.',
+    'ifcViewer.searchPlaceholder': 'Search by object, type, or ID',
+    'ifcViewer.canvasLabel': 'IFC model viewer',
+    'ifcViewer.loadingPlaceholder': 'Preparing the IFC viewer.',
+    'ifcViewer.fetching': 'Loading IFC model...',
+    'ifcViewer.parsing': 'Reading IFC data...',
+    'ifcViewer.processingGeometry': 'Building geometry...',
+    'ifcViewer.loadingGeometry': 'Loading objects...',
+    'ifcViewer.ready': 'Ready.',
+    'ifcViewer.objectsLoaded': 'objects available.',
+    'ifcViewer.failed': 'The IFC viewer could not start.',
+    'ifcViewer.noGeometry': 'The model does not contain visible geometry.',
+    'ifcViewer.webgpuUnsupported': 'This browser does not support WebGPU.',
+    'ifcViewer.webgpuUnsupportedHint': 'Open the page in an updated Chrome or Edge browser to use the IFC viewer.',
+    'ifcViewer.properties': 'Properties',
+    'ifcViewer.propertiesPlaceholder': 'Select an object to inspect property sets and quantities.',
+    'ifcViewer.noProperties': 'No property sets or quantities were found for this object.',
 
     // Contact
     'contact.title': 'Contact',

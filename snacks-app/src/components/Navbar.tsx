@@ -99,6 +99,11 @@ const Navbar = () => {
                   {t('nav.properties')}
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to={`/ifc-viewer?lang=${language}`} onClick={closeNavbar}>
+                  {t('nav.ifcViewer')}
+                </Link>
+              </li>
               {/* <li className="nav-item">
                 <Link className="nav-link" to="/contact">
                   {t('nav.contact')}

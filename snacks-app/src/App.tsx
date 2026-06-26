@@ -8,6 +8,7 @@ import Contact from './pages/Contact'
 import Properties from './pages/Properties'
 import EasterEgg from './pages/EasterEgg'
 import GlossaryTerm from './pages/GlossaryTerm'
+import IfcViewerPage from './pages/IfcViewerPage'
 import NotFound from './pages/NotFound'
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<OnePage />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/properties" element={<Properties />} />
+        <Route path="/ifc-viewer" element={<IfcViewerPage />} />
         <Route path="/easter-egg" element={<EasterEgg />} />
         <Route path="/begrep/:slug" element={<GlossaryTerm />} />
         <Route path="*" element={<NotFound />} />

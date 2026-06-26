@@ -135,6 +135,10 @@ export const translations = {
     'ifcViewer.hierarchy': 'Hierarki',
     'ifcViewer.hierarchyPlaceholder': 'Modellhierarki vises her når IFC-leseren er koblet til.',
     'ifcViewer.searchPlaceholder': 'Søk etter objekt, type eller ID',
+    'ifcViewer.noSearchResults': 'Ingen objekter passer søket.',
+    'ifcViewer.resizeHierarchy': 'Endre bredden på hierarkipanelet',
+    'ifcViewer.resizeProperties': 'Endre bredden på egenskapspanelet',
+    'ifcViewer.resizeViewer': 'Endre høyden på modellvisningen',
     'ifcViewer.canvasLabel': 'IFC-modellvisning',
     'ifcViewer.loadingPlaceholder': 'IFC-leseren klargjores.',
     'ifcViewer.fetching': 'Laster IFC-modell...',
@@ -150,6 +154,8 @@ export const translations = {
     'ifcViewer.properties': 'Egenskaper',
     'ifcViewer.propertiesPlaceholder': 'Velg et objekt for å se egenskapssett og mengder.',
     'ifcViewer.noProperties': 'Ingen egenskapssett eller mengder ble funnet for objektet.',
+    'ifcViewer.expressId': 'Express ID',
+    'ifcViewer.fitModel': 'Tilpass modell',
 
     // Contact
     'contact.title': 'Kontakt',
@@ -295,6 +301,10 @@ export const translations = {
     'ifcViewer.hierarchy': 'Hierarchy',
     'ifcViewer.hierarchyPlaceholder': 'The model hierarchy will appear here when the IFC reader is connected.',
     'ifcViewer.searchPlaceholder': 'Search by object, type, or ID',
+    'ifcViewer.noSearchResults': 'No objects match the search.',
+    'ifcViewer.resizeHierarchy': 'Resize the hierarchy panel',
+    'ifcViewer.resizeProperties': 'Resize the properties panel',
+    'ifcViewer.resizeViewer': 'Resize the model viewer height',
     'ifcViewer.canvasLabel': 'IFC model viewer',
     'ifcViewer.loadingPlaceholder': 'Preparing the IFC viewer.',
     'ifcViewer.fetching': 'Loading IFC model...',
@@ -310,6 +320,8 @@ export const translations = {
     'ifcViewer.properties': 'Properties',
     'ifcViewer.propertiesPlaceholder': 'Select an object to inspect property sets and quantities.',
     'ifcViewer.noProperties': 'No property sets or quantities were found for this object.',
+    'ifcViewer.expressId': 'Express ID',
+    'ifcViewer.fitModel': 'Fit model',
 
     // Contact
     'contact.title': 'Contact',

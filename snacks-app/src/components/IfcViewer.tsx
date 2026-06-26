@@ -2,14 +2,24 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useLanguage } from '../contexts/LanguageContext';
 import './IfcViewer.css';
 
-// const IFC_MODEL_URL = '/Files/Eksempelmodell_SNACks.ifc';
-const IFC_MODEL_URL = '/Files/f_bru_34-0147_Osa_bru.ifc';
+const IFC_MODEL_URL = '/Files/Eksempelmodell_SNACks.ifc';
+// const IFC_MODEL_URL = '/Files/f_bru_34-0147_Osa_bru.ifc';
 const IFC_LITE_WASM_URL = '/wasm/ifc-lite_bg.wasm';
 
 type EntitySummary = {
   expressId: number;
   type: string;
   name: string;
+};
+
+type HierarchyGroup = {
+  type: string;
+  entities: EntitySummary[];
+};
+
+type ViewerMesh = {
+  expressId?: number;
+  ifcType?: string;
 };
 
 type PropertySet = {
@@ -61,7 +71,7 @@ const getEntityLabel = (store: import('@ifc-lite/parser').IfcDataStore | null, e
 
 const getEntitySummaries = (
   store: import('@ifc-lite/parser').IfcDataStore | null,
-  meshes: import('@ifc-lite/geometry/dist/types').MeshData[],
+  meshes: ViewerMesh[],
 ): EntitySummary[] => {
   const entitiesById = new Map<number, EntitySummary>();
 
@@ -85,8 +95,27 @@ const getEntitySummaries = (
   return Array.from(entitiesById.values()).sort((left, right) => left.type.localeCompare(right.type) || left.expressId - right.expressId);
 };
 
+const groupEntitiesByType = (entities: EntitySummary[]): HierarchyGroup[] => {
+  const groupsByType = new Map<string, EntitySummary[]>();
+
+  for (const entity of entities) {
+    const existingGroup = groupsByType.get(entity.type);
+
+    if (existingGroup) {
+      existingGroup.push(entity);
+    } else {
+      groupsByType.set(entity.type, [entity]);
+    }
+  }
+
+  return Array.from(groupsByType.entries())
+    .map(([type, groupEntities]) => ({ type, entities: groupEntities }))
+    .sort((left, right) => left.type.localeCompare(right.type));
+};
+
 const IfcViewer: React.FC = () => {
   const { t } = useLanguage();
+  const shellRef = useRef<HTMLDivElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const runtimeRef = useRef<IfcRuntime>({ renderer: null, store: null, selectedId: null, animationFrame: null });
   const dragStateRef = useRef<{ button: number; x: number; y: number; moved: boolean } | null>(null);
@@ -98,20 +127,45 @@ const IfcViewer: React.FC = () => {
   const [selectedEntity, setSelectedEntity] = useState<EntitySummary | null>(null);
   const [propertySets, setPropertySets] = useState<PropertySet[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [expandedTypes, setExpandedTypes] = useState<Set<string>>(() => new Set());
+  const [viewerHeight, setViewerHeight] = useState(560);
+  const [panelSizes, setPanelSizes] = useState({ hierarchy: 260, properties: 300 });
+  const resizeStateRef = useRef<
+    | { kind: 'hierarchy' | 'properties'; startX: number; startSize: number }
+    | { kind: 'height'; startY: number; startHeight: number }
+    | null
+  >(null);
 
   translateRef.current = t;
 
-  const filteredEntities = useMemo(() => {
+  useEffect(() => {
+    const shell = shellRef.current;
+
+    if (!shell) {
+      return;
+    }
+
+    shell.style.setProperty('--ifc-hierarchy-width', `${panelSizes.hierarchy}px`);
+    shell.style.setProperty('--ifc-properties-width', `${panelSizes.properties}px`);
+    shell.style.setProperty('--ifc-viewer-height', `${viewerHeight}px`);
+  }, [panelSizes, viewerHeight]);
+
+  const filteredHierarchy = useMemo(() => {
     const normalizedSearch = searchTerm.trim().toLowerCase();
 
     if (!normalizedSearch) {
-      return entities.slice(0, 150);
+      return groupEntitiesByType(entities);
     }
 
-    return entities
-      .filter((entity) => `${entity.name} ${entity.type} ${entity.expressId}`.toLowerCase().includes(normalizedSearch))
-      .slice(0, 150);
+    return groupEntitiesByType(
+      entities.filter((entity) => `${entity.name} ${entity.type} ${entity.expressId}`.toLowerCase().includes(normalizedSearch)),
+    );
   }, [entities, searchTerm]);
+
+  const totalVisibleEntities = useMemo(
+    () => filteredHierarchy.reduce((count, group) => count + group.entities.length, 0),
+    [filteredHierarchy],
+  );
 
   const renderSelection = useCallback((expressId: number | null) => {
     const { renderer } = runtimeRef.current;
@@ -129,7 +183,7 @@ const IfcViewer: React.FC = () => {
   }, []);
 
   const selectEntity = useCallback(async (expressId: number | null) => {
-    const { store, renderer } = runtimeRef.current;
+    const { store } = runtimeRef.current;
     runtimeRef.current.selectedId = expressId;
     renderSelection(expressId);
 
@@ -156,10 +210,6 @@ const IfcViewer: React.FC = () => {
     }));
 
     setPropertySets([...properties, ...quantities]);
-
-    if (renderer) {
-      renderer.fitToView();
-    }
   }, [renderSelection]);
 
   useEffect(() => {
@@ -259,7 +309,7 @@ const IfcViewer: React.FC = () => {
         const geometry = new GeometryProcessor({ tessellationQuality: 'low' });
         await geometry.init();
 
-        const meshes: import('@ifc-lite/geometry/dist/types').MeshData[] = [];
+        const meshes: ViewerMesh[] = [];
 
         for await (const event of geometry.processAdaptive(bytes, {
           batchSize: {
@@ -326,6 +376,7 @@ const IfcViewer: React.FC = () => {
   }, [renderSelection]);
 
   const handlePointerDown = (event: React.PointerEvent<HTMLCanvasElement>) => {
+    event.preventDefault();
     event.currentTarget.setPointerCapture(event.pointerId);
     dragStateRef.current = { button: event.button, x: event.clientX, y: event.clientY, moved: false };
   };
@@ -337,6 +388,8 @@ const IfcViewer: React.FC = () => {
     if (!dragState || !renderer) {
       return;
     }
+
+    event.preventDefault();
 
     const deltaX = event.clientX - dragState.x;
     const deltaY = event.clientY - dragState.y;
@@ -362,6 +415,7 @@ const IfcViewer: React.FC = () => {
     const dragState = dragStateRef.current;
     const renderer = runtimeRef.current.renderer;
     dragStateRef.current = null;
+    event.preventDefault();
     event.currentTarget.releasePointerCapture(event.pointerId);
 
     if (!renderer || dragState?.moved) {
@@ -373,7 +427,89 @@ const IfcViewer: React.FC = () => {
     await selectEntity(pick?.expressId ?? null);
   };
 
+  const handlePointerCancel = (event: React.PointerEvent<HTMLCanvasElement>) => {
+    dragStateRef.current = null;
+
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+  };
+
+  const fitModelToView = () => {
+    const { renderer } = runtimeRef.current;
+
+    if (!renderer) {
+      return;
+    }
+
+    renderer.fitToView();
+    renderSelection(runtimeRef.current.selectedId);
+  };
+
+  const toggleType = (type: string) => {
+    setExpandedTypes((currentExpandedTypes) => {
+      const nextExpandedTypes = new Set(currentExpandedTypes);
+
+      if (nextExpandedTypes.has(type)) {
+        nextExpandedTypes.delete(type);
+      } else {
+        nextExpandedTypes.add(type);
+      }
+
+      return nextExpandedTypes;
+    });
+  };
+
+  const startResize = (event: React.PointerEvent<HTMLButtonElement>, kind: 'hierarchy' | 'properties' | 'height') => {
+    event.preventDefault();
+    event.currentTarget.setPointerCapture(event.pointerId);
+    resizeStateRef.current =
+      kind === 'height'
+        ? { kind, startY: event.clientY, startHeight: viewerHeight }
+        : {
+            kind,
+            startX: event.clientX,
+            startSize: kind === 'hierarchy' ? panelSizes.hierarchy : panelSizes.properties,
+          };
+  };
+
+  const handleResizeMove = (event: React.PointerEvent<HTMLButtonElement>) => {
+    const resizeState = resizeStateRef.current;
+
+    if (!resizeState) {
+      return;
+    }
+
+    if (resizeState.kind === 'height') {
+      const nextHeight = Math.min(820, Math.max(380, resizeState.startHeight + event.clientY - resizeState.startY));
+      setViewerHeight(nextHeight);
+      return;
+    }
+
+    const direction = resizeState.kind === 'hierarchy' ? 1 : -1;
+    const nextSize = Math.min(420, Math.max(190, resizeState.startSize + (event.clientX - resizeState.startX) * direction));
+    setPanelSizes((currentSizes) => ({ ...currentSizes, [resizeState.kind]: nextSize }));
+  };
+
+  const stopResize = (event: React.PointerEvent<HTMLButtonElement>) => {
+    resizeStateRef.current = null;
+
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+  };
+
   const handleContextMenu = (event: React.MouseEvent<HTMLCanvasElement>) => {
+    event.preventDefault();
+  };
+
+  const handleCanvasMouseButton = (event: React.MouseEvent<HTMLCanvasElement>) => {
+    if (event.button === 1 || event.button === 2) {
+      event.preventDefault();
+    }
+  };
+
+  const handleAuxClick = (event: React.MouseEvent<HTMLCanvasElement>) => {
     event.preventDefault();
   };
 
@@ -381,9 +517,12 @@ const IfcViewer: React.FC = () => {
     <div id="ifc-viewer" className="slide-component container my-5 pt-5">
       <h2>{t('ifcViewer.title')}</h2>
       <p className="lead">{t('ifcViewer.intro')}</p>
-      <div className="ifc-viewer-shell" aria-label={t('ifcViewer.title')}>
+      <div ref={shellRef} className="ifc-viewer-shell" aria-label={t('ifcViewer.title')}>
         <aside className="ifc-viewer-panel ifc-viewer-hierarchy">
-          <h3>{t('ifcViewer.hierarchy')}</h3>
+          <div className="ifc-viewer-panel-header">
+            <h3>{t('ifcViewer.hierarchy')}</h3>
+            <span>{entities.length}</span>
+          </div>
           <input
             className="ifc-viewer-search"
             type="search"
@@ -395,22 +534,49 @@ const IfcViewer: React.FC = () => {
           />
           {entities.length ? (
             <div className="ifc-viewer-entity-list" aria-label={t('ifcViewer.hierarchy')}>
-              {filteredEntities.map((entity) => (
-                <button
-                  className={`ifc-viewer-entity-item${selectedEntity?.expressId === entity.expressId ? ' selected' : ''}`}
-                  key={entity.expressId}
-                  type="button"
-                  onClick={() => selectEntity(entity.expressId)}
-                >
-                  <span>{getEntityLabel(runtimeRef.current.store, entity.expressId, entity.type)}</span>
-                  <small>{entity.type}</small>
-                </button>
-              ))}
+              {filteredHierarchy.map((group) => {
+                const isExpanded = searchTerm.trim() ? true : expandedTypes.has(group.type);
+
+                return (
+                  <section className="ifc-viewer-tree-group" key={group.type}>
+                    <button className="ifc-viewer-tree-group-toggle" type="button" onClick={() => toggleType(group.type)}>
+                      <span aria-hidden="true">{isExpanded ? 'v' : '>'}</span>
+                      <strong>{group.type}</strong>
+                      <small>{group.entities.length}</small>
+                    </button>
+                    {isExpanded ? (
+                      <div className="ifc-viewer-tree-items">
+                        {group.entities.map((entity) => (
+                          <button
+                            className={`ifc-viewer-entity-item${selectedEntity?.expressId === entity.expressId ? ' selected' : ''}`}
+                            key={entity.expressId}
+                            type="button"
+                            onClick={() => selectEntity(entity.expressId)}
+                          >
+                            <span>{getEntityLabel(runtimeRef.current.store, entity.expressId, entity.type)}</span>
+                            <small>#{entity.expressId}</small>
+                          </button>
+                        ))}
+                      </div>
+                    ) : null}
+                  </section>
+                );
+              })}
+              {!totalVisibleEntities ? <p>{t('ifcViewer.noSearchResults')}</p> : null}
             </div>
           ) : (
             <p>{t('ifcViewer.hierarchyPlaceholder')}</p>
           )}
         </aside>
+        <button
+          className="ifc-viewer-resize-handle ifc-viewer-resize-handle-vertical"
+          type="button"
+          aria-label={t('ifcViewer.resizeHierarchy')}
+          onPointerDown={(event) => startResize(event, 'hierarchy')}
+          onPointerMove={handleResizeMove}
+          onPointerUp={stopResize}
+          onPointerCancel={stopResize}
+        />
         <div className="ifc-viewer-canvas-panel">
           <canvas
             ref={canvasRef}
@@ -419,30 +585,70 @@ const IfcViewer: React.FC = () => {
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
+            onPointerCancel={handlePointerCancel}
+            onMouseDown={handleCanvasMouseButton}
+            onMouseUp={handleCanvasMouseButton}
             onContextMenu={handleContextMenu}
+            onAuxClick={handleAuxClick}
           />
           <div className={`ifc-viewer-status${error ? ' error' : ''}${isReady ? ' ready' : ''}`}>{error || status}</div>
+          <button
+            className="ifc-viewer-resize-handle ifc-viewer-resize-handle-horizontal"
+            type="button"
+            aria-label={t('ifcViewer.resizeViewer')}
+            onPointerDown={(event) => startResize(event, 'height')}
+            onPointerMove={handleResizeMove}
+            onPointerUp={stopResize}
+            onPointerCancel={stopResize}
+          />
         </div>
+        <button
+          className="ifc-viewer-resize-handle ifc-viewer-resize-handle-vertical"
+          type="button"
+          aria-label={t('ifcViewer.resizeProperties')}
+          onPointerDown={(event) => startResize(event, 'properties')}
+          onPointerMove={handleResizeMove}
+          onPointerUp={stopResize}
+          onPointerCancel={stopResize}
+        />
         <aside className="ifc-viewer-panel ifc-viewer-properties">
-          <h3>{t('ifcViewer.properties')}</h3>
+          <div className="ifc-viewer-panel-header">
+            <h3>{t('ifcViewer.properties')}</h3>
+            {selectedEntity ? (
+              <button className="ifc-viewer-frame-button" type="button" onClick={fitModelToView}>
+                {t('ifcViewer.fitModel')}
+              </button>
+            ) : null}
+          </div>
           {selectedEntity ? (
             <>
               <div className="ifc-viewer-selected-meta">
                 <strong>{selectedEntity.name}</strong>
-                <span>{selectedEntity.type} #{selectedEntity.expressId}</span>
+                <span>{selectedEntity.type}</span>
+                <dl className="ifc-viewer-identity-list">
+                  <div>
+                    <dt>{t('ifcViewer.expressId')}</dt>
+                    <dd>#{selectedEntity.expressId}</dd>
+                  </div>
+                </dl>
               </div>
               {propertySets.length ? (
                 <div className="ifc-viewer-property-list">
                   {propertySets.map((propertySet) => (
-                    <section key={propertySet.name} className="ifc-viewer-property-set">
-                      <h4>{propertySet.name}</h4>
-                      {(propertySet.properties || propertySet.quantities || []).map((property) => (
-                        <dl key={property.name} className="ifc-viewer-property-row">
-                          <dt>{property.name}</dt>
-                          <dd>{formatValue('values' in property && property.values ? property.values : property.value)}</dd>
-                        </dl>
-                      ))}
-                    </section>
+                    <details key={propertySet.name} className="ifc-viewer-property-set" open>
+                      <summary>
+                        <span>{propertySet.name}</span>
+                        <small>{(propertySet.properties || propertySet.quantities || []).length}</small>
+                      </summary>
+                      <div className="ifc-viewer-property-set-body">
+                        {(propertySet.properties || propertySet.quantities || []).map((property) => (
+                          <dl key={property.name} className="ifc-viewer-property-row">
+                            <dt>{property.name}</dt>
+                            <dd>{formatValue('values' in property && property.values ? property.values : property.value)}</dd>
+                          </dl>
+                        ))}
+                      </div>
+                    </details>
                   ))}
                 </div>
               ) : (

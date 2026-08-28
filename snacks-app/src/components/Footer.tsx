@@ -48,9 +48,9 @@ const Footer: React.FC = () => {
   return (
     <footer className="footer-snacks text-white text-center p-4 mt-5">
       <div className="container">
-        <h5>{t('footer.collaboration')}</h5>
+        {/* <h5>{t('footer.collaboration')}</h5> */}
         <div className="row justify-content-center">
-          {partners.map(({ name, href, logoSrc, logoHeight = 50, colClass = 'col-6 col-md-3', labelClass }) => (
+          {/* {partners.map(({ name, href, logoSrc, logoHeight = 50, colClass = 'col-6 col-md-3', labelClass }) => (
             <div className={`${colClass} text-center logo`} key={name}>
               <a href={href} aria-label={name}>
                 <div className="logo-container" style={{ height: `${logoHeight}px` }}>
@@ -59,9 +59,9 @@ const Footer: React.FC = () => {
                 <span className={labelClass ?? ''}>{name}</span>
               </a>
             </div>
-          ))}
+          ))} */}
         </div>
-        <hr className="my-2" />
+        {/* <hr className="my-2" /> */}
         <p className="small mb-0">v{__APP_VERSION__}</p>
       </div>
     </footer>

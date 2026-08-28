@@ -15,7 +15,7 @@ export const translations = {
 
     // Main
     'main.title': 'SNACKS',
-    'main.intro': 'SNACKS er et samarbeid mellom Sweco, Norconsult, Aas-Jakobsen og Cowi med mål å standardisere IFC-modeller av bruer og andre samferdselskonstruksjoner.',
+    'main.intro': 'SNACKS startet som et samarbeid mellom Sweco, Norconsult, Aas-Jakobsen og Cowi med mål å standardisere IFC-modeller av bruer og andre samferdselskonstruksjoner.',
     'main.std1': 'Standardisering del 1:',
     'main.std1.subtitle': 'SNACKS-strukturen',
     'main.std2': 'Standardisering del 2:',
@@ -183,7 +183,7 @@ export const translations = {
 
     // Main
     'main.title': 'SNACKS',
-    'main.intro': 'SNACKS is a collaboration between four of Norway\'s largest consultant companies (Sweco, Norconsult, Aas-Jakobsen, and Cowi) with the aim of standardizing IFC models of bridges.',
+    'main.intro': 'SNACKS started as a collaboration between four of Norway\'s largest consultant companies (Sweco, Norconsult, Aas-Jakobsen, and Cowi) with the aim of standardizing IFC models of bridges.',
     'main.std1': 'Standardization part 1:',
     'main.std1.subtitle': 'SNACKS Ifc Structure',
     'main.std2': 'Standardization part 2:',

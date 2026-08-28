@@ -1,6 +1,6 @@
 export interface Person {
   name: string;
-  title: string;
+  title?: string;
   email: string;
   imageSrc: string;
 }
@@ -39,13 +39,13 @@ export const people: Person[] = [
   {
     name: 'Simon Sòlbjørg',
     title: 'Ingeniør HiO 2010',
-    email: 'sso@aaj.no',
+    email: 'sso@framverk.no',
     imageSrc: '/Images/simon.jpg',
   },
   {
     name: 'Olav Fiksdal Haukvik',
     title: 'Sivilingeniør NTNU 2011',
-    email: 'oha@aaj.no',
+    email: 'ofh@framverk.no',
     imageSrc: '/Images/olav.jpg',
   },
   {
@@ -59,5 +59,11 @@ export const people: Person[] = [
     title: 'MSc UiO 2012',
     email: 'fkjn@cowi.com',
     imageSrc: '/Images/fredrik.png',
+  },
+    {
+    name: 'Pawel Syslo',
+    title: 'Sivilingeniør 2014',
+    email: 'pawel.syslo@contur.no',
+    imageSrc: '/Images/pawel.jpg',
   },
 ];

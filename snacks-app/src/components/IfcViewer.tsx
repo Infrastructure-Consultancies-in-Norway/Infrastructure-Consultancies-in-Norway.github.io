@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { IFC_LITE_URL, IFC_SAMPLE_MODEL_GITHUB_URL, IFC_SAMPLE_MODEL_URL } from '../constants/links';
+import { IFC_LITE_URL } from '../constants/links';
 import { useLanguage } from '../contexts/LanguageContext';
+import { DEFAULT_IFC_MODEL_ID, IFC_MODELS } from '../data/ifcModels';
 import './IfcViewer.css';
 
-// const IFC_MODEL_URL = '/Files/f_bru_34-0147_Osa_bru.ifc';
 const IFC_LITE_WASM_URL = '/wasm/ifc-lite_bg.wasm';
 
 type EntitySummary = {
@@ -130,6 +130,7 @@ const IfcViewer: React.FC = () => {
   const [expandedTypes, setExpandedTypes] = useState<Set<string>>(() => new Set());
   const [viewerHeight, setViewerHeight] = useState(560);
   const [panelSizes, setPanelSizes] = useState({ hierarchy: 260, properties: 300 });
+  const [selectedModelId, setSelectedModelId] = useState(DEFAULT_IFC_MODEL_ID);
   const resizeStateRef = useRef<
     | { kind: 'hierarchy' | 'properties'; startX: number; startSize: number }
     | { kind: 'height'; startY: number; startHeight: number }
@@ -137,6 +138,11 @@ const IfcViewer: React.FC = () => {
   >(null);
 
   translateRef.current = t;
+
+  const selectedModel = useMemo(
+    () => IFC_MODELS.find((model) => model.id === selectedModelId) || IFC_MODELS[0],
+    [selectedModelId],
+  );
 
   useEffect(() => {
     const shell = shellRef.current;
@@ -263,13 +269,18 @@ const IfcViewer: React.FC = () => {
 
       try {
         setError(null);
-        setStatus(translateRef.current('ifcViewer.fetching'));
+        setIsReady(false);
+        setEntities([]);
+        setSelectedEntity(null);
+        setPropertySets([]);
+        setSearchTerm('');
+        setExpandedTypes(new Set());
+        setStatus(`${translateRef.current('ifcViewer.fetching')} ${selectedModel.label}`);
 
-        const [{ Renderer }, { GeometryProcessor }, { IfcParser }, { default: initIfcLiteWasm }] = await Promise.all([
+        const [{ Renderer }, { GeometryProcessor }, { IfcParser }] = await Promise.all([
           import('@ifc-lite/renderer'),
           import('@ifc-lite/geometry'),
           import('@ifc-lite/parser'),
-          import('@ifc-lite/wasm'),
         ]);
 
         if (cancelled) {
@@ -279,10 +290,9 @@ const IfcViewer: React.FC = () => {
         const renderer = new Renderer(canvas);
         runtimeRef.current.renderer = renderer;
         await renderer.init();
-        await initIfcLiteWasm({ module_or_path: IFC_LITE_WASM_URL });
         resizeRenderer();
 
-        const response = await fetch(IFC_SAMPLE_MODEL_URL);
+        const response = await fetch(selectedModel.url);
 
         if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -313,8 +323,6 @@ const IfcViewer: React.FC = () => {
 
         for await (const event of geometry.processAdaptive(bytes, {
           batchSize: {
-            initialBatchSize: 20,
-            maxBatchSize: 150,
             fileSizeMB: bytes.byteLength / 1024 / 1024,
           },
           wasmUrls: {
@@ -373,7 +381,7 @@ const IfcViewer: React.FC = () => {
       runtimeRef.current.renderer?.destroy();
       runtimeRef.current = { renderer: null, store: null, selectedId: null, animationFrame: null };
     };
-  }, [renderSelection]);
+  }, [renderSelection, selectedModel]);
 
   const handlePointerDown = (event: React.PointerEvent<HTMLCanvasElement>) => {
     event.preventDefault();
@@ -523,10 +531,26 @@ const IfcViewer: React.FC = () => {
           ifcLite
         </a>
         {' | '}
-        <a href={IFC_SAMPLE_MODEL_GITHUB_URL} target="_blank" rel="noreferrer">
-          {t('ifcViewer.sampleModelLink')}
+        <a href={selectedModel.githubUrl} target="_blank" rel="noreferrer">
+          {t('ifcViewer.modelSource')}
         </a>
       </p>
+      <div className="ifc-viewer-model-toolbar">
+        <label htmlFor="ifc-viewer-model-select">{t('ifcViewer.model')}</label>
+        <select
+          id="ifc-viewer-model-select"
+          className="ifc-viewer-model-select"
+          value={selectedModelId}
+          onChange={(event) => setSelectedModelId(event.target.value)}
+        >
+          {IFC_MODELS.map((model) => (
+            <option key={model.id} value={model.id}>
+              {model.sizeBytes ? `${model.label} (${formatFileSize(model.sizeBytes)})` : model.label}
+            </option>
+          ))}
+        </select>
+        <span>{selectedModel.sizeBytes ? `${selectedModel.fileName} - ${formatFileSize(selectedModel.sizeBytes)}` : selectedModel.fileName}</span>
+      </div>
       <div ref={shellRef} className="ifc-viewer-shell" aria-label={t('ifcViewer.title')}>
         <aside className="ifc-viewer-panel ifc-viewer-hierarchy">
           <div className="ifc-viewer-panel-header">

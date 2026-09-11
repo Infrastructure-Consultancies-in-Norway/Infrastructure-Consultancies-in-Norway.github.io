@@ -129,9 +129,11 @@ export const translations = {
 
     // IFC Viewer
     'ifcViewer.title': 'IFC-visning',
-    'ifcViewer.intro': 'Utforsk en liten IFC-eksempelmodell direkte i nettleseren.',
+    'ifcViewer.intro': 'Utforsk IFC-detaljmodeller direkte i nettleseren.',
     'ifcViewer.creditPrefix': 'IFC-visningen er bygget med',
     'ifcViewer.sampleModelLink': 'Eksempelmodellen på GitHub',
+    'ifcViewer.model': 'Modell',
+    'ifcViewer.modelSource': 'Valgt modell på GitHub',
     'ifcViewer.open': 'Åpne IFC-visning',
     'ifcViewer.openWindow': 'Åpne i ny fane',
     'ifcViewer.hierarchy': 'Hierarki',
@@ -297,9 +299,11 @@ export const translations = {
 
     // IFC Viewer
     'ifcViewer.title': 'IFC Viewer',
-    'ifcViewer.intro': 'Explore a small IFC sample model directly in the browser.',
+    'ifcViewer.intro': 'Explore IFC detail models directly in the browser.',
     'ifcViewer.creditPrefix': 'The IFC viewer is built with',
     'ifcViewer.sampleModelLink': 'Sample model on GitHub',
+    'ifcViewer.model': 'Model',
+    'ifcViewer.modelSource': 'Selected model on GitHub',
     'ifcViewer.open': 'Open IFC viewer',
     'ifcViewer.openWindow': 'Open in new tab',
     'ifcViewer.hierarchy': 'Hierarchy',

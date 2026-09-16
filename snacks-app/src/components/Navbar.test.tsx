@@ -15,6 +15,7 @@ describe('Navbar', () => {
     )
     
     expect(screen.getByText('SNACKS')).toBeInTheDocument()
+    expect(screen.getByText('Hjem')).toBeInTheDocument()
     expect(screen.getByText('Egenskapssett')).toBeInTheDocument()
     expect(screen.getByText('Kontakt')).toBeInTheDocument()
   })

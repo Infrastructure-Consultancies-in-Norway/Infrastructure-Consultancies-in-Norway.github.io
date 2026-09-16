@@ -1,0 +1,35 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "snacks-feedback-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-16",
+  "workers_dev": true,
+  "vars": {
+    "ALLOWED_ORIGINS": "https://bimsnacks.no,http://localhost:5173",
+    "ALLOWED_PAGE_HOSTS": "bimsnacks.no",
+    "FEEDBACK_ENABLED": "true",
+    "GITHUB_OWNER": "Infrastructure-Consultancies-in-Norway",
+    "GITHUB_REPOSITORY": "Infrastructure-Consultancies-in-Norway.github.io",
+    "RATE_LIMIT_MAX": "5",
+    "RATE_LIMIT_WINDOW_SECONDS": "900",
+    "TURNSTILE_EXPECTED_ACTION": "feedback_submit",
+    "TURNSTILE_EXPECTED_HOSTS": "bimsnacks.no"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "snacks-feedback-guards",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "secrets": {
+    "required": [
+      "TURNSTILE_SECRET_KEY",
+      "RATE_LIMIT_SECRET",
+      "GITHUB_APP_ID",
+      "GITHUB_APP_INSTALLATION_ID",
+      "GITHUB_APP_PRIVATE_KEY"
+    ]
+  }
+}

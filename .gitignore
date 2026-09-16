@@ -27,3 +27,5 @@ SNACKS Hjemmeside.pptx
 /SNACKS Hjemmeside
 Files/f_bru_34-0147_Osa_bru.ifc
 snacks-app/public/Files/f_bru_34-0147_Osa_bru.ifc
+# Playwright CLI output (may contain credentials)
+.playwright-cli/

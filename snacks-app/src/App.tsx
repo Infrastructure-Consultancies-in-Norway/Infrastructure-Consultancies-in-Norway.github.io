@@ -21,6 +21,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/properties" element={<Properties />} />
         <Route path="/ifc-viewer" element={<IfcViewerPage />} />
+        <Route path="/ifc-viewer/:modelId" element={<IfcViewerPage />} />
         <Route path="/easter-egg" element={<EasterEgg />} />
         <Route path="/begrep/:slug" element={<GlossaryTerm />} />
         <Route path="*" element={<NotFound />} />

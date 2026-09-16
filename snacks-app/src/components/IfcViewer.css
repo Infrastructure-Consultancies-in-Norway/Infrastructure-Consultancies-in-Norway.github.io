@@ -5,6 +5,19 @@
   min-height: var(--ifc-viewer-height, 560px);
 }
 
+/* Minimal layout used by the ?thumbnail=1 capture mode (see generate-ifc-thumbnails.mjs). */
+.ifc-viewer-thumbnail-mode {
+  width: 640px;
+  height: 480px;
+  background: #eef2eb;
+}
+
+.ifc-viewer-thumbnail-mode .ifc-viewer-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .ifc-viewer-credit {
   color: var(--snacks-dark-grey);
   font-size: 0.95rem;
@@ -24,7 +37,7 @@
 
 .ifc-viewer-model-toolbar {
   display: grid;
-  grid-template-columns: auto minmax(240px, 420px) minmax(0, 1fr);
+  grid-template-columns: auto minmax(240px, 420px) minmax(0, 1fr) auto;
   align-items: center;
   gap: 0.65rem;
   margin: 1rem 0;
@@ -54,6 +67,70 @@
   background: #ffffff;
   color: var(--snacks-dark-green);
   padding: 0.55rem 0.65rem;
+}
+
+.ifc-viewer-back-link {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  color: var(--snacks-dark-green);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.ifc-viewer-back-link:hover {
+  text-decoration: underline;
+}
+
+.ifc-viewer-disclaimer {
+  color: #7b2d26;
+  font-weight: 600;
+  font-size: 0.92rem;
+  margin-bottom: 0.25rem;
+}
+
+.ifc-viewer-segmented-control {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.ifc-viewer-segmented-label {
+  color: var(--snacks-dark-green);
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-right: 0.15rem;
+}
+
+.ifc-viewer-hierarchy .ifc-viewer-segmented-control {
+  margin: 0.5rem 0 0.75rem;
+}
+
+.ifc-viewer-hierarchy .ifc-viewer-segmented-label {
+  flex-basis: 100%;
+  margin-right: 0;
+  margin-bottom: 0.1rem;
+}
+
+.ifc-viewer-segmented-option {
+  border: 1px solid #d7ded2;
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--snacks-dark-grey);
+  padding: 0.3rem 0.75rem;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+
+.ifc-viewer-segmented-option:hover {
+  border-color: var(--snacks-dark-green);
+}
+
+.ifc-viewer-segmented-option.selected {
+  background: var(--snacks-dark-green);
+  border-color: var(--snacks-dark-green);
+  color: #ffffff;
+  font-weight: 600;
 }
 
 .ifc-viewer-panel,
@@ -210,6 +287,10 @@
   background: #eef2eb;
 }
 
+#ifc-viewer[data-background='dark'] .ifc-viewer-canvas-panel {
+  background: #0e0e0f;
+}
+
 .ifc-viewer-canvas {
   display: block;
   width: 100%;
@@ -240,6 +321,19 @@
 
 .ifc-viewer-status.ready {
   color: var(--snacks-dark-green);
+}
+
+#ifc-viewer[data-background='dark'] .ifc-viewer-status {
+  background: rgba(20, 20, 22, 0.88);
+  color: #f3f5f0;
+}
+
+#ifc-viewer[data-background='dark'] .ifc-viewer-status.ready {
+  color: #f3f5f0;
+}
+
+#ifc-viewer[data-background='dark'] .ifc-viewer-status.error {
+  color: #ff8a80;
 }
 
 .ifc-viewer-resize-handle {

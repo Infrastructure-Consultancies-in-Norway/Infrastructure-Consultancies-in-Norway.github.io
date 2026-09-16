@@ -23,4 +23,7 @@ npm test
 
 ## Deploy
 
-The app automatically deploys to GitHub Pages via GitHub Actions on push to main branch.
+The app automatically deploys to GitHub Pages via GitHub Actions on push to
+`master`. Configure the public `FEEDBACK_API_URL` and `TURNSTILE_SITE_KEY`
+repository Actions variables before enabling the feedback widget in production.
+Server-side setup is documented in [`../feedback-api/README.md`](../feedback-api/README.md).

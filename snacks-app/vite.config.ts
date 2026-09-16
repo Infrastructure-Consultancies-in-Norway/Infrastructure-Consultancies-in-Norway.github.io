@@ -21,6 +21,9 @@ const ifcLiteWasmDevServer = () => ({
     })
   },
 } satisfies import('vite').Plugin)
+const buildVersion = process.env.GITHUB_SHA
+  ? `${packageJson.version}+${process.env.GITHUB_SHA.slice(0, 7)}`
+  : packageJson.version
 
 export default defineConfig({
   plugins: [react(), ifcLiteWasmDevServer()],
@@ -33,7 +36,7 @@ export default defineConfig({
     format: 'es',
   },
   define: {
-    __APP_VERSION__: JSON.stringify(packageJson.version),
+    __APP_VERSION__: JSON.stringify(buildVersion),
   },
   resolve: {
     alias: {

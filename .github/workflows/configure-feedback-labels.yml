@@ -1,0 +1,25 @@
+name: Configure feedback labels
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  labels:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure labels
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh label create "feedback" --color "5C744A" --description "Submitted through the website feedback form" --force
+          gh label create "status:new" --color "1D76DB" --description "New feedback awaiting triage" --force
+          gh label create "feedback:question" --color "D4C5F9" --description "Question from a website visitor" --force
+          gh label create "feedback:improvement" --color "A2EEEF" --description "Improvement suggested by a website visitor" --force
+          gh label create "feedback:content-error" --color "FBCA04" --description "Reported content error" --force
+          gh label create "feedback:technical-error" --color "D93F0B" --description "Reported technical website issue" --force
+          gh label create "feedback:other" --color "C5DEF5" --description "Other website feedback" --force

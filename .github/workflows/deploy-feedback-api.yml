@@ -1,0 +1,69 @@
+name: Deploy feedback API
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "feedback-api/**"
+      - "shared/feedback-contract.ts"
+      - ".github/workflows/deploy-feedback-api.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: feedback-api-production
+  cancel-in-progress: false
+
+defaults:
+  run:
+    working-directory: feedback-api
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: feedback-api/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type-check
+        run: npm run check
+
+      - name: Test
+        run: npm test
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    environment: feedback-api
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Apply D1 migrations
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: feedback-api
+          command: d1 migrations apply snacks-feedback-guards --remote
+
+      - name: Deploy Worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: feedback-api
+          command: deploy

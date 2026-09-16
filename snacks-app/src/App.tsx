@@ -10,6 +10,7 @@ import EasterEgg from './pages/EasterEgg'
 import GlossaryTerm from './pages/GlossaryTerm'
 import IfcViewerPage from './pages/IfcViewerPage'
 import NotFound from './pages/NotFound'
+import FeedbackWidget from './components/FeedbackWidget'
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
+      <FeedbackWidget />
     </LanguageProvider>
   )
 }

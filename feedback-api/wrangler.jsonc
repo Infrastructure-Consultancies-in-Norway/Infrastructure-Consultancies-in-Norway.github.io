@@ -19,7 +19,7 @@
     {
       "binding": "DB",
       "database_name": "snacks-feedback-guards",
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "b3aa6936-0cb4-4aa4-b3b0-8ac2316eccbe",
       "migrations_dir": "migrations"
     }
   ],

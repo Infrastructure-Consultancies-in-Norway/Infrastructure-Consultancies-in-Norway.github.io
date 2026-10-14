@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { IFC_LITE_URL } from '../constants/links';
 import { useLanguage } from '../contexts/LanguageContext';
-import { findIfcModel, VISIBLE_IFC_MODELS } from '../data/ifcModels';
+import { IfcModelOption } from '../data/ifcModels';
 import './IfcViewer.css';
 
 const IFC_LITE_WASM_URL = '/wasm/ifc-lite_bg.wasm';
@@ -226,10 +226,11 @@ const groupEntities = (entities: EntitySummary[], mode: GroupMode, noNameLabel: 
 };
 
 type IfcViewerProps = {
-  modelId: string;
+  model: IfcModelOption;
+  models: IfcModelOption[];
 };
 
-const IfcViewer: React.FC<IfcViewerProps> = ({ modelId }) => {
+const IfcViewer: React.FC<IfcViewerProps> = ({ model: selectedModel, models }) => {
   const { t } = useLanguage();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -263,8 +264,6 @@ const IfcViewer: React.FC<IfcViewerProps> = ({ modelId }) => {
   >(null);
 
   translateRef.current = t;
-
-  const selectedModel = useMemo(() => findIfcModel(modelId, true) || VISIBLE_IFC_MODELS[0], [modelId]);
 
   useEffect(() => {
     const shell = shellRef.current;
@@ -741,7 +740,7 @@ const IfcViewer: React.FC<IfcViewerProps> = ({ modelId }) => {
           value={selectedModel.id}
           onChange={(event) => navigate(`/ifc-viewer/${event.target.value}`)}
         >
-          {VISIBLE_IFC_MODELS.map((model) => (
+          {models.map((model) => (
             <option key={model.id} value={model.id}>
               {model.sizeBytes ? `${model.label} (${formatFileSize(model.sizeBytes)})` : model.label}
             </option>

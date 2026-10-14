@@ -175,6 +175,8 @@ export const translations = {
     'ifcViewer.galleryBack': 'Tilbake til modelloversikt',
     'ifcViewer.galleryThumbnailAlt': 'Forhåndsvisning av',
     'ifcViewer.galleryMissingThumbnail': 'Ingen forhåndsvisning',
+    'ifcViewer.modelsLoading': 'Laster modelloversikt...',
+    'ifcViewer.modelsLoadFailed': 'Kunne ikke laste modelloversikten. Prøv igjen senere.',
 
     // Contact
     'contact.title': 'Kontakt',
@@ -393,6 +395,8 @@ export const translations = {
     'ifcViewer.galleryBack': 'Back to model overview',
     'ifcViewer.galleryThumbnailAlt': 'Preview of',
     'ifcViewer.galleryMissingThumbnail': 'No preview available',
+    'ifcViewer.modelsLoading': 'Loading model list...',
+    'ifcViewer.modelsLoadFailed': 'Could not load the model list. Please try again later.',
 
     // Contact
     'contact.title': 'Contact',

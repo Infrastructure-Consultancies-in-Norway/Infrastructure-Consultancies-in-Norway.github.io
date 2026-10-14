@@ -6,12 +6,16 @@
  * chrome-free canvas forced to the light background) and reads `window.__ifcViewerThumbnail` -
  * a PNG data URL produced by `renderer.captureScreenshot()` once the model has finished loading.
  *
- * The model id list is parsed straight out of `src/data/ifcModels.ts` (the `createRemoteModel(...)`
- * calls), so it never drifts out of sync with the gallery/dropdown.
+ * The model id list comes from `ifc-files/output/manifest.json` in the IFC details repo (the same
+ * file the website reads), and the PNGs are written to `ifc-files/output/thumbnails` in that repo,
+ * ready to be committed and pushed. The manifest and IFC files are read from the local clone of that
+ * repo (intercepting the GitHub raw requests), so nothing needs to be pushed first.
  *
  * Usage:
  *   node scripts/generate-ifc-thumbnails.mjs
+ *   node scripts/generate-ifc-thumbnails.mjs --only-missing
  *   node scripts/generate-ifc-thumbnails.mjs --model snacks_detalj_bolter
+ *   node scripts/generate-ifc-thumbnails.mjs --details-repo C:\path\to\3d-details-property-mapper
  *   node scripts/generate-ifc-thumbnails.mjs --base-url http://localhost:5173 --headless
  *
  * Requires the @playwright/test devDependency and its Chromium browser:
@@ -24,14 +28,12 @@
  */
 import { chromium } from '@playwright/test';
 import { spawn } from 'node:child_process';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { access, mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = path.resolve(__dirname, '..');
-const IFC_MODELS_SOURCE = path.join(ROOT_DIR, 'src', 'data', 'ifcModels.ts');
-const OUTPUT_DIR = path.join(ROOT_DIR, 'public', 'thumbnails');
 const DEV_SERVER_PORT = 5175;
 const CAPTURE_TIMEOUT_MS = 60_000;
 const SERVER_READY_TIMEOUT_MS = 60_000;
@@ -43,24 +45,32 @@ const getFlagValue = (flag) => {
 };
 
 const headless = args.includes('--headless');
+const onlyMissing = args.includes('--only-missing');
 const modelFilter = getFlagValue('--model');
 const explicitBaseUrl = getFlagValue('--base-url');
+const DETAILS_REPO_DIR = path.resolve(
+  getFlagValue('--details-repo') ?? path.join(ROOT_DIR, '..', '..', '3d-details-property-mapper'),
+);
+const MANIFEST_PATH = path.join(DETAILS_REPO_DIR, 'ifc-files', 'output', 'manifest.json');
+const OUTPUT_DIR = path.join(DETAILS_REPO_DIR, 'ifc-files', 'output', 'thumbnails');
 
-/** Extracts every `createRemoteModel('<FileName>.ifc'` call to build the visible model id list. */
-const extractVisibleModelIds = async () => {
-  const source = await readFile(IFC_MODELS_SOURCE, 'utf8');
-  const ids = [];
-
-  for (const match of source.matchAll(/createRemoteModel\('([^']+\.ifc)'/g)) {
-    ids.push(match[1].replace(/\.ifc$/i, '').toLowerCase());
-  }
+/** Reads the model ids (file name without `.ifc`, lower-cased) from the details repo manifest. */
+const extractModelIds = async () => {
+  const entries = JSON.parse(await readFile(MANIFEST_PATH, 'utf8'));
+  const ids = entries.map((entry) => entry.fileName.replace(/\.ifc$/i, '').toLowerCase());
 
   if (!ids.length) {
-    throw new Error(`No models found in ${IFC_MODELS_SOURCE}. Did the file move or change shape?`);
+    throw new Error(`No models found in ${MANIFEST_PATH}.`);
   }
 
   return ids;
 };
+
+const fileExists = (filePath) =>
+  access(filePath).then(
+    () => true,
+    () => false,
+  );
 
 const waitForServerReady = async (url, timeoutMs) => {
   const start = Date.now();
@@ -135,11 +145,28 @@ const captureThumbnail = async (page, baseUrl, modelId) => {
 };
 
 const main = async () => {
-  const allModelIds = await extractVisibleModelIds();
-  const modelIds = modelFilter ? allModelIds.filter((id) => id === modelFilter) : allModelIds;
+  const allModelIds = await extractModelIds();
+  let modelIds = modelFilter ? allModelIds.filter((id) => id === modelFilter) : allModelIds;
 
   if (modelFilter && !modelIds.length) {
     throw new Error(`--model "${modelFilter}" did not match any of: ${allModelIds.join(', ')}`);
+  }
+
+  if (onlyMissing) {
+    const missing = [];
+
+    for (const id of modelIds) {
+      if (!(await fileExists(path.join(OUTPUT_DIR, `${id}.png`)))) {
+        missing.push(id);
+      }
+    }
+
+    modelIds = missing;
+  }
+
+  if (!modelIds.length) {
+    console.log('Nothing to capture.');
+    return;
   }
 
   await mkdir(OUTPUT_DIR, { recursive: true });
@@ -163,12 +190,27 @@ const main = async () => {
     for (const modelId of modelIds) {
       const page = await browser.newPage({ viewport: { width: 640, height: 480 } });
 
+      // Serve the manifest and IFC files from the local details repo, so thumbnails can be made
+      // before the latest models are pushed to GitHub.
+      await page.route('https://raw.githubusercontent.com/**/ifc-files/output/*', async (route) => {
+        const localPath = path.join(DETAILS_REPO_DIR, 'ifc-files', 'output', path.basename(new URL(route.request().url()).pathname));
+
+        if (!(await fileExists(localPath))) {
+          return route.continue();
+        }
+
+        return route.fulfill({
+          body: await readFile(localPath),
+          headers: { 'access-control-allow-origin': '*' },
+        });
+      });
+
       try {
         console.log(`Capturing "${modelId}" ...`);
         const png = await captureThumbnail(page, baseUrl, modelId);
         const outputPath = path.join(OUTPUT_DIR, `${modelId}.png`);
         await writeFile(outputPath, png);
-        console.log(`  -> ${path.relative(ROOT_DIR, outputPath)} (${(png.length / 1024).toFixed(1)} KB)`);
+        console.log(`  -> ${path.relative(DETAILS_REPO_DIR, outputPath)} (${(png.length / 1024).toFixed(1)} KB)`);
       } catch (captureError) {
         console.error(`  ! Failed to capture "${modelId}": ${captureError.message}`);
       } finally {

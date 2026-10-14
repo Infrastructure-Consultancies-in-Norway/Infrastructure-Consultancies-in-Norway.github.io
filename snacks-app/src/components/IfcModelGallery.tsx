@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { IFC_LITE_URL } from '../constants/links';
-import { VISIBLE_IFC_MODELS } from '../data/ifcModels';
+import { IfcModelOption } from '../data/ifcModels';
 import './IfcViewer.css';
 import './IfcModelGallery.css';
 
@@ -15,7 +15,7 @@ const formatFileSize = (bytes: number) => {
   return `${megabytes.toFixed(1)} MB`;
 };
 
-const IfcModelGallery: React.FC = () => {
+const IfcModelGallery: React.FC<{ models: IfcModelOption[] }> = ({ models }) => {
   const { t } = useLanguage();
   const location = useLocation();
   const [failedThumbnails, setFailedThumbnails] = useState<Set<string>>(() => new Set());
@@ -44,7 +44,7 @@ const IfcModelGallery: React.FC = () => {
         </a>
       </p>
       <div className="ifc-gallery-grid">
-        {VISIBLE_IFC_MODELS.map((model) => {
+        {models.map((model) => {
           const thumbnailFailed = failedThumbnails.has(model.id);
 
           return (

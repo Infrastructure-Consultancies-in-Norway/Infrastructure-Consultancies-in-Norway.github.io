@@ -62,7 +62,7 @@ const Footer: React.FC = () => {
           ))} */}
         </div>
         {/* <hr className="my-2" /> */}
-        <p className="small mb-0">v{__APP_VERSION__}</p>
+        <p className="small mb-0">v{__APP_VERSION__.split('+')[0]}</p>
       </div>
     </footer>
   );

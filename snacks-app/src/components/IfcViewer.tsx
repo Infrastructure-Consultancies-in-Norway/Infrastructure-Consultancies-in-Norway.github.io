@@ -21,6 +21,32 @@ const CLEAR_COLOR_BY_THEME: Record<BackgroundTheme, [number, number, number, num
   dark: [0.055, 0.055, 0.059, 1],
 };
 
+// The default environment is dim and its bluish sky ambient desaturates saturated IFC colours; use neutral light.
+const LIGHTING_ENVIRONMENT: import('@ifc-lite/renderer').LightingEnvironment = {
+  exposure: 1.0,
+  sunIntensity: 0.6,
+  skyColor: [1, 1, 1],
+  groundColor: [0.7, 0.7, 0.7],
+  ambientIntensity: 0.55,
+  fillIntensity: 0.1,
+  rimIntensity: 0.05,
+};
+
+// The shader boosts saturation 1.4x after tone-curving; for pure colours (e.g. yellow 1,1,0) that pushes the
+// zero channel negative and ACES tone mapping turns it into a pale blue. Flooring each channel relative to
+// the colour's luminance keeps the result non-negative while leaving mid-saturation colours untouched.
+const MIN_CHANNEL_TO_LUMINANCE = 0.4;
+
+const compensateShaderSaturation = (meshes: { color: number[] }[]) => {
+  for (const mesh of meshes) {
+    const [r, g, b] = mesh.color;
+    const floor = MIN_CHANNEL_TO_LUMINANCE * (0.299 * r + 0.587 * g + 0.114 * b);
+    mesh.color[0] = Math.max(r, floor);
+    mesh.color[1] = Math.max(g, floor);
+    mesh.color[2] = Math.max(b, floor);
+  }
+};
+
 const readStoredValue = <T extends string>(key: string, allowedValues: readonly T[], fallback: T): T => {
   try {
     const stored = window.localStorage.getItem(key);
@@ -285,13 +311,14 @@ const IfcViewer: React.FC<IfcViewerProps> = ({ model: selectedModel, models }) =
     }
 
     const clearColor = CLEAR_COLOR_BY_THEME[isThumbnailMode ? 'light' : backgroundThemeRef.current];
+    const options = { clearColor, environment: LIGHTING_ENVIRONMENT };
 
     if (expressId) {
-      renderer.render({ selectedIds: new Set([expressId]), clearColor });
+      renderer.render({ ...options, selectedIds: new Set([expressId]) });
       return;
     }
 
-    renderer.render({ clearColor });
+    renderer.render(options);
   }, [isThumbnailMode]);
 
   useEffect(() => {
@@ -480,6 +507,7 @@ const IfcViewer: React.FC<IfcViewerProps> = ({ model: selectedModel, models }) =
           }
 
           if (event.type === 'batch') {
+            compensateShaderSaturation(event.meshes);
             renderer.addMeshes(event.meshes, true);
             meshes.push(...event.meshes);
             setStatus(`${translateRef.current('ifcViewer.loadingGeometry')} ${meshes.length}`);
